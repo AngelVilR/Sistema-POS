@@ -1,0 +1,35 @@
+mat-toolbar{
+    padding-top: 2.2em;
+    padding-bottom: 2.2em;
+    background-color: #f9c307;
+}
+
+img{
+    width: 100px;
+    height: auto;
+}
+
+.style-BtnNavBar{
+    width: auto;        
+    background-color: #fbdb6b;
+    
+    color: black;
+    border: 1px solid black;
+    font-size: large;
+    font-weight: bold;
+}
+
+.style-BtnNavBar:hover{
+    background-color: #ddbd3f;
+}
+
+.style-Icons-Large{
+    font-size: larger;
+    padding-right: 0.2em;    
+}
+
+.flex-betweenV1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

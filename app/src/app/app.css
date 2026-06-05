@@ -1,7 +1,82 @@
 .body-container {
-    padding-top: 64px;
-    padding-bottom: 4.2rem;
+    padding-top: 1.5rem;
+    padding-bottom: 5rem;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.ToolBar-container {
+    width: 100%;
+}
+
+/* Barra lateral */
+.flex-space {
+    display: flex;
+}
+
+.menu-container {
+    height: 100%;
+}
+
+.sideMenu-container {
+    text-align: center;
+    background-color: #fff7df;
+}
+
+.sidenav-content {
+    height: 100vh;
+    border-right: 1px solid black;
+    background-color: #fbdb6b;
+}
+
+.sidenav-content button {
+    margin: 1.5em 0em;
+}
+
+.style-icon-acordion {
+    padding-right: 10px;
+}
+
+.style-Icon-User {
+    width: auto;
+    height: auto;
+    font-size: 5em;
+    margin: 0.5em 0em 0.2em;
+}
+
+.style-BtnSideBar {
+    width: 100%;
+    background-color: #fbdb6b;
+    margin: 1em 0em;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.style-Icons-Large {
+    font-size: large;
+    padding-right: 0.2em;
+}
+
+.style-Btn-Logout {
+    width: 90%;
+    margin: 1em 0em 0em;
+    background-color: #fbdb6b;
+
+    font-size: large;
+    font-weight: bold;
+}
+
+.style-Btn-Logout:hover {
+    background-color: #f7d448;
+}
+
+.p-copy {
+    color: gray;
+}
+
+@media (max-width: 1200px) {
+    .sidenav-content {
+        height: auto;        
+    }
 }

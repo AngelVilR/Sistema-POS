@@ -1,10 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
 .success {
-  background-color: #4CAF50 !important; 
+  background-color: #4CAF50 !important;
   color: white !important;
 }
 
@@ -15,11 +23,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .warning {
   background-color: #FFC107 !important;
-  color: black !important; 
+  color: black !important;
 }
 
 .error {
-  background-color: #F44336 !important; 
+  background-color: #F44336 !important;
   color: white !important;
 }
 
