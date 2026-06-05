@@ -2,9 +2,7 @@
   <mat-drawer #drawer mode="side" class="sideMenu-container">
 
     <!-- ICONO DE USUARIO -->
-
     <mat-icon class="style-Icon-User">account_circle</mat-icon>
-
 
     <h2>NOMBRE DEL USUARIO</h2>
 
@@ -16,7 +14,7 @@
 
         <div>
           <div>
-            <a matButton class="style-BtnSideBar" style="color: black;" href="https://www.google.com/" target="_blank">
+            <a matButton class="style-BtnSideBar" style="color: black;" [routerLink]="['/producto-admin']">
               <mat-icon class="style-Icons-Large">cookie</mat-icon> Productos
             </a>
           </div>
@@ -24,7 +22,7 @@
           <mat-divider></mat-divider>
 
           <div>
-            <a matButton class="style-BtnSideBar" style="color: black;" href="https://www.google.com/" target="_blank">
+            <a matButton class="style-BtnSideBar" style="color: black;" [routerLink]="['/evento-admin']">
               <mat-icon class="style-Icons-Large">event</mat-icon> Eventos
             </a>
           </div>
@@ -32,7 +30,7 @@
           <mat-divider></mat-divider>
 
           <div>
-            <a matButton class="style-BtnSideBar" style="color: black;" href="https://www.google.com/" target="_blank">
+            <a matButton class="style-BtnSideBar" style="color: black;" [routerLink]="['/venta-admin']">
               <mat-icon class="style-Icons-Large">moped</mat-icon> Ventas
             </a>
           </div>
@@ -40,7 +38,7 @@
           <mat-divider></mat-divider>
 
           <div>
-            <a matButton class="style-BtnSideBar" style="color: black;" href="https://www.google.com/" target="_blank">
+            <a matButton class="style-BtnSideBar" style="color: black;" [routerLink]="['/usuario-admin']">
               <mat-icon class="style-Icons-Large">person</mat-icon> Usuarios
             </a>
           </div>
@@ -80,8 +78,8 @@
     </mat-accordion>
 
     <div style="margin: 1em 0em 1.5em;">
-      <button matButton="outlined" class="style-Btn-Logout" style="color: black;"><mat-icon>logout</mat-icon> Cerrar
-        sesión</button>
+      <button matButton="outlined" class="style-Btn-Logout" style="color: black;" [routerLink]="['/iniciar-sesión']"><mat-icon>logout</mat-icon>
+        Cerrar sesión</button>
       <p class="p-copy">&copy; La Matamonchis S.A 2026</p>
     </div>
   </mat-drawer>

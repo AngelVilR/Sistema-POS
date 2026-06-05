@@ -16,7 +16,7 @@
 }
 
 .menu-container {
-    height: 100%;
+    height: 100vh;
 }
 
 .sideMenu-container {
@@ -75,8 +75,18 @@
     color: gray;
 }
 
-@media (max-width: 1200px) {
+@media (1200px < width <=1800px) {
+
+    .menu-container,
     .sidenav-content {
-        height: auto;        
+        height: auto;
+    }
+}
+
+@media (max-width: 1200px) {
+
+    .menu-container,
+    .sidenav-content {
+        height: auto;
     }
 }

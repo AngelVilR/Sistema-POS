@@ -15,6 +15,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
+import { ProductoModule } from './producto/producto-module';
+import { EventoModule } from './evento/evento-module';
+import { VentaModule } from './venta/venta-module';
+import { UsuarioModule } from './usuario/usuario-module';
+import { CarritoModule } from './carrito/carrito-module';
+import { ReporteModule } from './reporte/reporte-module';
 
 @NgModule({
   declarations: [App],
@@ -23,12 +29,18 @@ import { MatDividerModule } from '@angular/material/divider';
     CoreModule,
     ShareModule,
     HomeModule,
+    UsuarioModule,
+    ProductoModule,
+    EventoModule,
+    VentaModule,        
+    ReporteModule,
+    CarritoModule,
     AppRoutingModule,
     MatSidenavModule,
     MatIconModule,
     MatButtonModule,
     MatExpansionModule,
-    MatDividerModule
+    MatDividerModule,
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
@@ -37,12 +49,9 @@ import { MatDividerModule } from '@angular/material/divider';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptorService,
-      multi: true
-    }
-
+      multi: true,
+    },
   ],
   bootstrap: [App],
 })
-export class AppModule {
-
-}
+export class AppModule {}

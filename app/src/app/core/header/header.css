@@ -1,34 +1,39 @@
-mat-toolbar{
+mat-toolbar {
     padding-top: 2.2em;
     padding-bottom: 2.2em;
     background-color: #f9c307;
 }
 
-img{
+.header-image {
+    background-image: url("../../../../public/images/Logo\ transparente.png");
+    background-size: cover;
     width: 100px;
-    height: auto;
+    height: 100px;
+    flex-shrink: 0;
+    object-fit: cover;
 }
 
-.style-BtnNavBar{
-    width: auto;        
+
+.style-BtnNavBar {
+    width: auto;
     background-color: #fbdb6b;
-    
+
     color: black;
     border: 1px solid black;
     font-size: large;
     font-weight: bold;
 }
 
-.style-BtnNavBar:hover{
+.style-BtnNavBar:hover {
     background-color: #ddbd3f;
 }
 
-.style-Icons-Large{
+.style-Icons-Large {
     font-size: larger;
-    padding-right: 0.2em;    
+    padding-right: 0.2em;
 }
 
-.flex-betweenV1{
+.flex-betweenV1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
