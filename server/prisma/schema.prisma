@@ -15,75 +15,82 @@ datasource db {
 //Modelos
 model Usuario {
   id       Int     @id @default(autoincrement())
+  nombre   String 
   email    String  @unique
-  nombre   String? //Puede ser nulo
+  telefono Int
   role     Role    @default(USER)
   password String
-  ordenes  Orden[]
+
+  ventas    Venta[]
+  facturasEnc FacturaEnc[]
 }
 
-model Videojuego {
+model Producto {
   id          Int               @id @default(autoincrement())
   nombre      String
-  descripcion String            @db.VarChar(500)
-  publicar    Boolean           @default(true)
-  precio      Decimal           @db.Decimal(10, 2)
-  imagen      String            @default("image-not-found.jpg")
-  createdAt   DateTime          @default(now())
-  updatedAt   DateTime          @default(now()) @updatedAt
-  generos     Genero[]
-  ordenes     OrdenVideojuego[]
-  plataformas PlataformaVideojuego[]
-  }
+  precio      Int
+  stock       Int
+  estado      Boolean @default(true)
 
-  model Genero {
+  ventas      Venta[]
+  facturasDet FacturaDet[]
+}
+
+  model Evento {
   id          Int          @id @default(autoincrement())
   nombre      String
-  updatedAt   DateTime     @default(now()) @updatedAt
-  videojuegos Videojuego[]
+  fechaInicio   DateTime   
+  fechaFin      DateTime
+
+  ventas        Venta[]
+  facturasEnc   FacturaEnc[]
 }
 
-model Plataforma {
-  id          Int                    @id @default(autoincrement())
-  nombre      String
-  updatedAt   DateTime               @default(now()) @updatedAt
-  videojuegos PlataformaVideojuego[]
-}
-
-model PlataformaVideojuego {
-  //Plataforma
-  plataformaId     Int
-  plataforma       Plataforma @relation(fields: [plataformaId], references: [id])
-  //Videojuego
-  videojuegoId     Int
-  videojuego       Videojuego @relation(fields: [videojuegoId], references: [id])
-  anno_lanzamiento Int
-  updatedAt        DateTime   @default(now()) @updatedAt
+model Venta {
+  //Evento
+  eventoId    Int    
+  evento      Evento @relation(fields: [eventoId], references: [id])
+  //Usuario
+  usuarioId   Int    
+  usuario     Usuario           @relation(fields: [usuarioId], references: [id])
+  //producto
+  productoId   Int   
+  producto     Producto         @relation(fields: [productoId], references: [id])
+  cantidad     Int
 
   //Llave primaria compuesta
-  @@id([plataformaId, videojuegoId])
+  @@id([eventoId, usuarioId, productoId])
 }
 
-model Orden {
+model FacturaEnc {
   id          Int               @id @default(autoincrement())
-  fechaOrden  DateTime          @default(now())
+  fecha       DateTime          @default(now())
+  hora        DateTime          @db.Time()
+  metodo_pago String
+  descuento   String?
+  subtotal    Decimal           @db.Decimal(10,2)
+  impuesto    Decimal           @db.Decimal(10,2)
+  total       Decimal           @db.Decimal(10,2)    
   usuarioId   Int
   usuario     Usuario           @relation(fields: [usuarioId], references: [id])
-  videojuegos OrdenVideojuego[]
+  eventoId    Int
+  evento      Evento            @relation(fields: [eventoId], references: [id])
+
+  facturasDet FacturaDet[]
 }
 
-model OrdenVideojuego {
-  //Orden
-  ordenId      Int
-  orden        Orden      @relation(fields: [ordenId], references: [id])
-  //Videojuego
-  videojuegoId Int
-  videojuego   Videojuego @relation(fields: [videojuegoId], references: [id])
+model FacturaDet {
+  //FactEnc
+  pedidoId      Int
+  factEnc       FacturaEnc      @relation(fields: [pedidoId], references: [id])
+  //Producto
+  productoId   Int
+  producto     Producto         @relation(fields: [productoId], references: [id])
   cantidad     Int
-  updatedAt    DateTime   @default(now()) @updatedAt
+  total        Int 
 
   //Llave primaria compuesta
-  @@id([ordenId, videojuegoId])
+  @@id([pedidoId, productoId])
 }
 
 enum Role {
