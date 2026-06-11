@@ -1,9 +1,9 @@
 import { productos } from "./seeds/productos.js";
 import { usuarios } from "./seeds/usuarios.js";
 import { eventos } from "./seeds/eventos.js";
-import { PrismaClient } from "../generated/prisma/client.js";
 import { PrismaMariaDb } from "@prisma/adapter-mariadb";
 import dotenv from "dotenv";
+import { PrismaClient } from "@prisma/client/extension";
 dotenv.config();
 
 
