@@ -14,80 +14,80 @@ datasource db {
 
 //Modelos
 model Usuario {
-  id       Int     @id @default(autoincrement())
-  nombre   String 
-  email    String  @unique
+  id       Int    @id @default(autoincrement())
+  nombre   String
+  email    String @unique
   telefono Int
-  role     Role    @default(USER)
+  role     Role   @default(USER)
   password String
 
-  ventas    Venta[]
+  ventas      Venta[]
   facturasEnc FacturaEnc[]
 }
 
 model Producto {
-  id          Int               @id @default(autoincrement())
-  nombre      String
-  precio      Int
-  stock       Int
-  estado      Boolean @default(true)
+  id     Int     @id @default(autoincrement())
+  nombre String
+  precio Int
+  stock  Int
+  estado Boolean @default(true)
 
   ventas      Venta[]
   facturasDet FacturaDet[]
 }
 
-  model Evento {
-  id          Int          @id @default(autoincrement())
+model Evento {
+  id          Int      @id @default(autoincrement())
   nombre      String
-  fechaInicio   DateTime   
-  fechaFin      DateTime
+  fechaInicio DateTime
+  fechaFin    DateTime
 
-  ventas        Venta[]
-  facturasEnc   FacturaEnc[]
+  ventas      Venta[]
+  facturasEnc FacturaEnc[]
 }
 
 model Venta {
   //Evento
-  eventoId    Int    
-  evento      Evento @relation(fields: [eventoId], references: [id])
+  eventoId   Int
+  evento     Evento   @relation(fields: [eventoId], references: [id])
   //Usuario
-  usuarioId   Int    
-  usuario     Usuario           @relation(fields: [usuarioId], references: [id])
+  usuarioId  Int
+  usuario    Usuario  @relation(fields: [usuarioId], references: [id])
   //producto
-  productoId   Int   
-  producto     Producto         @relation(fields: [productoId], references: [id])
-  cantidad     Int
+  productoId Int
+  producto   Producto @relation(fields: [productoId], references: [id])
+  cantidad   Int
 
   //Llave primaria compuesta
   @@id([eventoId, usuarioId, productoId])
 }
 
 model FacturaEnc {
-  id          Int               @id @default(autoincrement())
-  fecha       DateTime          @default(now())
-  hora        DateTime          @db.Time()
+  id          Int      @id @default(autoincrement())
+  fecha       DateTime @default(now())
+  hora        DateTime @db.Time()
   metodo_pago String
   descuento   String?
-  subtotal    Decimal           @db.Decimal(10,2)
-  impuesto    Decimal           @db.Decimal(10,2)
-  total       Decimal           @db.Decimal(10,2)    
+  subtotal    Decimal  @db.Decimal(10, 2)
+  impuesto    Decimal  @db.Decimal(10, 2)
+  total       Decimal  @db.Decimal(10, 2)
   usuarioId   Int
-  usuario     Usuario           @relation(fields: [usuarioId], references: [id])
+  usuario     Usuario  @relation(fields: [usuarioId], references: [id])
   eventoId    Int
-  evento      Evento            @relation(fields: [eventoId], references: [id])
+  evento      Evento   @relation(fields: [eventoId], references: [id])
 
   facturasDet FacturaDet[]
 }
 
 model FacturaDet {
   //FactEnc
-  pedidoId      Int
-  factEnc       FacturaEnc      @relation(fields: [pedidoId], references: [id])
+  pedidoId   Int
+  factEnc    FacturaEnc @relation(fields: [pedidoId], references: [id])
   //Producto
-  productoId   Int
-  producto     Producto         @relation(fields: [productoId], references: [id])
-  cantidad     Int
-  total        Int 
+  productoId Int
+  producto   Producto   @relation(fields: [productoId], references: [id])
+  cantidad   Int
+  total      Int
 
   //Llave primaria compuesta
   @@id([pedidoId, productoId])

@@ -1,25 +1,7 @@
 import { productos } from "./seeds/productos.js";
 import { usuarios } from "./seeds/usuarios.js";
 import { eventos } from "./seeds/eventos.js";
-import { PrismaClient } from "../generated/prisma/client.js";
-import { PrismaMariaDb } from "@prisma/adapter-mariadb";
-import dotenv from "dotenv";
-dotenv.config();
-
-
-const dbUrl = new URL(process.env.DATABASE_URL!);
-
-const adapter = new PrismaMariaDb({
-  host: dbUrl.hostname,
-  port: Number(dbUrl.port || 3306),
-  user: decodeURIComponent(dbUrl.username),
-  password: decodeURIComponent(dbUrl.password),
-  database: dbUrl.pathname.replace("/", ""),
-  connectionLimit: 5,
-});
-
-
-const prisma = new PrismaClient({ adapter });
+import { prisma } from "./config/prisma.js";
 
 const main = async () => {
   try {
