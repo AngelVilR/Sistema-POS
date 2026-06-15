@@ -1,0 +1,106 @@
+.flex-space {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5em;
+    margin-bottom: 2em;
+}
+
+.container {
+    width: 100%;
+    background-color: white;
+    border: 1px solid #636363;
+    border-radius: 1em;
+    padding: 1.5em;
+    box-shadow: 10px 15px 25px #636363;
+}
+
+.container-Encabezado {
+    margin: 0.5em 0em 2em;
+}
+
+.container-Detail {
+    margin: 3em 0em 3em;
+}
+
+.container-Costos {
+    margin: 3em 0em 2em;
+}
+
+.div-image {
+    background-image: url("../../../../public/images/Logo\ transparente.png");
+    background-size: cover;
+    width: 150px;
+    height: 140px;    
+}
+
+/* Style Encabezado */
+table.style-EncFacturaInfo {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+table.style-EncFacturaInfo td {
+    padding: 8px 5px;
+}
+
+table.style-EncFacturaInfo td:last-child {
+    border-bottom: 1px solid black;
+}
+
+table.style-EncFacturaInfo tbody td:first-child {
+    font-weight: bold;    
+}
+
+table.style-EncFacturaInfo tbody td {
+    font-size: 14px;
+}
+
+/* Style Detalle */
+table.style-FacturaDetail {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+table.style-FacturaDetail td,
+table.style-FacturaDetail th {
+    border: 1px solid #000000;
+    padding: 6px 4px;
+}
+
+table.style-FacturaDetail tbody td {
+    font-size: 14px;
+}
+
+table.style-FacturaDetail thead th {
+    font-size: 15px;
+    font-weight: bold;
+    color: #333333;
+    text-align: center;
+    border-left: 1px solid #333333;
+}
+
+/* Tabla de costos */
+table.style-FacturaCosts {
+    width: 100%;
+    text-align: right;
+    border-collapse: collapse;
+}
+
+table.style-FacturaCosts td {
+    padding: 8px 5px;
+}
+
+table.style-FacturaCosts td:first-child {
+    font-weight: bold;
+}
+
+table.style-FacturaCosts td:last-child {
+    border-bottom: 1px solid black;
+}
+
+table.style-FacturaCosts tbody td {
+    font-size: 14px;
+}

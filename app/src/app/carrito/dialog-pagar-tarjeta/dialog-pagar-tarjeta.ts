@@ -32,11 +32,15 @@ export class DialogPagarTarjeta {
         5000
       );
       this.dialogTarjeta.closeAll();
-      this.router.navigate(['/'])      
+      this.goVentaDetail();
     }, 3000);
   }
 
   cancelarVenta() {
     clearTimeout(this.counter);
+  }
+
+  goVentaDetail(){
+    this.router.navigate(['/venta-detail']);
   }
 }

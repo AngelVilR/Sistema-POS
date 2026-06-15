@@ -53,7 +53,7 @@ export class DialogPagarEfectivo {
     } */
 
     const formValue = this.pagarEfectivoForm.value;
-    console.log(formValue)
+    this.goVentaDetail();
   }
 
   onChangeCambio(prTotalVenta: number, event: any): void {
@@ -69,6 +69,10 @@ export class DialogPagarEfectivo {
 
     const tempCambio = tempMontoPago - prTotalVenta
     this.cambioSignal.set(tempCambio)
+  }
+
+  goVentaDetail(){
+    this.router.navigate(['/venta-detail']);
   }
 
   public errorHandling(controlPath: string): string | false {
