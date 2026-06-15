@@ -1,0 +1,25 @@
+h2,
+p {
+    text-align: center;
+}
+
+p {
+    padding-top: 1em;
+    font-size: larger;
+}
+
+.container {
+    display: grid;
+    place-items: center;
+    margin: 2em 0em 1em;
+}
+
+.btnActions-container {
+    width: 100%;
+    margin-bottom: 1.5em;
+}
+
+.style-Btn {
+    width: 100%;
+    color: black;
+}

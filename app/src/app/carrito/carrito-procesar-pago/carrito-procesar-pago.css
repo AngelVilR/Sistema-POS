@@ -1,0 +1,41 @@
+h1{
+    text-align: center;
+    margin-bottom: 3em;
+}
+
+p{
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.container{
+    margin: 3.5em 0em 4em;
+}
+
+.flex-space {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5em;
+}
+
+.style-BtnOptions {
+    width: 20rem;
+    height: 20rem;
+    display: grid;
+    place-items: center;
+    text-align: center;
+
+    background-color: #ffe999;
+    border: 2px solid #b4b4b4;
+    border-radius: 15px;
+}
+
+.style-BtnOptions-content {
+    color: black;
+}
+
+.style-icons {
+    width: 100%;
+    height: auto;
+    font-size: 100px;
+}

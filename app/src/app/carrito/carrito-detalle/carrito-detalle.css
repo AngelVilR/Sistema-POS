@@ -1,0 +1,71 @@
+h2{
+  text-align: center;
+}
+
+mat-icon {
+  padding: 1.5em 0em;
+}
+
+.flex-space {
+  display: flex;
+  justify-content: space-between;
+}
+
+.style-Btn {
+  width: 100%;    
+  color: black;
+}
+
+div.style-tabla-costos {
+  width: 100%;
+  text-align: right;
+  border-collapse: collapse;
+  margin-top: 2em;
+}
+
+.divTable.style-tabla-costos .divTableCell,
+.divTable.style-tabla-costos {
+  padding: 5px 4px;
+}
+
+.divTableRow:not(:last-child) {
+  border-bottom: 1px solid #b4b4b4;
+}
+
+.divTable.style-tabla-costos .divTableBody .divTableCell {
+  font-size: 13px;
+}
+
+.style-tabla-costos .tableFootStyle {
+  font-size: 14px;
+}
+
+/* DivTable.com */
+.divTable {
+  display: table;
+}
+
+.divTableRow {
+  display: table-row;
+}
+
+.divTableHeading {
+  display: table-header-group;
+}
+
+.divTableCell,
+.divTableHead {
+  display: table-cell;
+}
+
+.divTableHeading {
+  display: table-header-group;
+}
+
+.divTableFoot {
+  display: table-footer-group;
+}
+
+.divTableBody {
+  display: table-row-group;
+}

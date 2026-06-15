@@ -1,0 +1,19 @@
+h2{
+    text-align: center;
+}
+
+.style-FormContainer{
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.btnActions-container{
+    display: flex;
+    gap: 4em;
+    margin-bottom: 1.5em;
+}
+
+.style-Btn {  
+  color: black;
+}

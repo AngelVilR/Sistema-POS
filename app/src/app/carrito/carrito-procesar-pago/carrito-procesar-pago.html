@@ -1,1 +1,19 @@
-<p>carrito-procesar-pago works!</p>
+<div class="container">
+    <h1>Seleccione un método de pago</h1>
+    <div class="flex-space">
+
+        <button matButton class="style-BtnOptions" (click)="openDialogEfectivo()">
+            <div class="style-BtnOptions-content">
+                <mat-icon class="style-icons">attach_money</mat-icon>
+                <p>Efectivo</p>
+            </div>
+        </button>
+
+        <button matButton class="style-BtnOptions" (click)="openDialogTarjeta()">
+            <div class="style-BtnOptions-content">
+                <mat-icon class="style-icons">credit_card</mat-icon>
+                <p>Tarjeta Crédito/Débito</p>
+            </div>
+        </button>
+    </div>
+</div>

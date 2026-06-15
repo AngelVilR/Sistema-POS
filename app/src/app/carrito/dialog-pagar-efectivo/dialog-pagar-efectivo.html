@@ -1,0 +1,29 @@
+<h2 mat-dialog-title style="font-weight: 500;">Pagar en Efectivo</h2>
+<form [formGroup]="pagarEfectivoForm" (ngSubmit)="submitPagar()" novalidate>
+    <mat-dialog-content class="mat-typography">
+        <div class="style-FormContainer">
+            <mat-form-field>
+                <mat-label style="color: #494949;">Monto que debe de pagar</mat-label>
+                <input matInput style="color: #494949;" formControlName="montoPendiente" />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Monto a pagar</mat-label>
+                <input matInput formControlName="montoPagar" (blur)="onChangeCambio(montoPendientePago,$event)" />
+                @if (errorHandling('montoPagar')) {
+                <mat-error>{{errorHandling( 'montoPagar')}}</mat-error>
+                }
+            </mat-form-field>
+
+            <h3>Cambio: {{cambioSignal().toString()}}</h3>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <div class="btnActions-container">
+            <button type="button" class="style-Btn" style="background-color: #ffdc5c;" matButton
+                mat-dialog-close>Cancelar</button>
+            <button type="submit" class="style-Btn" style="background-color: #ffdc5c;" matButton
+                cdkFocusInitial>Finalizar venta</button>
+        </div>
+    </mat-dialog-actions>
+</form>

@@ -1,0 +1,11 @@
+<h2 mat-dialog-title style="font-weight: 500;">Pagar en Tarjeta</h2>
+<mat-dialog-content class="mat-typography container">
+    <mat-spinner *ngIf="counter"></mat-spinner>
+    <p>Cargando...</p>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+    <div class="btnActions-container">
+        <button matButton class="style-Btn" style="background-color: #ffdc5c;" mat-dialog-close (click)="cancelarVenta()">Cancelar</button>
+    </div>
+</mat-dialog-actions>

@@ -13,19 +13,12 @@ mat-toolbar {
     object-fit: cover;
 }
 
-
 .style-BtnNavBar {
     width: auto;
-    background-color: #fbdb6b;
-
-    color: black;
+    background-color: #f1d059;    
     border: 1px solid black;
     font-size: large;
     font-weight: bold;
-}
-
-.style-BtnNavBar:hover {
-    background-color: #ddbd3f;
 }
 
 .style-Icons-Large {

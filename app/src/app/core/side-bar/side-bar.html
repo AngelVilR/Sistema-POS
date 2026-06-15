@@ -1,0 +1,85 @@
+<!-- ICONO DE USUARIO -->
+<mat-icon class="style-Icon-User">account_circle</mat-icon>
+
+<h2>NOMBRE DEL USUARIO</h2>
+
+<mat-accordion multi>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title><mat-icon class="style-icon-acordion">handyman</mat-icon> Mantenimientos</mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div>
+            <div>
+                <a matButton class="style-BtnSideBar" style="color: black;" [routerLink]="['/producto-admin']">
+                    <mat-icon class="style-Icons-Large">cookie</mat-icon> Productos
+                </a>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div>
+                <a matButton class="style-BtnSideBar" style="color: black;" [routerLink]="['/evento-admin']">
+                    <mat-icon class="style-Icons-Large">event</mat-icon> Eventos
+                </a>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div>
+                <a matButton class="style-BtnSideBar" style="color: black;" [routerLink]="['/venta-admin']">
+                    <mat-icon class="style-Icons-Large">moped</mat-icon> Ventas
+                </a>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div>
+                <a matButton class="style-BtnSideBar" style="color: black;" [routerLink]="['/usuario-admin']">
+                    <mat-icon class="style-Icons-Large">person</mat-icon> Usuarios
+                </a>
+            </div>
+        </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title><mat-icon class="style-icon-acordion">assignment</mat-icon> Reportes</mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div>
+            <div>
+                <a matButton class="style-BtnSideBar" style="color: black;" href="https://www.google.com/"
+                    target="_blank">
+                    <mat-icon class="style-Icons-Large">credit_card</mat-icon> Ventas por tipo de transacción
+                </a>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div>
+                <a matButton class="style-BtnSideBar" style="color: black;" href="https://www.google.com/"
+                    target="_blank">
+                    <mat-icon class="style-Icons-Large">attach_money</mat-icon> Productos por ventas
+                </a>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div>
+                <a matButton class="style-BtnSideBar" style="color: black;" href="https://www.google.com/"
+                    target="_blank">
+                    <mat-icon class="style-Icons-Large">person</mat-icon> Ventas por usuario
+                </a>
+            </div>
+        </div>
+    </mat-expansion-panel>
+
+</mat-accordion>
+
+<div style="margin: 1em 0em 1.5em;">
+    <button matButton="outlined" class="style-Btn-Logout" style="color: black;"
+        [routerLink]="['/iniciar-sesión']"><mat-icon>logout</mat-icon>
+        Cerrar sesión</button>
+    <p class="p-copy">&copy; La Matamonchis S.A 2026</p>
+</div>

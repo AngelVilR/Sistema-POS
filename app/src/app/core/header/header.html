@@ -1,11 +1,12 @@
 <mat-toolbar class="flex-betweenV1">
     <div>
-        <button mat-icon-button class="header-image" matTooltip="Sistema POS - Matamonchis" [routerLink]="['/inicio']"></button>
+        <button mat-icon-button class="header-image" matTooltip="Sistema POS - Matamonchis"
+            [routerLink]="['/inicio']"></button>
     </div>
 
     <div>
-        <a matButton="filled" class="style-BtnNavBar" [routerLink]="['/carrito']">
+        <button matButton="filled" class="style-BtnNavBar" style="background-color: #fbdb6b; color: black;" (click)="openDialog()">
             <mat-icon class="style-Icons-Large">shopping_cart</mat-icon> Carrito
-        </a>
+        </button>
     </div>
 </mat-toolbar>
