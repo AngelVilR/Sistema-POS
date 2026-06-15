@@ -1,0 +1,105 @@
+2026-06-15 10:55:04.392 error: 	Admin--Se produjo un error interno del servidor 
+Invalid `prisma.producto.update()` invocation in
+C:\POS\Sistema-POS\server\source\controllers\productoController.ts:67:52
+
+  64 try {
+  65     const id = Number(request.params.id);
+  66 
+→ 67     const producto = await prisma.producto.update({
+           where: {
+             id: 7
+           },
+         + data: ProductoUpdateInput | ProductoUncheckedUpdateInput
+         })
+
+Argument `data` is missing.
+2026-06-15 10:55:23.883 error: 	Admin--Se produjo un error interno del servidor 
+Invalid `prisma.producto.update()` invocation in
+C:\POS\Sistema-POS\server\source\controllers\productoController.ts:67:52
+
+  64 try {
+  65     const id = Number(request.params.id);
+  66 
+→ 67     const producto = await prisma.producto.update({
+           where: {
+             id: 1
+           },
+         + data: ProductoUpdateInput | ProductoUncheckedUpdateInput
+         })
+
+Argument `data` is missing.
+2026-06-15 10:55:35.134 error: 	Admin--Se produjo un error interno del servidor 
+Invalid `prisma.producto.update()` invocation in
+C:\POS\Sistema-POS\server\source\controllers\productoController.ts:67:52
+
+  64 try {
+  65     const id = Number(request.params.id);
+  66 
+→ 67     const producto = await prisma.producto.update({
+           where: {
+             id: 7
+           },
+         + data: ProductoUpdateInput | ProductoUncheckedUpdateInput
+         })
+
+Argument `data` is missing.
+2026-06-15 10:57:27.122 error: 	Admin--Se produjo un error interno del servidor 
+Invalid `prisma.producto.update()` invocation in
+C:\POS\Sistema-POS\server\source\controllers\productoController.ts:67:52
+
+  64 try {
+  65     const id = Number(request.params.id);
+  66 
+→ 67     const producto = await prisma.producto.update({
+           where: {
+             id: 7
+           },
+         + data: ProductoUpdateInput | ProductoUncheckedUpdateInput
+         })
+
+Argument `data` is missing.
+2026-06-15 10:57:32.324 error: 	Admin--Se produjo un error interno del servidor 
+Invalid `prisma.producto.update()` invocation in
+C:\POS\Sistema-POS\server\source\controllers\productoController.ts:67:52
+
+  64 try {
+  65     const id = Number(request.params.id);
+  66 
+→ 67     const producto = await prisma.producto.update({
+           where: {
+             id: 7
+           },
+         + data: ProductoUpdateInput | ProductoUncheckedUpdateInput
+         })
+
+Argument `data` is missing.
+2026-06-15 10:58:45.974 error: 	Admin--Se produjo un error interno del servidor 
+Invalid `prisma.producto.update()` invocation in
+C:\POS\Sistema-POS\server\source\controllers\productoController.ts:67:52
+
+  64 try {
+  65     const id = Number(request.params.id);
+  66 
+→ 67     const producto = await prisma.producto.update({
+           where: {
+             id: 7
+           },
+         + data: ProductoUpdateInput | ProductoUncheckedUpdateInput
+         })
+
+Argument `data` is missing.
+2026-06-15 10:58:51.524 error: 	Admin--Se produjo un error interno del servidor 
+Invalid `prisma.producto.update()` invocation in
+C:\POS\Sistema-POS\server\source\controllers\productoController.ts:67:52
+
+  64 try {
+  65     const id = Number(request.params.id);
+  66 
+→ 67     const producto = await prisma.producto.update({
+           where: {
+             id: 7
+           },
+         + data: ProductoUpdateInput | ProductoUncheckedUpdateInput
+         })
+
+Argument `data` is missing.

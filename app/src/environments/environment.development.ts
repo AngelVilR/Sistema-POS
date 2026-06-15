@@ -1,3 +1,9 @@
 export const environment = {
-    apiURL: 'http://localhost:3000/'
+    production: false,
+    apiURL: 'http://localhost:3000/',
+    endPointProducto: 'producto',
+    endPointUsuario: 'usuario',
+    endPointEvento: 'evento',
+    endPointVenta: 'venta',
+    endPointFactura: 'factura',
 };
