@@ -11,12 +11,12 @@ import { Subject, takeUntil } from 'rxjs';
 
 
 @Component({
-  selector: 'app-usuario-admin',
+  selector: 'app-venta-asignar-admin',
   standalone: false,
-  templateUrl: './usuario-admin.html',
-  styleUrl: './usuario-admin.css',
+  templateUrl: './venta-asignar-admin.html',
+  styleUrl: './venta-asignar-admin.css',
 })
-export class UsuarioAdmin {
+export class VentaAsignarAdmin {
     @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   dataSource = new MatTableDataSource<any>();
