@@ -1,42 +1,45 @@
 import { Request, Response, NextFunction } from "express";
 import { prisma } from "../../prisma/config/prisma.js";
 
-export class ProductoController {
+export class EventoController {
+
     get = async (request: Request, response: Response, next: NextFunction) => {
         try {
-            const listado = await prisma.producto.findMany({
+            const listado = await prisma.evento.findMany({
                 orderBy: {
                     id: "asc"
                 },
                 include: {
-                    ventas: true
+                    ventas: true,
+                    facturasEnc: true
                 }
-            })
-            response.json(listado)
+            });
+
+            response.json(listado);
         } catch (error) {
-            next(error)
+            next(error);
         }
-    }
+    };
 
     getById = async (request: Request, response: Response, next: NextFunction) => {
         try {
             const id = Number(request.params.id);
 
-            const producto = await prisma.producto.findUnique({
+            const evento = await prisma.evento.findUnique({
                 where: { id },
                 include: {
                     ventas: true,
-                    facturasDet: true
+                    facturasEnc: true
                 }
             });
 
-            if (!producto) {
+            if (!evento) {
                 return response.status(404).json({
-                    message: "Producto no encontrado"
+                    message: "Evento no encontrado"
                 });
             }
 
-            response.json(producto);
+            response.json(evento);
         } catch (error) {
             next(error);
         }
@@ -44,17 +47,17 @@ export class ProductoController {
 
     create = async (request: Request, response: Response, next: NextFunction) => {
         try {
-            const { nombre, precio, stock } = request.body;
+            const { nombre, fechaInicio, fechaFin } = request.body;
 
-            const producto = await prisma.producto.create({
+            const evento = await prisma.evento.create({
                 data: {
                     nombre,
-                    precio,
-                    stock
+                    fechaInicio: new Date(fechaInicio),
+                    fechaFin: new Date(fechaFin)
                 }
             });
 
-            response.status(201).json(producto);
+            response.status(201).json(evento);
         } catch (error) {
             next(error);
         }
@@ -64,12 +67,12 @@ export class ProductoController {
         try {
             const id = Number(request.params.id);
 
-            const producto = await prisma.producto.update({
+            const evento = await prisma.evento.update({
                 where: { id },
                 data: request.body
             });
 
-            response.json(producto);
+            response.json(evento);
         } catch (error) {
             next(error);
         }
@@ -79,16 +82,15 @@ export class ProductoController {
         try {
             const id = Number(request.params.id);
 
-            await prisma.producto.delete({
+            await prisma.evento.delete({
                 where: { id }
             });
 
             response.json({
-                message: "Producto eliminado correctamente"
+                message: "Evento eliminado correctamente"
             });
         } catch (error) {
             next(error);
         }
     };
-
 }

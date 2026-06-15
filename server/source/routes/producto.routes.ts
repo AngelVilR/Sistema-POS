@@ -8,6 +8,20 @@ export class ProductoRoutes{
 
         /* Listado */
         router.get('/', controller.get);
+
+
+        // Obtener por id
+        router.get("/:id", controller.getById);
+
+        // Crear
+        router.post("/", controller.create);
+
+        // Actualizar
+        router.put("/:id", controller.update);
+
+        // Eliminar
+        router.delete("/:id", controller.delete);
+
         return router;
     }
 }
