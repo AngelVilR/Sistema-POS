@@ -7,14 +7,13 @@ export class ProductoRoutes{
         const controller = new ProductoController();
 
         /* Listado */
-        router.get('/', controller.get);
-
-
-        // Obtener por id
-        router.get("/:id", controller.getById);
+        router.get('/', controller.get);        
 
         // Crear
         router.post("/", controller.create);
+
+        // Obtener por id
+        router.get("/:id", controller.getById);
 
         // Actualizar
         router.put("/:id", controller.update);

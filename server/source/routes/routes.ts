@@ -10,15 +10,14 @@ export class AppRoutes {
         // ----Agregar las rutas----
         /* Ruta Producto */
         router.use('/producto', ProductoRoutes.routes);
-        router.use('/producto', ProductoRoutes.routes);
-
-router.use('/usuario', UsuarioRoutes.routes);
-
-router.use('/evento', EventoRoutes.routes);
-
-router.use('/venta', VentaRoutes.routes);
-
-router.use('/factura', FacturaRoutes.routes);
+        /* Ruta evento */
+        router.use('/evento', EventoRoutes.routes);
+        /* Ruta venta */
+        router.use('/venta', VentaRoutes.routes);
+        /* Ruta factura */
+        router.use('/factura', FacturaRoutes.routes);
+        /* Ruta Usuario */
+        router.use('/usuario', UsuarioRoutes.routes);
         return router;
     }
 }

@@ -7,16 +7,16 @@ export class VentaRoutes {
         const controller = new VentaController();
 
         /* Listado */
-        router.get("/", controller.get);
+        router.get("/", controller.get);        
+
+        /* Crear */
+        router.post("/", controller.create);
 
         /* Obtener una venta */
         router.get(
             "/:eventoId/:usuarioId/:productoId",
             controller.getById
         );
-
-        /* Crear */
-        router.post("/", controller.create);
 
         /* Actualizar */
         router.put(

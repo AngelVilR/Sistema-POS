@@ -7,13 +7,13 @@ export class UsuarioRoutes {
         const controller = new UsuarioController();
 
         /* Listado */
-        router.get("/", controller.get);
-
-        /* Obtener por ID */
-        router.get("/:id", controller.getById);
+        router.get("/", controller.get);        
 
         /* Crear */
         router.post("/", controller.create);
+
+        /* Obtener por ID */
+        router.get("/:id", controller.getById);
 
         /* Actualizar */
         router.put("/:id", controller.update);
