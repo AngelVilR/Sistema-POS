@@ -1,13 +1,19 @@
 .body-container {
-    padding-top: 1.5rem;
-    padding-bottom: 5rem;
+    padding: 3em 0em 3em;
     display: flex;
     justify-content: center;
-    align-items: center;
+}
+
+.background-img {
+    height: 100%;
+    background-image: linear-gradient(#ffffffb3, #ffffffb3), url("../../public/images/Logo\ transparente\ mini\ v2.png");
+    background-repeat: repeat;
+    background-position: center;
 }
 
 .ToolBar-container {
     width: 100%;
+    height: 100%;
 }
 
 /* Barra lateral */
@@ -40,6 +46,10 @@
     .sidenav-content {
         height: auto;
     }
+
+    .background-img {
+        background-repeat: space;
+    }
 }
 
 @media (max-width: 1200px) {
@@ -47,5 +57,9 @@
     .menu-container,
     .sidenav-content {
         height: auto;
+    }
+
+    .background-img {
+        background-repeat: space;
     }
 }
