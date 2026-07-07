@@ -179,3 +179,200 @@ C:\POS\Sistema-POS\server\source\controllers\productoController.ts:70:52
      })
 
 Argument `data` is missing.
+2026-06-15 11:44:24.476 error: 	Admin--Se produjo un error interno del servidor 
+Invalid `prisma.producto.update()` invocation in
+C:\POS\Sistema-POS\server\source\controllers\productoController.ts:67:52
+
+  64 try {
+  65     const id = Number(request.params.id);
+  66 
+→ 67     const producto = await prisma.producto.update({
+           where: {
+             id: 8
+           },
+           data: {
+             id: 7,
+             nombre: "Salchipapas",
+             precio: 2500,
+             stock: 200,
+             estado: true,
+             ventas: [],
+                     ~~
+             facturasDet: []
+           }
+         })
+
+Argument `ventas`: Invalid value provided. Expected VentaUncheckedUpdateManyWithoutProductoNestedInput, provided ().
+2026-06-15 11:45:13.918 error: 	Admin--Se produjo un error interno del servidor 
+Invalid `prisma.producto.update()` invocation in
+C:\POS\Sistema-POS\server\source\controllers\productoController.ts:67:52
+
+  64 try {
+  65     const id = Number(request.params.id);
+  66 
+→ 67     const producto = await prisma.producto.update({
+           where: {
+             id: 8
+           },
+           data: {
+             nombre: "Salchipapas",
+             precio: 2500,
+             stock: 200,
+             estado: true,
+             ventas: [],
+                     ~~
+             facturasDet: []
+           }
+         })
+
+Argument `ventas`: Invalid value provided. Expected VentaUpdateManyWithoutProductoNestedInput or VentaUncheckedUpdateManyWithoutProductoNestedInput, provided ().
+2026-06-15 11:45:33.262 error: 	Admin--Se produjo un error interno del servidor Expected double-quoted property name in JSON at position 94 (line 6 column 1)
+2026-06-15 11:47:18.556 error: 	Admin--Se produjo un error interno del servidor 
+Invalid `prisma.evento.create()` invocation in
+C:\POS\Sistema-POS\server\source\controllers\EventoController.ts:52:48
+
+  49 try {
+  50     const { nombre, fechaInicio, fechaFin } = request.body;
+  51 
+→ 52     const evento = await prisma.evento.create({
+           data: {
+             nombre: undefined,
+             fechaInicio: new Date("Invalid Date"),
+                          ~~~~~~~~~~~~~~~~~~~~~~~~
+             fechaFin: new Date("Invalid Date")
+           }
+         })
+
+Invalid value for argument `fechaInicio`: Provided Date object is invalid. Expected Date.
+2026-06-15 11:47:18.569 error: 	Admin--Se produjo un error interno del servidor 
+Invalid `prisma.evento.create()` invocation in
+C:\POS\Sistema-POS\server\source\controllers\EventoController.ts:52:48
+
+  49 try {
+  50     const { nombre, fechaInicio, fechaFin } = request.body;
+  51 
+→ 52     const evento = await prisma.evento.create({
+           data: {
+             nombre: undefined,
+             fechaInicio: new Date("Invalid Date"),
+                          ~~~~~~~~~~~~~~~~~~~~~~~~
+             fechaFin: new Date("Invalid Date")
+           }
+         })
+
+Invalid value for argument `fechaInicio`: Provided Date object is invalid. Expected Date.
+2026-06-15 11:47:18.642 error: 	Admin--Se produjo un error interno del servidor 
+Invalid `prisma.evento.create()` invocation in
+C:\POS\Sistema-POS\server\source\controllers\EventoController.ts:52:48
+
+  49 try {
+  50     const { nombre, fechaInicio, fechaFin } = request.body;
+  51 
+→ 52     const evento = await prisma.evento.create({
+           data: {
+             nombre: undefined,
+             fechaInicio: new Date("Invalid Date"),
+                          ~~~~~~~~~~~~~~~~~~~~~~~~
+             fechaFin: new Date("Invalid Date")
+           }
+         })
+
+Invalid value for argument `fechaInicio`: Provided Date object is invalid. Expected Date.
+2026-06-15 11:47:18.661 error: 	Admin--Se produjo un error interno del servidor 
+Invalid `prisma.evento.create()` invocation in
+C:\POS\Sistema-POS\server\source\controllers\EventoController.ts:52:48
+
+  49 try {
+  50     const { nombre, fechaInicio, fechaFin } = request.body;
+  51 
+→ 52     const evento = await prisma.evento.create({
+           data: {
+             nombre: undefined,
+             fechaInicio: new Date("Invalid Date"),
+                          ~~~~~~~~~~~~~~~~~~~~~~~~
+             fechaFin: new Date("Invalid Date")
+           }
+         })
+
+Invalid value for argument `fechaInicio`: Provided Date object is invalid. Expected Date.
+2026-06-15 11:49:44.063 error: 	Admin--Se produjo un error interno del servidor 
+Invalid `prisma.evento.update()` invocation in
+C:\POS\Sistema-POS\server\source\controllers\EventoController.ts:70:48
+
+  67 try {
+  68     const id = Number(request.params.id);
+  69 
+→ 70     const evento = await prisma.evento.update(
+An operation failed because it depends on one or more records that were required but not found. No record was found for an update.
+2026-06-15 11:50:35.674 error: 	Admin--Se produjo un error interno del servidor 
+Invalid `prisma.evento.update()` invocation in
+C:\POS\Sistema-POS\server\source\controllers\EventoController.ts:70:48
+
+  67 try {
+  68     const id = Number(request.params.id);
+  69 
+→ 70     const evento = await prisma.evento.update(
+Unique constraint failed on the constraint: `PRIMARY`
+2026-06-15 11:55:56.650 error: 	Admin--Se produjo un error interno del servidor 
+Invalid `prisma.usuario.update()` invocation in
+C:\POS\Sistema-POS\server\source\controllers\UsuarioController.ts:72:50
+
+  69 try {
+  70     const id = Number(request.params.id);
+  71 
+→ 72     const usuario = await prisma.usuario.update({
+           where: {
+             id: 6
+           },
+           data: {
+             id: 6,
+             nombre: "Alejando Magno",
+             email: "ale@mat.com",
+             telefono: 88884444,
+             role: "USER",
+             password: "123456",
+             ventas: [
+               {
+                 eventoId: 3,
+                 usuarioId: 5,
+                 productoId: 6,
+                 cantidad: 30
+               }
+             ],
+             ~~~~~~~~~~~~~~~~~
+             facturasEnc: []
+           }
+         })
+
+Argument `ventas`: Invalid value provided. Expected VentaUncheckedUpdateManyWithoutUsuarioNestedInput, provided (Object).
+2026-06-15 11:56:06.009 error: 	Admin--Se produjo un error interno del servidor 
+Invalid `prisma.usuario.update()` invocation in
+C:\POS\Sistema-POS\server\source\controllers\UsuarioController.ts:72:50
+
+  69 try {
+  70     const id = Number(request.params.id);
+  71 
+→ 72     const usuario = await prisma.usuario.update({
+           where: {
+             id: 6
+           },
+           data: {
+             nombre: "Alejando Magno",
+             email: "ale@mat.com",
+             telefono: 88884444,
+             role: "USER",
+             password: "123456",
+             ventas: [
+               {
+                 eventoId: 3,
+                 usuarioId: 5,
+                 productoId: 6,
+                 cantidad: 30
+               }
+             ],
+             ~~~~~~~~~~~~~~~~~
+             facturasEnc: []
+           }
+         })
+
+Argument `ventas`: Invalid value provided. Expected VentaUpdateManyWithoutUsuarioNestedInput or VentaUncheckedUpdateManyWithoutUsuarioNestedInput, provided (Object).
