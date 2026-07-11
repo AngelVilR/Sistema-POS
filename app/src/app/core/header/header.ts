@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CarritoDetalle } from '../../carrito/carrito-detalle/carrito-detalle';
+import { CarritoService } from '../../share/carrito.service';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +12,10 @@ import { CarritoDetalle } from '../../carrito/carrito-detalle/carrito-detalle';
 
 export class Header {
   readonly dialog = inject(MatDialog);
+
+  private carritoService = inject(CarritoService)
+  cantItems: Signal<Number> = this.carritoService.cantItems
+
 
   openDialog() {
     const dialogRef = this.dialog.open(CarritoDetalle);

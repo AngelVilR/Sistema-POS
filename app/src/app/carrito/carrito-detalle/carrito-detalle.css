@@ -1,5 +1,10 @@
-h2{
+h1, h2{
   text-align: center;
+}
+
+h1, h2:last-child{
+  padding: 0.5em 1em;
+  font-weight: normal;
 }
 
 mat-icon {
@@ -14,6 +19,17 @@ mat-icon {
 .style-Btn {
   width: 100%;    
   color: black;
+}
+
+.divEliminarBtn{
+  margin: auto 0em;
+}
+
+.style-EliminarBtn{
+  width: 100%;
+  padding: 1em;
+  background-color: #e90000;
+  color: white;
 }
 
 div.style-tabla-costos {
@@ -40,7 +56,6 @@ div.style-tabla-costos {
   font-size: 14px;
 }
 
-/* DivTable.com */
 .divTable {
   display: table;
 }

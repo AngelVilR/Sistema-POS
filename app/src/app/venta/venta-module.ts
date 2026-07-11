@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import {MatCardModule} from '@angular/material/card';
 
 import { VentaRoutingModule } from './venta-routing-module';
 import { VentaAdmin } from './venta-admin/venta-admin';
@@ -25,6 +26,7 @@ import { VentaAsignarAdmin } from './venta-asignar-admin/venta-asignar-admin';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatCardModule,
     VentaRoutingModule],
   exports: [VentaDetail, VentaAsignarForm, VentaAsignarAdmin],
 })

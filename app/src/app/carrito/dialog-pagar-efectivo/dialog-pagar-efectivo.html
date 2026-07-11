@@ -4,12 +4,12 @@
         <div class="style-FormContainer">
             <mat-form-field>
                 <mat-label style="color: #494949;">Monto que debe de pagar</mat-label>
-                <input matInput style="color: #494949;" formControlName="montoPendiente" />
+                <input matInput style="color: #494949;" value="{{montoPendientePago()}}" disabled="true" />
             </mat-form-field>
 
             <mat-form-field>
                 <mat-label>Monto a pagar</mat-label>
-                <input matInput formControlName="montoPagar" (blur)="onChangeCambio(montoPendientePago,$event)" />
+                <input matInput formControlName="montoPagar" (blur)="onChangeCambio($event)" />
                 @if (errorHandling('montoPagar')) {
                 <mat-error>{{errorHandling( 'montoPagar')}}</mat-error>
                 }
@@ -22,8 +22,8 @@
         <div class="btnActions-container">
             <button type="button" class="style-Btn" style="background-color: #ffdc5c;" matButton
                 mat-dialog-close>Cancelar</button>
-            <button type="submit" class="style-Btn" style="background-color: #ffdc5c;" matButton
-                cdkFocusInitial>Finalizar venta</button>
+            <button type="submit" class="style-Btn" style="background-color: #ffdc5c;" matButton disabled="{{validMonto}}">Finalizar
+                venta</button>
         </div>
     </mat-dialog-actions>
 </form>
