@@ -37,10 +37,10 @@ import { ReporteModule } from './reporte/reporte-module';
     VentaModule,        
     ReporteModule,
     CarritoModule,
-    AppRoutingModule,
     MatSidenavModule,
     MatIconModule,
-    MatButtonModule,    
+    MatButtonModule,
+    AppRoutingModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),

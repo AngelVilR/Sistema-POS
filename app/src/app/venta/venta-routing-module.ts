@@ -7,7 +7,7 @@ import { VentaAsignarForm } from './venta-asignar-form/venta-asignar-form';
 const routes: Routes = [
   { path: 'venta-admin', component: VentaAdmin },
   { path: 'venta-asignar', component: VentaAsignarForm },
-  { path: 'venta-detail', component: VentaDetail }
+  { path: 'venta-detail/:id', component: VentaDetail }
 ];
 
 @NgModule({

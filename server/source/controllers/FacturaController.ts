@@ -37,10 +37,6 @@ export class FacturaController {
                 include: {
                     usuario: true,
                     evento: true,
-
-
-
-                    
                     facturasDet: {
                         include: {
                             producto: true
@@ -64,7 +60,6 @@ export class FacturaController {
 
     create = async (request: Request, response: Response, next: NextFunction) => {
         try {
-
             const {
                 usuarioId,
                 eventoId,
@@ -73,7 +68,7 @@ export class FacturaController {
                 subtotal,
                 impuesto,
                 total,
-                detalles
+                facturasDet
             } = request.body;
 
             const factura = await prisma.facturaEnc.create({
@@ -85,10 +80,7 @@ export class FacturaController {
                     impuesto,
                     total,
                     usuarioId,
-                    eventoId,
-                    facturasDet: {
-                        create: detalles
-                    }
+                    eventoId,                    
                 },
                 include: {
                     usuario: true,
@@ -101,8 +93,16 @@ export class FacturaController {
                 }
             });
 
-            response.status(201).json(factura);
+            await prisma.facturaDet.createMany({
+                data: facturasDet.map((item: any) => ({
+                    pedidoId: factura.id,
+                    productoId: item.productoId,
+                    cantidad: item.cantidad,
+                    total: item.total,
+                }))
+            });
 
+            response.status(201).json(factura);
         } catch (error) {
             next(error);
         }
@@ -112,7 +112,6 @@ export class FacturaController {
         try {
 
             const id = Number(request.params.id);
-
             const factura = await prisma.facturaEnc.update({
                 where: {
                     id
@@ -158,5 +157,4 @@ export class FacturaController {
             next(error);
         }
     };
-
 }

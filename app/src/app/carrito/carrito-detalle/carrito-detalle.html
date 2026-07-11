@@ -1,31 +1,25 @@
 <h2 mat-dialog-title style="font-weight: 500;">Resumen de la venta</h2>
+@if (listItems.length != 0) {
 <mat-dialog-content class="mat-typography">
+  <!-- Linea de productos -->
   <div>
-    <!-- Linea de productos -->
     <div>
+      @for (item of listItems; track $index) {
       <div class="flex-space">
         <div>
-          <h3>PRODUCTO_NOMBRE</h3>
-          <p>CANTIDAD x <b style="color: #e4bb27;">&#8353;PRECIO</b></p>
+          <h3>{{item.producto.producto?.nombre}}</h3>
+          <p>{{item.cantidad}} x <b style="color: #e4bb27;">&#8353;{{item.producto.producto?.precio}}</b> =
+            {{item.subtotal}}</p>
         </div>
 
-        <div>
-          <mat-icon>delete</mat-icon>
+        <div class="divEliminarBtn">
+          <button matMiniFab class="style-EliminarBtn" aria-label="Eliminar producto" (click)="deleteItem(item.producto.productoId)">
+            <mat-icon>delete</mat-icon>
+          </button>
         </div>
       </div>
       <mat-divider></mat-divider>
-
-      <div class="flex-space">
-        <div>
-          <h3>PRODUCTO_NOMBRE</h3>
-          <p>CANTIDAD x <b style="color: #e4bb27;">&#8353;PRECIO</b></p>
-        </div>
-
-        <div>
-          <mat-icon>delete</mat-icon>
-        </div>
-      </div>
-      <mat-divider></mat-divider>
+      }
     </div>
   </div>
 
@@ -36,25 +30,25 @@
           <div class="divTableCell">
             <h3>Descuento aplicado</h3>
           </div>
-          <div class="divTableCell">TIPO_DESCUENTO</div>
+          <div class="divTableCell">{{labelPromociones()}}</div>
         </div>
         <div class="divTableRow">
           <div class="divTableCell">
             <h3>Subtotal</h3>
           </div>
-          <div class="divTableCell">&#8353;SUBTOTAL</div>
+          <div class="divTableCell">&#8353;{{subtotalFinal()}}</div>
         </div>
         <div class="divTableRow">
           <div class="divTableCell">
             <h3>IVA</h3>
           </div>
-          <div class="divTableCell">&#8353;IVA</div>
+          <div class="divTableCell">&#8353;{{ivaFinal()}}</div>
         </div>
         <div class="divTableRow">
           <div class="divTableCell">
             <h3>Total</h3>
           </div>
-          <div class="divTableCell">&#8353;TOTAL</div>
+          <div class="divTableCell">&#8353;{{totalFinal()}}</div>
         </div>
       </div>
     </div>
@@ -63,5 +57,10 @@
 
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button matButton class="style-Btn" style="background-color: #ffdc5c;" [mat-dialog-close]="true" [routerLink]="['/procesar-pago']">Procesar pago</button>
+  <button matButton class="style-Btn" style="background-color: #ffdc5c;" [mat-dialog-close]="true"
+    [routerLink]="['/procesar-pago']">Procesar pago</button>
 </mat-dialog-actions>
+} @else {
+  <h1>No hay productos agregados al carrito</h1>
+  <h2>¡Agrega un producto para realizar una venta!</h2>
+}

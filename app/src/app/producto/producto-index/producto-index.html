@@ -1,0 +1,35 @@
+@if (datosLength != 0) {
+<h1>Productos disponibles a la venta</h1>
+<div class="flexV1">
+    @for (item of datos; track $index) {
+    <div>
+        <mat-card class="card" appearance="outlined">
+            <mat-card-header class="card-header-center">
+                <mat-card-title>{{item.producto.nombre}}</mat-card-title>
+            </mat-card-header>
+
+            <img mat-card-image src="https://material.angular.dev/assets/img/examples/shiba2.jpg"
+                alt="Imagen del producto {{item.producto.nombre}}">
+
+            <mat-card-content class="card-content-center">
+                <h2>&#8353; {{item.producto.precio}}</h2>
+                <p>Disponibles: {{item.cantidad}}</p>
+            </mat-card-content>
+
+            <mat-card-actions>
+                <div class="style-BtnCantProd">
+                    <button matButton (click)="minusProducto(item)" class="style-BtnMinus"
+                        style="color: black;"><mat-icon>minimize</mat-icon></button>
+
+                    <button matButton (click)="addProducto(item)" class="style-BtnAdd"
+                        style="color: black;"><mat-icon>add</mat-icon></button>
+                </div>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    }
+</div>
+} @else {
+<h1>¡Ahorita no tienes productos disponibles para vender!</h1>
+<h2>Consulta con tú jefe para que te asigne más productos</h2>
+}

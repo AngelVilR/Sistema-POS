@@ -5,7 +5,7 @@
     </div>
 
     <div>
-        <button matButton="filled" class="style-BtnNavBar" style="background-color: #fbdb6b; color: black;" (click)="openDialog()">
+        <button matButton="filled" class="style-BtnNavBar" style="background-color: #fbdb6b; color: black;" [matBadge]="cantItems().toString()" (click)="openDialog()">
             <mat-icon class="style-Icons-Large">shopping_cart</mat-icon> Carrito
         </button>
     </div>
