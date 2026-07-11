@@ -9,6 +9,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ProductoRoutingModule } from './producto-routing-module';
 import { ProductoAdmin } from './producto-admin/producto-admin';
@@ -19,8 +21,6 @@ import { ProductoIndex } from './producto-index/producto-index';
   declarations: [ProductoAdmin, ProductoForm, ProductoIndex],
   imports: [
     CommonModule,
-    MatCardModule,
-    ReactiveFormsModule,
     MatInputModule,
     MatFormFieldModule,
     MatGridListModule,

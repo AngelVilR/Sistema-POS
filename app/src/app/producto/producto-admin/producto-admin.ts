@@ -147,16 +147,24 @@ export class ProductoAdmin {
   }
 
   eliminarProducto(producto: ProductoModel): void {
-    const confirmacion = confirm(`¿Está seguro de eliminar el producto "${producto.nombre}"?`);
+    const confirmacion = confirm(`¿Está seguro de desactivar el producto "${producto.nombre}"?`);
     if (!confirmacion) return;
 
-    this.pService.delete(producto).pipe(takeUntil(this.destroy$)).subscribe({
+    const productoActualizado = new ProductoModel({
+      id: producto.id,
+      nombre: producto.nombre,
+      precio: producto.precio,
+      stock: producto.stock,
+      estado: false,
+    });
+
+    this.pService.update(productoActualizado).pipe(takeUntil(this.destroy$)).subscribe({
       next: () => {
-        this.noti.success('Éxito', 'Producto eliminado correctamente');
+        this.noti.success('Éxito', 'Producto desactivado correctamente');
         this.listProductos();
       },
       error: () => {
-        this.noti.error('Error', 'Error al eliminar el producto');
+        this.noti.error('Error', 'Error al desactivar el producto');
       }
     });
   }
