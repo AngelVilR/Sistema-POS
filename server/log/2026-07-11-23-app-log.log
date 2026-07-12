@@ -1,0 +1,9 @@
+2026-07-11 23:27:48.459 error: 	hunte--Se produjo un error interno del servidor 
+Invalid `prisma.evento.update()` invocation in
+C:\Users\hunte\Desktop\Sistema-POS\server\source\controllers\EventoController.ts:70:48
+
+  67 try {
+  68     const id = Number(request.params.id);
+  69 
+→ 70     const evento = await prisma.evento.update(
+An operation failed because it depends on one or more records that were required but not found. No record was found for an update.
