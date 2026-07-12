@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
+import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -21,6 +21,7 @@ import { ProductoIndex } from './producto-index/producto-index';
   declarations: [ProductoAdmin, ProductoForm, ProductoIndex],
   imports: [
     CommonModule,
+    MatCardModule,
     MatInputModule,
     MatFormFieldModule,
     MatGridListModule,
@@ -31,7 +32,7 @@ import { ProductoIndex } from './producto-index/producto-index';
     MatSortModule,
     FormsModule,
     ReactiveFormsModule,
-    ProductoRoutingModule
+    ProductoRoutingModule    
 ],
   exports: [ProductoIndex],
 })
