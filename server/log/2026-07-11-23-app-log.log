@@ -1,0 +1,45 @@
+2026-07-11 23:45:31.409 error: 	gabri--Se produjo un error interno del servidor 
+Invalid `prisma.venta.update()` invocation in
+C:\Users\gabri\Downloads\Sistema-POS\server\source\controllers\VentaController.ts:85:46
+
+  82 const usuarioId = Number(request.params.usuarioId);
+  83 const productoId = Number(request.params.productoId);
+  84 
+→ 85 const venta = await prisma.venta.update(
+An operation failed because it depends on one or more records that were required but not found. No record was found for an update.
+2026-07-11 23:53:23.684 error: 	gabri--Se produjo un error interno del servidor 
+Invalid `prisma.venta.update()` invocation in
+C:\Users\gabri\Downloads\Sistema-POS\server\source\controllers\VentaController.ts:85:46
+
+  82 const usuarioId = Number(request.params.usuarioId);
+  83 const productoId = Number(request.params.productoId);
+  84 
+→ 85 const venta = await prisma.venta.update(
+An operation failed because it depends on one or more records that were required but not found. No record was found for an update.
+2026-07-11 23:54:08.201 error: 	gabri--Se produjo un error interno del servidor 
+Invalid `prisma.venta.update()` invocation in
+C:\Users\gabri\Downloads\Sistema-POS\server\source\controllers\VentaController.ts:85:46
+
+  82 const usuarioId = Number(request.params.usuarioId);
+  83 const productoId = Number(request.params.productoId);
+  84 
+→ 85 const venta = await prisma.venta.update(
+An operation failed because it depends on one or more records that were required but not found. No record was found for an update.
+2026-07-11 23:54:15.042 error: 	gabri--Se produjo un error interno del servidor 
+Invalid `prisma.venta.update()` invocation in
+C:\Users\gabri\Downloads\Sistema-POS\server\source\controllers\VentaController.ts:85:46
+
+  82 const usuarioId = Number(request.params.usuarioId);
+  83 const productoId = Number(request.params.productoId);
+  84 
+→ 85 const venta = await prisma.venta.update(
+An operation failed because it depends on one or more records that were required but not found. No record was found for an update.
+2026-07-11 23:54:19.957 error: 	gabri--Se produjo un error interno del servidor 
+Invalid `prisma.venta.update()` invocation in
+C:\Users\gabri\Downloads\Sistema-POS\server\source\controllers\VentaController.ts:85:46
+
+  82 const usuarioId = Number(request.params.usuarioId);
+  83 const productoId = Number(request.params.productoId);
+  84 
+→ 85 const venta = await prisma.venta.update(
+An operation failed because it depends on one or more records that were required but not found. No record was found for an update.

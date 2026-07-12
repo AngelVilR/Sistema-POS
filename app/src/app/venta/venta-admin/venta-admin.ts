@@ -52,5 +52,4 @@ export class VentaAdmin {
   goDetailVenta(prId: number){
     this.router.navigate(["venta-detail", prId]);
   }
-
 }

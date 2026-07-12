@@ -14,10 +14,4 @@ export class SideBar {
   constructor(
     private router: Router
   ){}
-
-  goVentaAdmin() {
-    this.router.navigate(['/venta-admin']);
-  }
-
-
 }

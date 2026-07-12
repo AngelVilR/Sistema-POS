@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 export interface BaseEntity {
-  id?: number;
+  id?: number;  
 }
 @Injectable({
   providedIn: 'root',
@@ -35,12 +35,20 @@ export class BaseAPI<T extends BaseEntity> {
     return this.http.get<T>(`${this.urlAPI}/${this.endpoint}/${id}`);
   }
 
+  getByIdVenta(idEvento: number, idUsuario: number, idProducto: number): Observable<T> {
+    return this.http.get<T>(`${this.urlAPI}/${this.endpoint}/${idEvento}/${idUsuario}/${idProducto}`);
+  }
+
   create(item: T): Observable<T> {
     return this.http.post<T>(`${this.urlAPI}/${this.endpoint}`, item);
   }
 
   update(item: T): Observable<T> {
     return this.http.put<T>(`${this.urlAPI}/${this.endpoint}/${item.id}`, item);
+  }
+
+  updateVenta(item: T, idEvento: number, idUsuario: number, idProducto: number): Observable<T> {
+    return this.http.put<T>(`${this.urlAPI}/${this.endpoint}/${idEvento}/${idUsuario}/${idProducto}`, item);
   }
 
   putMethod(action: string, item: T): Observable<T | T[]> {

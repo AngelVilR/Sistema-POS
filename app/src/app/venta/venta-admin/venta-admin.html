@@ -1,8 +1,7 @@
 <div class="mat-elevation-z8" style="margin: 1em 0em 2em">
   <h1>Mantenimiento de ventas</h1>
-
+  @if (data && dataLength > 0) {
   <div class="flexSpace">
-    @if (data || dataLength > 0) {
     @for (item of data; track $index) {
     <mat-card class="card" appearance="outlined">
       <mat-card-header>
@@ -20,6 +19,9 @@
       </mat-card-actions>
     </mat-card>
     }
-    }
   </div>
+  }@else{
+  <h1 style="margin-top: 3em;">Ahora mismo no hay ventas registradas</h1>
+  <h2>¡Realiza tu primera venta para ver la lista!</h2>
+  }
 </div>
