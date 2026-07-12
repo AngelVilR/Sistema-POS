@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2026-07-11 23:45:31.409 error: 	gabri--Se produjo un error interno del servidor 
 Invalid `prisma.venta.update()` invocation in
 C:\Users\gabri\Downloads\Sistema-POS\server\source\controllers\VentaController.ts:85:46
@@ -42,4 +43,14 @@ C:\Users\gabri\Downloads\Sistema-POS\server\source\controllers\VentaController.t
   83 const productoId = Number(request.params.productoId);
   84 
 → 85 const venta = await prisma.venta.update(
+=======
+2026-07-11 23:27:48.459 error: 	hunte--Se produjo un error interno del servidor 
+Invalid `prisma.evento.update()` invocation in
+C:\Users\hunte\Desktop\Sistema-POS\server\source\controllers\EventoController.ts:70:48
+
+  67 try {
+  68     const id = Number(request.params.id);
+  69 
+→ 70     const evento = await prisma.evento.update(
+>>>>>>> 9b8d69cefcd8f950babe8caac2501743cae281c6
 An operation failed because it depends on one or more records that were required but not found. No record was found for an update.

@@ -12,6 +12,10 @@ import { MatSortModule } from '@angular/material/sort';
 import { EventoRoutingModule } from './evento-routing-module';
 import { EventoAdmin } from './evento-admin/evento-admin';
 import { EventoForm } from './evento-form/evento-form';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [EventoAdmin, EventoForm],
@@ -23,6 +27,11 @@ import { EventoForm } from './evento-form/evento-form';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    EventoRoutingModule],
+    EventoRoutingModule,
+  ReactiveFormsModule,
+ MatDatepickerModule,
+  MatNativeDateModule,
+  MatFormFieldModule,
+  ],
 })
 export class EventoModule {}

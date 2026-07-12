@@ -1,105 +1,128 @@
-.addProduct-button {
-    width: 25%;
-    margin: 1em 0em;
-    padding: 0.5em 0em;
-    background-color: #fcfcfc;
-    border-radius: 0.5em;
-    color: #d52f97;
-    border-color: #d52f97;
+/* ==========================
+   Contenedor del formulario
+========================== */
+
+.form-container {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     justify-content: center;
-    font-size: 2em;
-    font-weight: bold;
-    gap: 0.5em;
-    transition: background-color 0.3s ease;
+    gap: 1rem;
+    padding: 1rem;
 }
 
-.addProduct-button:hover {
-    background-color: #d52f97;
-    color: #fcfcfc;
+mat-form-field {
+    width: 280px;
 }
 
+/* ==========================
+   Tabla
+========================== */
 
-/* Estilo Tabla */
 .Estilo-Tabla {
-    width: 85em;
-    height: auto;
+    width: 100%;
     background-color: white;
 }
 
 .Estilo-Tabla tr th,
 .Estilo-Tabla tr td {
-    border: solid black 0.1em;
-    border-color: #d72b2b;
+    border: 1px solid #d72b2b;
 }
 
 .Estilo-Tabla tr th {
     background-color: #d72b2b;
     color: white;
     text-align: center;
+    font-weight: bold;
 }
 
 .Estilo-Tabla tr td {
     text-align: center;
-    padding: 1em 2em;
+    padding: 1rem;
 }
 
 .Estilo-Tabla tr:nth-child(odd) {
-    background-color: #f3adad;
+    background-color: #fbe2e2;
 }
 
 .Estilo-Tabla tr:nth-child(even) {
-    background-color: #ee9595;
+    background-color: #f7caca;
 }
 
-mat-paginator,
-span {
+mat-paginator {
     font-size: medium;
 }
 
-/* Estilo btns */
+/* ==========================
+   Botones de acciones
+========================== */
+
 .Estilo-Btn div {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2em;
+    gap: .75rem;
 }
 
-.Estilo-BtnConsultar,
-.Estilo-BtnEliminar,
-.Estilo-BtnEditar,
-.Estilo-BtnDesactivar {
-    border: solid black 1px;
-    border-radius: 2em;
+.Estilo-Btn button {
     font-weight: bold;
-    transition: background-color 0.3s ease;
+    transition: .3s;
 }
 
-.Estilo-BtnConsultar:hover {
-    background-color: #00876c;
-}
+/* Editar */
 
-.Estilo-BtnEliminar:hover {
-    background-color: #c81717;
-}
-
-.Estilo-BtnEditar:hover {
+.Estilo-Btn button:first-child:hover {
     background-color: #b624da;
-}
-
-.Estilo-BtnDesactivar:hover {
-    background-color: #656565;
-}
-
-
-.Estilo-BtnConsultar:hover p,
-.Estilo-BtnConsultar:hover mat-icon,
-.Estilo-BtnEliminar:hover p,
-.Estilo-BtnEliminar:hover mat-icon,
-.Estilo-BtnEditar:hover p,
-.Estilo-BtnEditar:hover mat-icon,
-.Estilo-BtnDesactivar:hover p,
-.Estilo-BtnDesactivar:hover mat-icon {
     color: white;
+}
+
+/* Eliminar */
+
+.Estilo-Btn button:last-child:hover {
+    background-color: #d32f2f;
+    color: white;
+}
+
+/* ==========================
+   Encabezado
+========================== */
+
+h1 {
+    margin: 1rem 0;
+    color: #d72b2b;
+    font-weight: bold;
+}
+
+/* ==========================
+   Elevación
+========================== */
+
+.mat-elevation-z8 {
+    padding: 1rem;
+    border-radius: 10px;
+    overflow-x: auto;
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media (max-width: 768px) {
+
+    .form-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    mat-form-field {
+        width: 100%;
+    }
+
+    .Estilo-Btn div {
+        flex-direction: column;
+        gap: .5rem;
+    }
+
+    .Estilo-Tabla {
+        min-width: 700px;
+    }
 }
