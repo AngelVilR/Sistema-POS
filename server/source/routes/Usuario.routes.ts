@@ -21,6 +21,9 @@ export class UsuarioRoutes {
         /* Eliminar */
         router.delete("/:id", controller.delete);
 
+        /* Verificar si el correo electrónico existe */
+        router.get("/check-email/:email", controller.checkEmail);
+
         return router;
     }
 }
