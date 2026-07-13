@@ -1,1 +1,53 @@
-<p>producto-form works!</p>
+<div>
+    <h2 mat-dialog-title style="font-weight: 500;">{{!isEditing ? "Crear producto" : "Actualizar producto"}}</h2>
+    
+    <form [formGroup]="productoForm" (ngSubmit)="guardarProducto()" novalidate>
+        <mat-dialog-content>
+            <div class="form-container">
+                <div>
+                    <mat-form-field class="style-input">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="nombre" placeholder="Nombre del producto" maxlength="100" />
+                        @if (errorHandling('nombre')) {
+                        <mat-error>{{errorHandling('nombre')}}</mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <mat-form-field class="style-input">
+                        <mat-label>Precio</mat-label>
+                        <input matInput type="number" formControlName="precio" placeholder="0" step="1" min="1" />
+                        @if (errorHandling('precio')) {
+                        <mat-error>{{errorHandling('precio')}}</mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <mat-form-field class="style-input">
+                        <mat-label>Stock</mat-label>
+                        <input matInput type="number" formControlName="stock" placeholder="0" step="1" min="1" />
+                        @if (errorHandling('stock')) {
+                        <mat-error>{{errorHandling('stock')}}</mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="flexspace">
+                <button type="submit" matButton class="btnGuardar" style="height: 3.5em;">
+                    <mat-icon class="mat-18">{{ isEditing ? 'save' : 'add_circle' }}</mat-icon>
+                    {{ isEditing ? 'Actualizar' : 'Crear' }}
+                </button>
+
+                @if (isEditing) {
+                <button type="button" matButton class="btnGuardar" style="height: 3.5em;" (click)="cancelarEdicion()">
+                    <mat-icon class="mat-18">cancel</mat-icon>
+                    Cancelar
+                </button>
+                }
+            </div>
+        </mat-dialog-content>
+    </form>
+</div>

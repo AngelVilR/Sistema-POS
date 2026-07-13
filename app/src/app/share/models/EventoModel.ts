@@ -3,6 +3,8 @@ export interface Evento {
   nombre: string;
   fechaInicio: string; // ISO date string
   fechaFin: string; // ISO date string
+  formatoFechaInicio?: String;
+  formatoFechaFin?: String;
   ventas?: any[];
   facturasEnc?: any[];
 }
@@ -12,6 +14,8 @@ export class EventoModel implements Partial<Evento> {
   nombre: string = '';
   fechaInicio: string = new Date().toISOString();
   fechaFin: string = new Date().toISOString();
+  formatoFechaInicio?: String = "";
+  formatoFechaFin?: String = "";
   ventas?: any[];
   facturasEnc?: any[];
 

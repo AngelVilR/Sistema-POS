@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ProductoRoutingModule } from './producto-routing-module';
@@ -30,10 +31,11 @@ import { ProductoIndex } from './producto-index/producto-index';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
-    ProductoRoutingModule    
-],
+    ProductoRoutingModule
+  ],
   exports: [ProductoIndex],
 })
-export class ProductoModule {}
+export class ProductoModule { }
