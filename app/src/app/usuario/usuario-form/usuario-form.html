@@ -1,1 +1,100 @@
-<p>usuario-form works!</p>
+<form [formGroup]="userCreate" (ngSubmit)="submitForm()" novalidate>
+  <h1>{{ titleForm }}</h1>
+  <div class="first">
+    <div class="card">
+      <div>
+        <div class="space">
+          <span class="mb-2">Nombre</span>
+          <mat-form-field
+            appearance="outline"
+            class="full-width"
+            floatLabel="auto"
+          >
+            <input
+              type="text"
+              matInput
+              formControlName="nombre"
+              placeholder="Nombre"
+            />
+            @if (errorHandling('nombre')) {
+                <mat-error>{{ errorHandling('nombre') }}</mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </div>
+      <div>
+        <div class="space">
+          <span class="mb-2">Email</span>
+          <mat-form-field
+            appearance="outline"
+            class="full-width"
+            floatLabel="auto"
+          >
+            <input
+              type="text"
+              matInput
+              formControlName="email"
+              placeholder="ejemplo@gmail.com"
+            />
+            @if (errorHandling('email')) {
+                <mat-error>{{ errorHandling('email') }}</mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </div>
+      <div>
+        <div class="space">
+          <span class="mb-2">Teléfono</span>
+          <mat-form-field
+            appearance="outline"
+            class="full-width"
+            floatLabel="auto"
+          >
+            <input
+              type="tel"
+              matInput
+              formControlName="telefono"
+              placeholder="88888888"
+            />
+            @if (errorHandling('telefono')) {
+                <mat-error>{{ errorHandling('telefono') }}</mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </div>
+      @if (isCreate) {
+      <div>
+        <div class="space">
+          <span class="mb-2">Contraseña</span>
+          <mat-form-field
+            appearance="outline"
+            class="full-width"
+            floatLabel="auto"
+          >
+            <input
+              type="password"
+              matInput
+              formControlName="password"
+              placeholder="Contraseña"
+              autocomplete="new-password"
+            />
+            @if (errorHandling('password')) {
+                <mat-error>{{ errorHandling('password') }}</mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </div>
+    }
+      <div class="flex">
+        <button class="previews-button" (click)="onReset()" type="button">
+          Cancel
+        </button>
+        <!-- ?? IF IS ADMIN (TO EDIT) -->
+        <button type="submit">
+          <mat-icon>how_to_reg</mat-icon>
+          {{ isCreate ? 'Crear Usuario' : 'Actualizar Usuario' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

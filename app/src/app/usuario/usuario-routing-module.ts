@@ -7,6 +7,7 @@ import { UsuarioLogIn } from './usuario-log-in/usuario-log-in';
 const routes: Routes = [
   { path: 'usuario-admin', component: UsuarioAdmin },
   { path: 'usuario/create', component: UsuarioForm },
+  { path: 'usuario/update/:id', component: UsuarioForm },
   { path: 'iniciar-sesión', component: UsuarioLogIn },
 ];
 

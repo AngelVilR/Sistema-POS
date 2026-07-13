@@ -13,6 +13,7 @@ import { UsuarioRoutingModule } from './usuario-routing-module';
 import { UsuarioAdmin } from './usuario-admin/usuario-admin';
 import { UsuarioForm } from './usuario-form/usuario-form';
 import { UsuarioLogIn } from './usuario-log-in/usuario-log-in';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [UsuarioAdmin, UsuarioForm, UsuarioLogIn],
@@ -24,6 +25,7 @@ import { UsuarioLogIn } from './usuario-log-in/usuario-log-in';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    UsuarioRoutingModule],
+    UsuarioRoutingModule,
+    ReactiveFormsModule],
 })
 export class UsuarioModule { }
