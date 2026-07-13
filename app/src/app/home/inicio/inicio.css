@@ -8,47 +8,8 @@ h1 {
     margin-bottom: 2em;
 }
 
-.flexV1 {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 2em;
-}
-
-.card {
-    max-width: 300px;
-    border: 2px solid #b4b4b4;
-}
-
-.card-header-center {
-    margin: auto;
-    text-align: center;
-    padding: 1em 0em 1.5em;
-}
-
-.card-content-center {
-    text-align: center;
-    margin: 1em 0em 1.5em;
-}
-
-.style-BtnAdd {
-    width: 100%;
-    margin-bottom: 1em;
-    background-color: #fbdb6b;
-
-    font-size: large;
-}
-
-.style-BtnAdd:hover {
-    background-color: #f7d448;
-}
-
 @media (max-width: 800px) {
     h1 {        
         margin: 0.5em 0.5em 1.5em;
-    }
-
-    .card {
-        max-width: 250px;
     }
 }

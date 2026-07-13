@@ -23,6 +23,7 @@ import { VentaModule } from './venta/venta-module';
 import { UsuarioModule } from './usuario/usuario-module';
 import { CarritoModule } from './carrito/carrito-module';
 import { ReporteModule } from './reporte/reporte-module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [App],
@@ -37,10 +38,11 @@ import { ReporteModule } from './reporte/reporte-module';
     VentaModule,        
     ReporteModule,
     CarritoModule,
-    AppRoutingModule,
     MatSidenavModule,
     MatIconModule,
-    MatButtonModule,    
+    MatButtonModule,
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),

@@ -5,12 +5,12 @@ import { ProductoForm } from './producto-form/producto-form';
 
 const routes: Routes = [
   { path: 'producto-admin', component: ProductoAdmin },
-    { path: 'producto/create', component: ProductoForm },
-    { path: 'producto/update/:id', component: ProductoForm },
+  { path: 'producto/create', component: ProductoForm },
+  { path: 'producto/update/:id', component: ProductoForm },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ProductoRoutingModule {}
+export class ProductoRoutingModule { }

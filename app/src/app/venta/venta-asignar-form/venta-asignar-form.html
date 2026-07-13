@@ -1,1 +1,63 @@
-<p>venta-asignar-form works!</p>
+<div>
+    <h1>Asignar productos a colaborador</h1>
+    <form [formGroup]="asignarForm" (ngSubmit)="submitAsignar()" novalidate>
+
+        <div>
+            <!-- Select usuarios -->
+            <mat-form-field style="width: 100%;">
+                <mat-label>Lista de usuarios</mat-label>
+                <mat-select formControlName="usuarioId" [disabled]="isCreate">
+                    @for (item of listUsuarios; track $index) {
+                    <mat-option [value]="item.id">{{item.nombre}}</mat-option>
+                    }
+                </mat-select>
+                @if (errorHandling('usuarioId')) {
+                <mat-error>{{ errorHandling('usuarioId')}}</mat-error>
+                }
+            </mat-form-field>
+        </div>
+
+        <div>
+            <!-- Select Eventos -->
+            <mat-form-field style="width: 100%;">
+                <mat-label>Lista de eventos</mat-label>
+                <mat-select formControlName="eventoId" [disabled]="isCreate">
+                    @for (item of listEventos; track $index) {
+                    <mat-option [value]="item.id">{{item.nombre}}</mat-option>
+                    }
+                </mat-select>
+                @if (errorHandling('eventoId')) {
+                <mat-error>{{ errorHandling('eventoId')}}</mat-error>
+                }
+            </mat-form-field>
+        </div>
+
+        <div class="flex-space">
+            <!-- Select productos -->
+            <mat-form-field>
+                <mat-label>Lista de productos</mat-label>
+                <mat-select formControlName="productoId" [disabled]="isCreate">
+                    @for (item of listProductos; track $index) {
+                    <mat-option [value]="item.id">{{item.nombre}}</mat-option>
+                    }
+                </mat-select>
+                @if (errorHandling('productoId')) {
+                <mat-error>{{ errorHandling('productoId')}}</mat-error>
+                }
+            </mat-form-field>
+
+            <!-- Input cantidad -->
+            <mat-form-field>
+                <mat-label>Cantidad</mat-label>
+                <input matInput formControlName="cantidad">
+                @if (errorHandling('cantidad')) {
+                <mat-error>{{ errorHandling('cantidad')}}</mat-error>
+                }
+            </mat-form-field>
+        </div>
+
+        <div>
+            <button type="submit" class="style-BtnSubmit" matButton>Crear asignación</button>
+        </div>
+    </form>
+</div>

@@ -8,6 +8,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 /* import { UtilsService } from '../../share/utils-service'; */
 import { ProductoModel } from '../../share/models/ProductoModel';
 import { Subject, takeUntil } from 'rxjs';
+import { VentaService } from '../../share/services/venta.service';
+import { VentaModel } from '../../share/models/VentaModel';
 
 
 @Component({
@@ -17,34 +19,48 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrl: './venta-asignar-admin.css',
 })
 export class VentaAsignarAdmin {
-    @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  dataSource = new MatTableDataSource<any>();
-
   destroy$: Subject<boolean> = new Subject<boolean>();
-  displayedColumns = ['CELDA_1', 'CELDA_2', 'CELDA_3', 'CELDA_4', 'acciones'];
+
+  data: any;
+  dataLength: any
 
   constructor(
-    /* private pService: ProductoService, */
+    private serviceVenta: VentaService,
     private noti: NotificationService,
     private router: Router,
     private route: ActivatedRoute,
-    /* private util: UtilsService */
   ) { }
 
   ngOnInit() {
-    //Label paginator
-    this.paginator._intl.itemsPerPageLabel = 'Items';
-    this.paginator._intl.nextPageLabel = 'Siguiente';
-    this.paginator._intl.previousPageLabel = 'Anterior';
-    this.paginator._intl.firstPageLabel = 'Inicio';
-    this.paginator._intl.lastPageLabel = 'Fin';
+    this.getListColabs();
   }
 
-  //Cargar tabla
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-    /* this.listProductos(); */
+  getListColabs() {
+    this.serviceVenta
+      .get()
+      .subscribe((data: VentaModel[]) => {
+        this.data = data
+        this.dataLength = this.data.length
+        console.log(this.data)
+      })
   }
+
+  goAsignarCreate() {
+    this.router.navigate(['/asignar-producto/create'], {
+      relativeTo: this.route
+    })
+  }
+
+  goAsignarUpdate(prItem: VentaModel) {
+    this.router.navigate(['asignar-producto/update', prItem.eventoId, prItem.usuarioId, prItem.productoId])
+  }
+
+  /* deleteAsignarUpdate(prItem: VentaModel) {
+    this.serviceVenta
+      .delete(prItem)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data: VentaModel) => {
+        console.log("Producto eliminado")
+      })
+  } */
 }

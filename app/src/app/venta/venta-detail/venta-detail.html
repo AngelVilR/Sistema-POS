@@ -1,8 +1,9 @@
+@if(datos){
 <div class="container">
     <!-- EncabezadoFactura -->
     <div class="container-Encabezado">
         <div class="flex-space">
-            <h1>Factura #ID_FACTURA</h1>
+            <h1>Número de venta #{{datos.id}}</h1>
             <div class="div-image"></div>
         </div>
 
@@ -11,19 +12,19 @@
                 <tbody>
                     <tr>
                         <td>Fecha de creación:</td>
-                        <td>FECHA_NOW</td>
+                        <td>{{datos.fechaString}}</td>
                     </tr>
                     <tr>
                         <td>Colaborador:</td>
-                        <td>NOMBRE_COLABORADOR</td>
+                        <td>{{datos.usuario.nombre}}</td>
                     </tr>
                     <tr>
                         <td>Descuento aplicado:</td>
-                        <td>TIPO_DESCUENTO</td>
+                        <td>{{datos.descuento}}</td>
                     </tr>
                     <tr>
                         <td>Método de pago:</td>
-                        <td>METODO_PAGO</td>
+                        <td>{{datos.metodo_pago}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -41,11 +42,13 @@
                 </tr>
             </thead>
             <tbody>
+                @for (item of datos.facturasDet; track $index) {
                 <tr>
-                    <td>NOMBRE_PRODUCTO</td>
-                    <td>CANTIDAD</td>
-                    <td>TOTAL_X_CANTIDAD</td>
+                    <td>{{item.producto.nombre}}</td>
+                    <td>{{item.cantidad}}</td>
+                    <td>&#8353;{{item.total}}</td>
                 </tr>
+                }
             </tbody>
         </table>
     </div>
@@ -56,19 +59,20 @@
             <tbody>
                 <tr>
                     <td>Subtotal</td>
-                    <td>SUBTOTAL</td>
+                    <td>&#8353;{{datos.subtotal}}</td>
                 </tr>
                 <tr>
                     <td>IVA</td>
-                    <td>IVA</td>
+                    <td>&#8353;{{datos.impuesto}}</td>
                 </tr>
                 <tr>
                     <td>Total</td>
-                    <td>TOTAL</td>
+                    <td>&#8353;{{datos.total}}</td>
                 </tr>
             </tbody>
         </table>
     </div>
-
-
 </div>
+}@else{
+<h1>La factura de la venta seleccionada no está disponible ahora mismo</h1>
+}

@@ -3,9 +3,10 @@ import { Evento } from './EventoModel';
 
 export interface Factura {
   id: number;
-  fecha: string; // ISO date string
-  hora: string; // ISO time string
-  metodo_pago: string;
+  fecha: string;  
+  fechaString?: String;
+  hora: string;
+  metodo_pago: String;
   descuento?: string | null;
   subtotal: number;
   impuesto: number;
@@ -20,8 +21,9 @@ export interface Factura {
 export class FacturaModel implements Partial<Factura> {
   id: number = 0;
   fecha: string = new Date().toISOString();
+  fechaString?: String = "";
   hora: string = new Date().toISOString();
-  metodo_pago: string = '';
+  metodo_pago: String = "";
   descuento?: string | null;
   subtotal: number = 0;
   impuesto: number = 0;
@@ -40,6 +42,7 @@ export class FacturaModel implements Partial<Factura> {
     return {
       id: this.id,
       fecha: this.fecha,
+      fechaString: this.fechaString,
       hora: this.hora,
       metodo_pago: this.metodo_pago,
       descuento: this.descuento ?? null,
