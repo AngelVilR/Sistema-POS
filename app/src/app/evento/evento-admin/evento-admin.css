@@ -1,128 +1,48 @@
-/* ==========================
-   Contenedor del formulario
-========================== */
+h1, h2{
+    text-align: center;
+    margin-bottom: 1em;
+}
 
-.form-container {
+.flexSpace {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 2em;
+    gap: 2em;
+}
+
+.style-TitleCard {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    text-align: center;
+}
+
+.style-SubtitleCard {
+    font-weight: 400;
+    margin-bottom: 0.5em;
+}
+
+.card {
+    border: 2px solid #c7c7c7;
+}
+
+.div-BtnCrear {                
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
-    padding: 1rem;
 }
 
-mat-form-field {
-    width: 280px;
+.style-BtnCrear {     
+    width: 22rem;       
+    margin: 1em;     
+    padding: 1.5em;   
+    background-color: #fbdb6b;
+    border: 2px solid #dbc05f;
+    color: black;    
 }
 
-/* ==========================
-   Tabla
-========================== */
-
-.Estilo-Tabla {
+.style-BtnActualizar {        
     width: 100%;
-    background-color: white;
-}
-
-.Estilo-Tabla tr th,
-.Estilo-Tabla tr td {
-    border: 1px solid #d72b2b;
-}
-
-.Estilo-Tabla tr th {
-    background-color: #d72b2b;
-    color: white;
-    text-align: center;
-    font-weight: bold;
-}
-
-.Estilo-Tabla tr td {
-    text-align: center;
-    padding: 1rem;
-}
-
-.Estilo-Tabla tr:nth-child(odd) {
-    background-color: #fbe2e2;
-}
-
-.Estilo-Tabla tr:nth-child(even) {
-    background-color: #f7caca;
-}
-
-mat-paginator {
-    font-size: medium;
-}
-
-/* ==========================
-   Botones de acciones
-========================== */
-
-.Estilo-Btn div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: .75rem;
-}
-
-.Estilo-Btn button {
-    font-weight: bold;
-    transition: .3s;
-}
-
-/* Editar */
-
-.Estilo-Btn button:first-child:hover {
-    background-color: #b624da;
-    color: white;
-}
-
-/* Eliminar */
-
-.Estilo-Btn button:last-child:hover {
-    background-color: #d32f2f;
-    color: white;
-}
-
-/* ==========================
-   Encabezado
-========================== */
-
-h1 {
-    margin: 1rem 0;
-    color: #d72b2b;
-    font-weight: bold;
-}
-
-/* ==========================
-   Elevación
-========================== */
-
-.mat-elevation-z8 {
-    padding: 1rem;
-    border-radius: 10px;
-    overflow-x: auto;
-}
-
-/* ==========================
-   Responsive
-========================== */
-
-@media (max-width: 768px) {
-
-    .form-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    mat-form-field {
-        width: 100%;
-    }
-
-    .Estilo-Btn div {
-        flex-direction: column;
-        gap: .5rem;
-    }
-
-    .Estilo-Tabla {
-        min-width: 700px;
-    }
+    margin: 1em;
+    background-color: #fbdb6b;
+    border: 2px solid #dbc05f;
+    color: black;    
 }

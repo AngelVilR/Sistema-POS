@@ -1,224 +1,29 @@
-<div class="mat-elevation-z8" style="margin: 2em 0em">
-  <div style="display: flex; justify-content: center">
-    <h1>Mantenimiento de Eventos</h1>
+<div class="mat-elevation-z8" style="margin: 1em 0em 2em">
+  <h1>Mantenimiento de eventos</h1>
+  <div class="div-BtnCrear">
+    <button class="style-BtnCrear" matButton (click)="openDialogCreateEvento()">Crear un nuevo evento</button>
   </div>
 
-  <form [formGroup]="eventoForm" (ngSubmit)="guardarEvento()" novalidate>
-    <div
-      class="form-container"
-      style="display: flex; gap: 1em; flex-wrap: wrap; justify-content: center; padding: 1em;">
-
-      <!-- Nombre -->
-      <mat-form-field appearance="outline">
-        <mat-label>Nombre</mat-label>
-        <input
-          matInput
-          formControlName="nombre"
-          placeholder="Nombre del evento"
-          maxlength="100" />
-
-        @if (errorHandling('nombre')) {
-          <mat-error>{{ errorHandling('nombre') }}</mat-error>
-        }
-      </mat-form-field>
-
-<!-- Fecha Inicio -->
-<mat-form-field appearance="outline">
-
-  <mat-label>Fecha Inicio</mat-label>
-
-  <input
-    matInput
-    [matDatepicker]="pickerInicio"
-    [min]="minFechaInicio"
-    formControlName="fechaInicio">
-
-  <mat-datepicker-toggle
-    matIconSuffix
-    [for]="pickerInicio">
-  </mat-datepicker-toggle>
-
-  <mat-datepicker #pickerInicio></mat-datepicker>
-
-
-  @if (eventoForm.get('fechaInicio')?.hasError('required')
-      && eventoForm.get('fechaInicio')?.touched) {
-
-    <mat-error>
-      La fecha inicio es requerida
-    </mat-error>
-
-  }
-
-
-  @if (eventoForm.get('fechaInicio')?.hasError('fechaPasada')) {
-
-    <mat-error>
-      No puede seleccionar una fecha anterior a hoy
-    </mat-error>
-
-  }
-
-</mat-form-field>
-
-
-
-<!-- Fecha Fin -->
-<mat-form-field appearance="outline">
-
-  <mat-label>Fecha Fin</mat-label>
-
-  <input
-    matInput
-    [matDatepicker]="pickerFin"
-    [min]="eventoForm.get('fechaInicio')?.value"
-    formControlName="fechaFin">
-
-  <mat-datepicker-toggle
-    matIconSuffix
-    [for]="pickerFin">
-  </mat-datepicker-toggle>
-
-  <mat-datepicker #pickerFin></mat-datepicker>
-
-
-  @if (eventoForm.get('fechaFin')?.hasError('required')
-      && eventoForm.get('fechaFin')?.touched) {
-
-    <mat-error>
-      La fecha fin es requerida
-    </mat-error>
-
-  }
-
-
-  @if (eventoForm.hasError('fechaInvalida')) {
-
-    <mat-error>
-      La fecha fin no puede ser menor que la fecha inicio
-    </mat-error>
-
-  }
-
-</mat-form-field>
-
-      <!-- Botones -->
-      <div style="display: flex; align-items: center; gap: 0.5em;">
-        <button
-          type="submit"
-          mat-raised-button
-          color="primary"
-          style="height: 3.5em;">
-
-          <mat-icon>
-            {{ isEditing ? 'save' : 'add_circle' }}
-          </mat-icon>
-
-          {{ isEditing ? 'Actualizar' : 'Crear' }}
-        </button>
-
-        @if (isEditing) {
-          <button
-            type="button"
-            mat-raised-button
-            style="height: 3.5em;"
-            (click)="cancelarEdicion()">
-
-            <mat-icon>cancel</mat-icon>
-            Cancelar
-          </button>
-        }
-      </div>
-
-    </div>
-  </form>
-
-  <!-- Tabla -->
-  <table class="Estilo-Tabla" mat-table [dataSource]="dataSource" matSort>
-
-    <!-- Nombre -->
-    <ng-container matColumnDef="nombre">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        Nombre
-      </th>
-      <td mat-cell *matCellDef="let row">
-        {{ row.nombre }}
-      </td>
-    </ng-container>
-
-    <!-- Fecha Inicio -->
-    <ng-container matColumnDef="fechaInicio">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        Fecha Inicio
-      </th>
-      <td mat-cell *matCellDef="let row">
-        {{ row.fechaInicio | date:'dd/MM/yyyy' }}
-      </td>
-    </ng-container>
-
-    <!-- Fecha Fin -->
-    <ng-container matColumnDef="fechaFin">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        Fecha Fin
-      </th>
-      <td mat-cell *matCellDef="let row">
-        {{ row.fechaFin | date:'dd/MM/yyyy' }}
-      </td>
-    </ng-container>
-
-    <!-- Acciones -->
-    <ng-container matColumnDef="acciones">
-      <th mat-header-cell *matHeaderCellDef>
-        Acciones
-      </th>
-
-      <td class="Estilo-Btn" mat-cell *matCellDef="let row">
-        <div style="display: flex; gap: 0.5em;">
-
-          <button
-    mat-stroked-button
-    class="Estilo-BtnEditar"
-    (click)="actualizarEvento(row)">
-    <mat-icon>edit</mat-icon>
-    Editar
-</button>
-
-<button
-    mat-stroked-button
-    class="Estilo-BtnEliminar"
-    (click)="eliminarEvento(row)">
-    <mat-icon>delete</mat-icon>
-    Eliminar
-</button>
-
-        </div>
-      </td>
-    </ng-container>
-
-    <!-- Filas -->
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-    @if (dataSource.data.length === 0) {
-      <tr class="mat-row">
-        <td
-          class="mat-cell"
-          [attr.colspan]="displayedColumns.length"
-          style="text-align: center; padding: 2em;">
-
-          No hay eventos registrados
-
-        </td>
-      </tr>
+  @if (data && dataLength > 0) {
+  <div class="flexSpace">
+    @for (item of data; track $index) {
+    <mat-card class="card" appearance="outlined">
+      <mat-card-header style="margin: auto; text-align: center;">
+        <mat-card-title class="style-TitleCard">Nombre del evento: {{item.nombre}}</mat-card-title>
+        <mat-card-subtitle class="style-SubtitleCard"><b>Identificador: </b>#{{item.id}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p><b>Fecha de Inicio: </b>{{item.formatoFechaInicio}}</p>
+        <p><b>Fecha de Fin: </b>{{item.formatoFechaFin}}</p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button class="style-BtnActualizar" matButton (click)="openDialogUpdateEvento(item)">Actualizar</button>
+      </mat-card-actions>
+    </mat-card>
     }
-
-  </table>
-
-  <mat-paginator
-    #paginator
-    [pageIndex]="0"
-    [pageSize]="5"
-    [pageSizeOptions]="[3,5,10]">
-  </mat-paginator>
-
+  </div>
+  }@else {
+  <h1 style="margin-top: 3em;">Ahora mismo no hay eventos agregados</h1>
+  <h2>¡Agrega un nuevo evento para ver la lista!</h2>
+  }
 </div>

@@ -1,1 +1,96 @@
-<p>evento-form works!</p>
+<div>
+    <h2 mat-dialog-title style="font-weight: 500;">{{!isEditing ? "Crear evento" : "Actualizar evento"}}</h2>
+    <mat-dialog-content>
+        <form [formGroup]="eventoForm" (ngSubmit)="guardarEvento()" novalidate>
+            <div class="form-container">
+                <!-- Nombre -->
+                <div>
+                    <mat-form-field class="style-input">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="nombre" placeholder="Nombre del evento" maxlength="100" />
+
+                        @if (errorHandling('nombre')) {
+                        <mat-error>{{ errorHandling('nombre') }}</mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <!-- Fecha Inicio -->
+                    <mat-form-field class="style-input">
+                        <mat-label>Fecha Inicio</mat-label>
+
+                        <input matInput [matDatepicker]="pickerInicio" [min]="minFechaInicio"
+                            formControlName="fechaInicio">
+
+                        <mat-datepicker-toggle matIconSuffix [for]="pickerInicio">
+                        </mat-datepicker-toggle>
+
+                        <mat-datepicker #pickerInicio></mat-datepicker>
+
+                        @if (eventoForm.get('fechaInicio')?.hasError('required')
+                        && eventoForm.get('fechaInicio')?.touched) {
+
+                        <mat-error>
+                            La fecha inicio es requerida
+                        </mat-error>
+                        }
+
+                        @if (eventoForm.get('fechaInicio')?.hasError('fechaPasada')) {
+                        <mat-error>
+                            No puede seleccionar una fecha anterior a hoy
+                        </mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <!-- Fecha Fin -->
+                    <mat-form-field class="style-input">
+                        <mat-label>Fecha Fin</mat-label>
+
+                        <input matInput [matDatepicker]="pickerFin" [min]="eventoForm.get('fechaInicio')?.value"
+                            formControlName="fechaFin">
+
+                        <mat-datepicker-toggle matIconSuffix [for]="pickerFin">
+                        </mat-datepicker-toggle>
+
+                        <mat-datepicker #pickerFin></mat-datepicker>
+
+                        @if (eventoForm.get('fechaFin')?.hasError('required')
+                        && eventoForm.get('fechaFin')?.touched) {
+
+                        <mat-error>
+                            La fecha fin es requerida
+                        </mat-error>
+                        }
+
+                        @if (eventoForm.hasError('fechaInvalida')) {
+                        <mat-error>
+                            La fecha fin no puede ser menor que la fecha inicio
+                        </mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+
+                <!-- Botones -->
+                <div class="flexspace">
+                    <button type="submit" class="btnGuardar" matButton style="height: 3.5em;">
+                        <mat-icon>
+                            {{ isEditing ? 'save' : 'add_circle' }}
+                        </mat-icon>
+                        {{ isEditing ? 'Actualizar' : 'Crear' }}
+                    </button>
+
+                    @if (isEditing) {
+                    <button type="button" matButton class="btnGuardar" style="height: 3.5em;"
+                        (click)="cancelarEdicion()">
+                        <mat-icon>cancel</mat-icon>
+                        Cancelar
+                    </button>
+                    }
+                </div>
+            </div>
+        </form>
+    </mat-dialog-content>
+</div>
