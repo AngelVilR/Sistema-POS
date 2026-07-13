@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -10,6 +10,8 @@ import { ProductoModel } from '../../share/models/ProductoModel';
 import { Subject, takeUntil } from 'rxjs';
 import { VentaService } from '../../share/services/venta.service';
 import { VentaModel } from '../../share/models/VentaModel';
+import { MatDialog } from '@angular/material/dialog';
+import { VentaAsignarForm } from '../venta-asignar-form/venta-asignar-form';
 
 
 @Component({
@@ -23,6 +25,8 @@ export class VentaAsignarAdmin {
 
   data: any;
   dataLength: any
+
+  private dialogForm = inject(MatDialog)
 
   constructor(
     private serviceVenta: VentaService,
@@ -45,6 +49,14 @@ export class VentaAsignarAdmin {
       })
   }
 
+  openDialogCreateAsignar() {
+    this.dialogForm.open(VentaAsignarForm)
+  }
+
+  openDialogUpdateAsignar(prItem: VentaModel) {
+    this.dialogForm.open(VentaAsignarForm, { data: prItem })
+  }
+
   goAsignarCreate() {
     this.router.navigate(['/asignar-producto/create'], {
       relativeTo: this.route
@@ -54,13 +66,4 @@ export class VentaAsignarAdmin {
   goAsignarUpdate(prItem: VentaModel) {
     this.router.navigate(['asignar-producto/update', prItem.eventoId, prItem.usuarioId, prItem.productoId])
   }
-
-  /* deleteAsignarUpdate(prItem: VentaModel) {
-    this.serviceVenta
-      .delete(prItem)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((data: VentaModel) => {
-        console.log("Producto eliminado")
-      })
-  } */
 }

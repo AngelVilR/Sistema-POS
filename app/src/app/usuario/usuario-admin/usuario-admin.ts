@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -10,6 +10,9 @@ import { ProductoModel } from '../../share/models/ProductoModel';
 import { Subject, takeUntil } from 'rxjs';
 import { UsuarioService } from '../../share/services/usuario.service';
 import { UsuarioModel } from '../../share/models/UsuarioModel';
+import { MatDialog } from '@angular/material/dialog';
+import { UsuarioForm } from '../usuario-form/usuario-form';
+import { UtilService } from '../../share/util-service';
 
 
 @Component({
@@ -19,48 +22,55 @@ import { UsuarioModel } from '../../share/models/UsuarioModel';
   styleUrl: './usuario-admin.css',
 })
 export class UsuarioAdmin {
-    @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  dataSource = new MatTableDataSource<any>();
-  datos: any;
+  data: any;
+  dataLength: any
+
   destroy$: Subject<boolean> = new Subject<boolean>();
-  displayedColumns = ['CELDA_1', 'CELDA_2', 'CELDA_3', 'CELDA_4', 'acciones'];
+
+  private dialogForm = inject(MatDialog)
 
   constructor(
     private userService: UsuarioService,
     private noti: NotificationService,
     private router: Router,
     private route: ActivatedRoute,
+    private util: UtilService
   ) { }
 
   ngOnInit() {
     this.listUsers();
-    this.paginator._intl.itemsPerPageLabel = 'Items';
-    this.paginator._intl.nextPageLabel = 'Siguiente';
-    this.paginator._intl.previousPageLabel = 'Anterior';
-    this.paginator._intl.firstPageLabel = 'Inicio';
-    this.paginator._intl.lastPageLabel = 'Fin';
   }
 
-  crearUsuario(){
+  ngAfterViewInit(): void {
+    this.listUsers()
+  }
+
+  crearUsuario() {
     this.router.navigate(['/usuario/create']);
   }
 
-  listUsers() {
-  this.userService.get().subscribe((respuesta: UsuarioModel[]) => {
-    this.datos = respuesta;
-    this.dataSource.data = respuesta;
-  });
-}
+  private listUsers() {
+    this.userService
+      .get()
+      .subscribe((respuesta: UsuarioModel[]) => {
+        respuesta.map((x:UsuarioModel)=>{
+          x.formatoRole = this.util.RoleUsuarioToString(x.role);
+        })     
+                   
+        this.data = respuesta;
+        this.dataLength = this.data.length
+      });
+  }
 
-    actualizarUsuario (id: Number) {
+  actualizarUsuario(id: Number) {
     this.router.navigate(['usuario/update', id],)
   }
 
-  //Cargar tabla
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-    /* this.listProductos(); */
+  openDialogCreateUsuario() {
+    this.dialogForm.open(UsuarioForm)
+  }
+
+  openDialogUpdateUsuario(prUsuario: UsuarioForm) {
+    this.dialogForm.open(UsuarioForm, { data: prUsuario })
   }
 }

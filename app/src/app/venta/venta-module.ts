@@ -18,6 +18,7 @@ import { VentaDetail } from './venta-detail/venta-detail';
 import { VentaAsignarForm } from './venta-asignar-form/venta-asignar-form';
 import { VentaAsignarAdmin } from './venta-asignar-admin/venta-asignar-admin';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatDialogContent } from "@angular/material/dialog";
 
 @NgModule({
   declarations: [VentaAdmin, VentaDetail, VentaAsignarForm, VentaAsignarAdmin],
@@ -32,7 +33,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     MatCardModule,
     MatSelectModule,
     MatFormFieldModule,
-    VentaRoutingModule, FormsModule, ReactiveFormsModule],
+    VentaRoutingModule, FormsModule, ReactiveFormsModule, MatDialogContent],
   exports: [VentaDetail, VentaAsignarForm, VentaAsignarAdmin],
 })
 export class VentaModule { }

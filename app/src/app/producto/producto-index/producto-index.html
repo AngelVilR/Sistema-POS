@@ -8,8 +8,7 @@
                 <mat-card-title>{{item.producto.nombre}}</mat-card-title>
             </mat-card-header>
 
-            <img mat-card-image src="https://material.angular.dev/assets/img/examples/shiba2.jpg"
-                alt="Imagen del producto {{item.producto.nombre}}">
+            <img mat-card-image src="\images\image-not-found.png" alt="Imagen del producto {{item.producto.nombre}}">
 
             <mat-card-content class="card-content-center">
                 <h2>&#8353; {{item.producto.precio}}</h2>
@@ -17,6 +16,7 @@
             </mat-card-content>
 
             <mat-card-actions>
+                @if (item.cantidad != 0) {
                 <div class="style-BtnCantProd">
                     <button matButton (click)="minusProducto(item)" class="style-BtnMinus"
                         style="color: black;"><mat-icon>minimize</mat-icon></button>
@@ -24,6 +24,7 @@
                     <button matButton (click)="addProducto(item)" class="style-BtnAdd"
                         style="color: black;"><mat-icon>add</mat-icon></button>
                 </div>
+                }
             </mat-card-actions>
         </mat-card>
     </div>

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { pipe, Subject, takeUntil } from 'rxjs';
+import { Component, inject, Inject } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 import { ProductoModel } from '../../share/models/ProductoModel';
 import { EventoModel } from '../../share/models/EventoModel';
 import { UsuarioModel } from '../../share/models/UsuarioModel';
@@ -11,9 +11,8 @@ import { UsuarioService } from '../../share/services/usuario.service';
 import { NotificationService } from '../../share/notification-service';
 import { VentaModel } from '../../share/models/VentaModel';
 import { getFormValidationErrorMessage } from '../../share/form-validation';
-import { ErrorStateMatcher } from '@angular/material/core';
 import { VentaService } from '../../share/services/venta.service';
-import { disabled } from '@angular/forms/signals';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-venta-asignar-form',
@@ -36,7 +35,10 @@ export class VentaAsignarForm {
 
   asignarForm!: FormGroup
 
+  private readonly dialogService = inject(MatDialog);
+
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: VentaModel | null,
     private fb: FormBuilder,
     private router: Router,
     private activeRouter: ActivatedRoute,
@@ -52,24 +54,14 @@ export class VentaAsignarForm {
     this.getListEventos();
     this.getListProductos();
     this.getListUsuarios();
-    this.activeRouter
-      .params
-      .subscribe((params: Params) => {
-        this.idProducto = params['productoId']
-        this.idEvento = params['eventoId']
-        this.idUsuario = params['usuarioId']
-
-        if (this.idProducto != undefined
-          && this.idEvento != undefined
-          && this.idUsuario != undefined) {
-          this.ventaService
-            .getByIdVenta(this.idEvento, this.idUsuario, this.idProducto)
-            .subscribe((data: VentaModel) => {
-              this.isCreate = true
-              this.patchFormValues(data);
-            })
-        }
-      })
+    if (this.data != null) {
+      this.ventaService
+        .getByIdVenta(this.data.eventoId, this.data.usuarioId, this.data.productoId)
+        .subscribe((data: VentaModel) => {
+          this.isCreate = true
+          this.patchFormValues(data);
+        })
+    }
   }
 
   patternStock = /^[1-9]\d*$/;
@@ -79,7 +71,7 @@ export class VentaAsignarForm {
       productoId: [null, [Validators.required]],
       eventoId: [null, [Validators.required]],
       usuarioId: [null, [Validators.required]],
-      cantidad: [null, [Validators.required, Validators.min(1), Validators.max(99), Validators.pattern(this.patternStock)]],
+      cantidad: [null, [Validators.required, Validators.min(1), Validators.pattern(this.patternStock)]],
     })
   }
 
@@ -127,6 +119,11 @@ export class VentaAsignarForm {
     const formValue = this.asignarForm.value;
     console.log("---FORMULARIO---", formValue)
 
+    if (!this.validStockMax(formValue.productoId, Number(formValue.cantidad))) {
+      this.noti.error("Error", "La cantidad sobrepasa el stock disponible", 4000)
+      return
+    }
+
     const objAsignar: VentaModel = {
       eventoId: formValue.eventoId,
       productoId: formValue.productoId,
@@ -144,7 +141,8 @@ export class VentaAsignarForm {
         .pipe(takeUntil(this.destroy$))
         .subscribe((data: VentaModel) => {
           this.noti.success("Asignación completada", "La asignación se creo correctamente", 4000)
-          this.router.navigate(["/asignar-producto"])
+          this.onReset()
+          this.dialogService.closeAll();
         })
     } else {
       this.ventaService
@@ -152,9 +150,22 @@ export class VentaAsignarForm {
         .pipe(takeUntil(this.destroy$))
         .subscribe((data: VentaModel) => {
           this.noti.success("Asignación actualizada", "La asignación fue actualizada correctamente", 4000)
-          this.router.navigate(["/asignar-producto"])
+          this.onReset()
+          this.dialogService.closeAll();
         })
     }
+  }
+
+  private validStockMax(prIdProd: number, prCant: number): boolean {
+    let valid = false
+    this.productoService
+      .getById(prIdProd)
+      .subscribe((data: ProductoModel) => {
+        if (prCant <= data.stock) {
+          valid = true;
+        }
+      })
+    return valid;
   }
 
   public errorHandling(controlPath: string): string | false {
@@ -162,7 +173,10 @@ export class VentaAsignarForm {
   }
 
   onReset(): void {
+    this.isCreate = false;
+    this.data = null;
     this.asignarForm.reset();
+    this.dialogService.closeAll();
   }
 
   ngOnDestroy(): void {

@@ -1,100 +1,66 @@
-<form [formGroup]="userCreate" (ngSubmit)="submitForm()" novalidate>
-  <h1>{{ titleForm }}</h1>
-  <div class="first">
-    <div class="card">
-      <div>
-        <div class="space">
-          <span class="mb-2">Nombre</span>
-          <mat-form-field
-            appearance="outline"
-            class="full-width"
-            floatLabel="auto"
-          >
-            <input
-              type="text"
-              matInput
-              formControlName="nombre"
-              placeholder="Nombre"
-            />
+<div>
+  <h2 mat-dialog-title style="font-weight: 500;">{{isCreate ? "Crear usuario" : "Actualizar usuario"}}</h2>
+  <form [formGroup]="userCreate" (ngSubmit)="submitForm()" novalidate>
+    <mat-dialog-content>
+      <div class="form-container">
+        <div>
+          <mat-form-field class="style-input" floatLabel="auto">
+            <mat-label>Nombre del usuario</mat-label>
+            <input type="text" matInput formControlName="nombre" placeholder="Nombre completo" />
             @if (errorHandling('nombre')) {
-                <mat-error>{{ errorHandling('nombre') }}</mat-error>
+            <mat-error>{{ errorHandling('nombre') }}</mat-error>
             }
           </mat-form-field>
         </div>
-      </div>
-      <div>
-        <div class="space">
-          <span class="mb-2">Email</span>
-          <mat-form-field
-            appearance="outline"
-            class="full-width"
-            floatLabel="auto"
-          >
-            <input
-              type="text"
-              matInput
-              formControlName="email"
-              placeholder="ejemplo@gmail.com"
-            />
+
+        <div>
+          <mat-form-field class="style-input" floatLabel="auto">
+            <mat-label>Correo electrónico</mat-label>
+            <input type="text" matInput formControlName="email" placeholder="ejemplo@gmail.com" />
             @if (errorHandling('email')) {
-                <mat-error>{{ errorHandling('email') }}</mat-error>
+            <mat-error>{{ errorHandling('email') }}</mat-error>
             }
           </mat-form-field>
         </div>
-      </div>
-      <div>
-        <div class="space">
-          <span class="mb-2">Teléfono</span>
-          <mat-form-field
-            appearance="outline"
-            class="full-width"
-            floatLabel="auto"
-          >
-            <input
-              type="tel"
-              matInput
-              formControlName="telefono"
-              placeholder="88888888"
-            />
+
+        <div>
+          <mat-form-field class="style-input" floatLabel="auto">
+            <mat-label>Teléfono</mat-label>
+            <input type="tel" matInput formControlName="telefono" placeholder="12345678" />
             @if (errorHandling('telefono')) {
-                <mat-error>{{ errorHandling('telefono') }}</mat-error>
+            <mat-error>{{ errorHandling('telefono') }}</mat-error>
             }
           </mat-form-field>
         </div>
-      </div>
-      @if (isCreate) {
-      <div>
-        <div class="space">
-          <span class="mb-2">Contraseña</span>
-          <mat-form-field
-            appearance="outline"
-            class="full-width"
-            floatLabel="auto"
-          >
-            <input
-              type="password"
-              matInput
-              formControlName="password"
-              placeholder="Contraseña"
-              autocomplete="new-password"
-            />
+
+        @if (isCreate) {
+        <div>
+          <mat-form-field class="style-input" floatLabel="auto">
+            <mat-label>Contraseña</mat-label>
+            <input type="password" matInput formControlName="password" placeholder="Contraseña"
+              autocomplete="new-password" />
             @if (errorHandling('password')) {
-                <mat-error>{{ errorHandling('password') }}</mat-error>
+            <mat-error>{{ errorHandling('password') }}</mat-error>
             }
           </mat-form-field>
         </div>
+        }
+
+        <div class="flexspace">
+          <button type="submit" matButton class="btnGuardar" style="height: 3.5em;">
+            <mat-icon class="mat-18">{{ isCreate ? 'add_circle' : 'save' }}</mat-icon>
+            {{ isCreate ? 'Crear' : 'Actualizar' }}
+          </button>
+
+          @if (!isCreate) {
+          <button type="button" matButton class="btnGuardar" (click)="onReset()" style="height: 3.5em;">
+            <mat-icon class="mat-18">cancel</mat-icon>
+            Cancelar
+          </button>
+          }
+        </div>
       </div>
-    }
-      <div class="flex">
-        <button class="previews-button" (click)="onReset()" type="button">
-          Cancel
-        </button>
-        <!-- ?? IF IS ADMIN (TO EDIT) -->
-        <button type="submit">
-          <mat-icon>how_to_reg</mat-icon>
-          {{ isCreate ? 'Crear Usuario' : 'Actualizar Usuario' }}
-        </button>
-      </div>
-    </div>
-  </div>
-</form>
+    </mat-dialog-content>
+  </form>
+
+</div>
