@@ -42,7 +42,7 @@ export class ProductoIndex {
 
         const listUsuarioProds: VentaModel[] = []
         list.forEach(item => {
-          if (item.usuario?.email == this.userEmail && item.eventoId == this.userEvento) {
+          if (item.usuario?.email == this.userEmail && item.eventoId == this.userEvento && item.producto?.estado) {
             listUsuarioProds.push(item);
           }
         });

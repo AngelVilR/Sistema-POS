@@ -119,7 +119,7 @@ export class VentaAsignarForm {
     const formValue = this.asignarForm.value;
     console.log("---FORMULARIO---", formValue)
 
-    if (!this.validStockMax(formValue.productoId, Number(formValue.cantidad))) {
+    if (this.validStockMax(formValue.productoId, Number(formValue.cantidad))) {
       this.noti.error("Error", "La cantidad sobrepasa el stock disponible", 4000)
       return
     }
