@@ -4,10 +4,12 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing-module';
 import { Inicio } from './inicio/inicio';
 import { ProductoModule } from "../producto/producto-module";
+import { CarritoModule } from "../carrito/carrito-module";
 
 
 @NgModule({
   declarations: [Inicio],
-  imports: [CommonModule, HomeRoutingModule, ProductoModule],
+  imports: [CommonModule, HomeRoutingModule, ProductoModule, CarritoModule],
 })
+
 export class HomeModule { }

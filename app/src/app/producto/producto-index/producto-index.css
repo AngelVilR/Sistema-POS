@@ -3,12 +3,18 @@ main {
     height: 100%;
 }
 
-h1, h2{
+h1,
+h2 {
     text-align: center;
 }
 
-h1{    
+h1 {
     margin-bottom: 2em;
+}
+
+img {
+    width: 100%;
+    height: 180px;
 }
 
 .flexV1 {
@@ -20,6 +26,7 @@ h1{
 
 .card {
     max-width: 300px;
+    margin-bottom: 25px;
     border: 2px solid #b4b4b4;
 }
 
@@ -34,19 +41,19 @@ h1{
     margin: 1em 0em 1.5em;
 }
 
-.style-BtnCantProd{
+.style-BtnCantProd {
     width: 100%;
     display: flex;
     gap: 1em;
 }
 
-.style-BtnMinus, .style-BtnAdd {
+.style-BtnMinus,
+.style-BtnAdd {
     width: 100%;
     height: 3.2em;
     margin-bottom: 1em;
     background-color: #fbdb6b;
     border: 2px solid #e9bf26;
-    border-radius: 0%;    
     font-size: large;
     text-align: center;
 }
@@ -56,8 +63,12 @@ h1{
 }
 
 @media (max-width: 800px) {
-    h1 {        
+    h1 {
         margin: 0.5em 0.5em 1.5em;
+    }
+
+    img {        
+        height: 9rem;
     }
 
     .card {

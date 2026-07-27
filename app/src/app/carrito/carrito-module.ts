@@ -32,6 +32,6 @@ import { DialogPagarEfectivo } from './dialog-pagar-efectivo/dialog-pagar-efecti
     ReactiveFormsModule,
     MatProgressSpinnerModule,    
   ],
-  exports: [DialogPagarTarjeta, DialogPagarEfectivo],
+  exports: [CarritoDetalle, DialogPagarTarjeta, DialogPagarEfectivo],
 })
 export class CarritoModule { }
