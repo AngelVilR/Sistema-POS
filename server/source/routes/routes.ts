@@ -4,6 +4,7 @@ import { UsuarioRoutes } from './Usuario.routes.js';
 import { EventoRoutes } from './evento.routes.js';
 import { VentaRoutes } from './venta.routes.js';
 import { FacturaRoutes } from './factura.routes.js';
+import { ReporteRoutes } from './reporte.routes.js';
 export class AppRoutes {
     static get routes(): Router {
         const router = Router();
@@ -18,6 +19,8 @@ export class AppRoutes {
         router.use('/factura', FacturaRoutes.routes);
         /* Ruta Usuario */
         router.use('/usuario', UsuarioRoutes.routes);
+        /* Ruta Reporte */
+        router.use('/reportes', ReporteRoutes.routes);
         return router;
     }
 }

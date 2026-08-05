@@ -6,4 +6,5 @@ export const environment = {
     endPointEvento: 'evento',
     endPointVenta: 'venta',
     endPointFactura: 'factura',
+    endPointReporte: 'reportes',
 };
