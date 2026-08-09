@@ -115,6 +115,51 @@ export const FormErrorMessage: FormValidatorMessage[] = [
     forValidator: 'pattern',
     text: 'El teléfono solo puede contener numeros',
   },
+  {
+  forControl: 'newPassword',
+  forValidator: 'required',
+  text: 'La nueva contraseña es requerida',
+},
+{
+  forControl: 'newPassword',
+  forValidator: 'minlength',
+  text: 'La nueva contraseña debe tener al menos 6 dígitos',
+},
+{
+  forControl: 'newPassword',
+  forValidator: 'maxlength',
+  text: 'La nueva contraseña no puede tener más de 6 dígitos',
+},
+{
+  forControl: 'newPassword',
+  forValidator: 'pattern',
+  text: 'La nueva contraseña solo puede contener números',
+},
+{
+  forControl: 'confirmPassword',
+  forValidator: 'required',
+  text: 'Debe confirmar la contraseña',
+},
+{
+  forControl: 'confirmPassword',
+  forValidator: 'minlength',
+  text: 'La confirmación debe tener al menos 6 dígitos',
+},
+{
+  forControl: 'confirmPassword',
+  forValidator: 'maxlength',
+  text: 'La confirmación no puede tener más de 6 dígitos',
+},
+{
+  forControl: 'confirmPassword',
+  forValidator: 'pattern',
+  text: 'La confirmación solo puede contener números',
+},
+{
+  forControl: 'confirmPassword',
+  forValidator: 'mismatch',
+  text: 'Las contraseñas no coinciden',
+}
 ];
 
 /**

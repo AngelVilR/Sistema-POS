@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'usuario-admin', component: UsuarioAdmin },
   { path: 'usuario/create', component: UsuarioForm },
   { path: 'usuario/update/:id', component: UsuarioForm },
-  { path: 'iniciar-sesión', component: UsuarioLogIn },
+  { path: 'iniciar-sesion', component: UsuarioLogIn },
 ];
 
 @NgModule({

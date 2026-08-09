@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, computed, inject, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -13,6 +13,7 @@ import { UsuarioModel } from '../../share/models/UsuarioModel';
 import { MatDialog } from '@angular/material/dialog';
 import { UsuarioForm } from '../usuario-form/usuario-form';
 import { UtilService } from '../../share/util-service';
+import { AuthenticationService } from '../../share/authentication.service';
 
 
 @Component({
@@ -34,7 +35,8 @@ export class UsuarioAdmin {
     private noti: NotificationService,
     private router: Router,
     private route: ActivatedRoute,
-    private util: UtilService
+    private util: UtilService,
+    private authService: AuthenticationService
   ) { }
 
   ngOnInit() {
@@ -62,8 +64,28 @@ export class UsuarioAdmin {
       });
   }
 
+  public isAdmin=computed(()=>{
+    const user=this.authService.currentUserSignal()
+    console.log('User: ',user?.role.toString())
+    return user?.role.toString() =='ADMIN'
+  })
+
   actualizarUsuario(id: Number) {
     this.router.navigate(['usuario/update', id],)
+  }
+
+  resetearPassword(idUser: number) {
+    const usuarioParcial: Partial<UsuarioModel> = {
+    id: idUser,
+    password: '000000'
+  };
+    this.userService
+    .updatePassword(usuarioParcial as UsuarioModel)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe((data: any) => {
+      this.authService.getUserProfile().subscribe();
+      this.noti.success('Contraseña reseteada', 'La contraseña ha sido reseteada a "000000" exitosamente.', 3000);
+    });
   }
 
   openDialogCreateUsuario() {
@@ -73,4 +95,6 @@ export class UsuarioAdmin {
   openDialogUpdateUsuario(prUsuario: UsuarioForm) {
     this.dialogForm.open(UsuarioForm, { data: prUsuario })
   }
+
+
 }

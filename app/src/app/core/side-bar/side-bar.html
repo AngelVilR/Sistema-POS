@@ -86,7 +86,11 @@
 
 <div style="margin: 1em 0em 1.5em;">
     <button matButton="outlined" class="style-Btn-Logout" style="color: black;"
-        [routerLink]="['/iniciar-sesión']"><mat-icon>logout</mat-icon>
+        [routerLink]="['/iniciar-sesion']"><mat-icon>logout</mat-icon>
         Cerrar sesión</button>
+
+        <button matButton="outlined" class="style-Btn-Logout" style="color: black;"
+        (click)="openDialogChangePassword()"><mat-icon>password</mat-icon>
+        Cambiar contraseña</button>
     <p class="p-copy">&copy; La Matamonchis S.A 2026</p>
 </div>

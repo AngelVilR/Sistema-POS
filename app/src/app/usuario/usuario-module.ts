@@ -16,10 +16,12 @@ import { UsuarioAdmin } from './usuario-admin/usuario-admin';
 import { UsuarioForm } from './usuario-form/usuario-form';
 import { UsuarioLogIn } from './usuario-log-in/usuario-log-in';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserPassword } from './user-password/user-password';
 
 @NgModule({
-  declarations: [UsuarioAdmin, UsuarioForm, UsuarioLogIn],
-  imports: [CommonModule,
+  declarations: [UsuarioAdmin, UsuarioForm, UsuarioLogIn, UserPassword],
+  imports: [
+    CommonModule,
     MatInputModule,
     MatGridListModule,
     MatIconModule,
@@ -30,6 +32,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     MatCardModule,
     UsuarioRoutingModule,
-    ReactiveFormsModule],
+    ReactiveFormsModule,
+  ],
 })
-export class UsuarioModule { }
+export class UsuarioModule {}

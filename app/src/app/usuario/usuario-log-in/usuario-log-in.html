@@ -1,1 +1,41 @@
-<p>usuario-log-in works!</p>
+<form [formGroup]="formulario" (ngSubmit)="submitForm()" novalidate>
+<div>
+    <div class="card first">
+        <div>
+            <div class="entrada-informacion space">
+                <span class="mb-2">Email</span>
+                <mat-form-field appearance="outline" class="full-width" floatLabel="auto">
+                    <input type="text" matInput formControlName="email" placeholder="example@gmail.com">
+                @if (errorHandling('email')) {
+                    <mat-error>{{errorHandling('email')}}</mat-error>
+                }
+                </mat-form-field>
+            </div>
+        </div>
+        <div>
+            <div class="entrada-informacion space">
+                <span class="mb-2">Contraseña</span>
+                <mat-form-field appearance="outline" class="full-width" floatLabel="auto">
+                    <input type="password" matInput formControlName="password">
+                @if (errorHandling('password')) {
+                    <mat-error>{{errorHandling('password')}}</mat-error>
+                }
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="flex">
+        <button class="previews-button" (click)="onReset()" type="button">
+          Cancelar
+        </button>
+        <button
+          class="next-button"
+          type="submit"
+        >
+        <mat-icon>login</mat-icon>
+          Iniciar sesión
+          
+        </button>
+      </div>
+    </div>
+</div>
+</form>

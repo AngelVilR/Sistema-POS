@@ -64,4 +64,8 @@ export class BaseAPI<T extends BaseEntity> {
       `${this.urlAPI}/${this.endpoint}/producto/${idProducto}`
     );
   }
+
+  updatePassword(item: T): Observable<any> {
+  return this.http.put<T>(`${this.urlAPI}/${this.endpoint}/updatePassword/${item.id}`, item);
+}
 }

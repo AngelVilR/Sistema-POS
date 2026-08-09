@@ -7,7 +7,7 @@ import { CoreModule } from './core/core-module';
 import { ShareModule } from './share/share-module';
 import { HomeModule } from './home/home-module';
 
-import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 /* import { provideAnimations } from '@angular/platform-browser/animations'; */
 import { HttpErrorInterceptorService } from './share/http-error-interceptor.service';
 
@@ -24,6 +24,8 @@ import { UsuarioModule } from './usuario/usuario-module';
 import { CarritoModule } from './carrito/carrito-module';
 import { ReporteModule } from './reporte/reporte-module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpAuthInterceptorService } from './share/http-auth-interceptor.service';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [App],
@@ -42,17 +44,23 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     MatButtonModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule,
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideHttpClient(),
+    provideHttpClient(withInterceptorsFromDi()),
     /* provideAnimations(), */
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptorService,
       multi: true,
     },
+    { 
+      provide: HTTP_INTERCEPTORS,  
+      useClass: HttpAuthInterceptorService,  
+      multi:true 
+    } 
   ],
   bootstrap: [App],
 })

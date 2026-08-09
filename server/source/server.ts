@@ -7,6 +7,7 @@ import path from 'path'
 import { ErrorMiddleware } from './middleware/error.middleware.js';
 import { fileURLToPath } from 'url';
 import { AppRoutes } from './routes/routes.js';
+import "./config/passport.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
