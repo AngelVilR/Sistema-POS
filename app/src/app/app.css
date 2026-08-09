@@ -1,7 +1,6 @@
 .body-container {
     padding: 3em 0em 3em;
-    display: flex;
-    justify-content: center;
+    margin: 0em 4em;
 }
 
 .background-img {

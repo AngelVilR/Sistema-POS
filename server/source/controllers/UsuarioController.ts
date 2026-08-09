@@ -95,4 +95,18 @@ export class UsuarioController {
             next(error);
         }
     };
+
+    checkEmail = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { email } = req.params as { email: string };
+    const user = await prisma.usuario.findUnique({
+      where: { email }
+    });
+    res.json(!!user); // true si existe, false si no
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 }

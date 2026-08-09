@@ -10,6 +10,8 @@ import { UtilService } from '../../share/util-service';
 import { FacturaService } from '../../share/services/factura.service';
 import { FacturaModel } from '../../share/models/FacturaModel';
 import { ItemCarritoModel } from '../../share/models/ItemCarritoModel';
+import { VentaService } from '../../share/services/venta.service';
+import { VentaModel } from '../../share/models/VentaModel';
 
 @Component({
   selector: 'app-dialog-pagar-efectivo',
@@ -39,6 +41,7 @@ export class DialogPagarEfectivo {
 
   constructor(
     private facturaService: FacturaService,
+    private ventaService: VentaService,
     private fb: FormBuilder,
     private router: Router,
     private activeRouter: ActivatedRoute,
@@ -94,6 +97,7 @@ export class DialogPagarEfectivo {
     objFactura.eventoId = 1;
     objFactura.facturasDet = tempListDetalle
 
+    this.actualizarCantColab(objFactura);
     this.guardarFactura(objFactura);
   }
 
@@ -114,6 +118,34 @@ export class DialogPagarEfectivo {
         this.goDetailVenta(data.id);
       })
   }
+
+    actualizarCantColab(prFactura: FacturaModel) {
+      let objVenta = null;
+      let nuevaCant = 0;
+  
+      prFactura.facturasDet?.forEach((x: VentaModel) => {
+        this.ventaService
+          .getByIdVenta(prFactura.eventoId, prFactura.usuarioId, x.productoId)
+          .subscribe((data: VentaModel) => {
+            nuevaCant = Number(data.cantidad - x.cantidad);
+  
+            objVenta = {
+              eventoId: prFactura.eventoId,
+              usuarioId: prFactura.usuarioId,
+              productoId: x.productoId,
+              cantidad: nuevaCant > 0 ? nuevaCant : 0,
+            }
+  
+            if (objVenta != null) {
+              this.ventaService
+                .updateVenta(objVenta, objVenta.eventoId, objVenta.usuarioId, objVenta.productoId)
+                .pipe(takeUntil(this.destroy$))
+                .subscribe((data: VentaModel) => {
+                })
+            }
+          })
+      })
+    }
 
   onChangeCambio(event: any): void {
     const tempMontoPago = Number(event.target.value)

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Role } from './models/UsuarioModel';
 
 @Injectable({
   providedIn: 'root',
@@ -44,5 +45,21 @@ export class UtilService {
       txt = "Descuento de 10%"
     }
     return txt
+  }
+
+  RoleUsuarioToString(prRole: Role): String {
+    let txt = "";
+    switch (prRole) {
+      case 'ADMIN':
+        txt = "Administrador"
+        break;
+      case 'USER':
+        txt = "Colaborador"
+        break;
+      default:
+        txt = "Rol de usuario desconocido"
+        break;
+    }
+    return txt;
   }
 }

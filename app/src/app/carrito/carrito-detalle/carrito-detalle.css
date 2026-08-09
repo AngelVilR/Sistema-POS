@@ -11,14 +11,31 @@ mat-icon {
   padding: 1.5em 0em;
 }
 
+.style-subtitle-h3{
+  text-align: center;
+  background-color: #f9c307;
+  font-size: medium;
+  font-weight: 500;
+  padding: 6px; 
+}
+
 .flex-space {
   display: flex;
   justify-content: space-between;
 }
 
+.flex-space2 {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5em;
+}
+
 .style-Btn {
-  width: 100%;    
+  width: 100%;
   color: black;
+  background-color: #ffe999;
+  border: 2px solid #e9bf26;
+  padding: 2em;
 }
 
 .divEliminarBtn{

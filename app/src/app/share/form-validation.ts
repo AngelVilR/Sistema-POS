@@ -11,6 +11,36 @@ export interface FormValidatorMessage {
 //Mensajes de errores de validación
 export const FormErrorMessage: FormValidatorMessage[] = [
   {
+    forControl: 'productoId',
+    forValidator: 'required',
+    text: 'Debe de seleccionar un producto',
+  },
+  {
+    forControl: 'eventoId',
+    forValidator: 'required',
+    text: 'Debe de seleccionar un evento',
+  },
+  {
+    forControl: 'usuarioId',
+    forValidator: 'required',
+    text: 'Debe de seleccionar un usuario',
+  },
+  {
+    forControl: 'cantidad',
+    forValidator: 'required',
+    text: 'La cantidad es requerida',
+  },
+  {
+    forControl: 'cantidad',
+    forValidator: 'min',
+    text: 'La cantidad mínima es 1',
+  },
+  {
+    forControl: 'cantidad',
+    forValidator: 'pattern',
+    text: 'Debe de digitar únicamente números',
+  },
+  {
     forControl: 'montoPagar',
     forValidator: 'required',
     text: 'El monto a pagar es requerido',
@@ -19,107 +49,72 @@ export const FormErrorMessage: FormValidatorMessage[] = [
     forControl: 'montoPagar',
     forValidator: 'pattern',
     text: 'El formato del monto a pagar es incorrecto',
-  }/* ,
+  },
   {
-    forControl: 'numeroTarjeta',
+    forControl: 'nombre',
     forValidator: 'required',
-    text: 'El número de tarjeta es requerido',
+    text: 'El nombre de usuario es requerido',
   },
   {
-    forControl: 'numeroTarjeta',
+    forControl: 'nombre',
     forValidator: 'minlength',
-    text: 'El número de tarjeta debe de tener mínimo 16 digitos',
+    text: 'El nombre de usuario debe tener al menos 3 caracteres',
   },
   {
-    forControl: 'numeroTarjeta',
+    forControl: 'nombre',
     forValidator: 'maxlength',
-    text: 'El número de tarjeta no debe de tener más 16 digitos',
+    text: 'El nombre de usuario no debe tener más de 25 caracteres',
   },
   {
-    forControl: 'numeroTarjeta',
-    forValidator: 'pattern',
-    text: 'El formato del número de tarjeta es incorrecto',
-  },
-  {
-    forControl: 'fechaExp',
+    forControl: 'email',
     forValidator: 'required',
-    text: 'La fecha de expiración es requerida',
+    text: 'El correo es requerido',
   },
   {
-    forControl: 'cvv',
-    forValidator: 'required',
-    text: 'El CVV es requerido',
-  },
-  {
-    forControl: 'cvv',
-    forValidator: 'minlength',
-    text: 'El CVV debe de tener mínimo 3 digitos',
-  },
-  {
-    forControl: 'cvv',
-    forValidator: 'maxlength',
-    text: 'El CVV no debe de tener más 3 digitos',
-  },
-  {
-    forControl: 'cvv',
-    forValidator: 'pattern',
-    text: 'El formato del CVV es incorrecto',
-  },
-  {
-    forControl: 'titular',
-    forValidator: 'required',
-    text: 'El nombre del titular es requerido',
-  },
-  {
-    forControl: 'titular',
-    forValidator: 'minlength',
-    text: 'El nombre del titular debe de tener mínimo 3 carácteres',
-  } */
-  /* {
-    forControl: 'correo',
-    forValidator: 'required',
-    text: 'El correo electrónico es requerido',
-  },
-  {
-    forControl: 'correo',
-    forValidator: 'minlength',
-    text: 'El correo debe tener 3 carácteres mínimo',
-  },
-  {
-    forControl: 'correo',
-    forValidator: 'maxlength',
-    text: 'El correo electrónico no debe tener más de 191 carácteres',
-  },
-  {
-    forControl: 'correo',
+    forControl: 'email',
     forValidator: 'email',
-    text: 'El correo electrónico no cumple el formato correcto',
+    text: 'El correo no cumple con el formato correcto',
   },
   {
-    forControl: 'correo',
-    forValidator: 'pattern',
-    text: 'El formato del correo electrónico brindado es incorrecto',
+    forControl: 'email',
+    forValidator: 'emailTaken',
+    text: 'Ya existe una cuenta con este correo electrónico',
   },
   {
-    forControl: 'contrasenna',
+    forControl: 'password',
     forValidator: 'required',
     text: 'La contraseña es requerida',
   },
   {
-    forControl: 'contrasenna',
-    forValidator: 'minlength',
-    text: 'La contraseña debe tener 3 carácteres mínimo',
-  },
-  {
-    forControl: 'contrasenna',
+    forControl: 'password',
     forValidator: 'maxlength',
-    text: 'La contraseña no debe tener más de 191 carácteres',
+    text: 'La contraseña no puede tener más de 6 digitos',
   },
   {
-    forControl: 'contrasenna',
+    forControl: 'password',
+    forValidator: 'minlength',
+    text: 'La contraseña no puede tener menos de 6 digitos',
+  },
+  {
+    forControl: 'password',
     forValidator: 'pattern',
-    text: 'La contraseña es débil y no cumple con el formato correcto',
-  }, */
+    text: 'La contraseña solo puede contener numeros',
+  },
+  {
+    forControl: 'telefono',
+    forValidator: 'maxlength',
+    text: 'El teléfono no puede tener más de 8 digitos',
+  },
+  {
+    forControl: 'telefono',
+    forValidator: 'minlength',
+    text: 'El teléfono no puede tener menos de 8 digitos',
+  },
+  {
+    forControl: 'telefono',
+    forValidator: 'pattern',
+    text: 'El teléfono solo puede contener numeros',
+  },
 ];
 
 /**

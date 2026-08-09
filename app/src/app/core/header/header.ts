@@ -11,17 +11,4 @@ import { CarritoService } from '../../share/carrito.service';
 })
 
 export class Header {
-  readonly dialog = inject(MatDialog);
-
-  private carritoService = inject(CarritoService)
-  cantItems: Signal<Number> = this.carritoService.cantItems
-
-
-  openDialog() {
-    const dialogRef = this.dialog.open(CarritoDetalle);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
 }

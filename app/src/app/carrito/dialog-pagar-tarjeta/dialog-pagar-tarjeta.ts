@@ -10,6 +10,9 @@ import { Factura, FacturaModel } from '../../share/models/FacturaModel';
 import { UtilService } from '../../share/util-service';
 import { FacturaService } from '../../share/services/factura.service';
 import { Subject, takeUntil } from 'rxjs';
+import { VentaService } from '../../share/services/venta.service';
+import { ProductoService } from '../../share/services/producto.service';
+import { ProductoModel } from '../../share/models/ProductoModel';
 
 @Component({
   selector: 'app-dialog-pagar-tarjeta',
@@ -33,6 +36,7 @@ export class DialogPagarTarjeta {
 
   constructor(
     private facturaService: FacturaService,
+    private ventaService: VentaService,
     private router: Router,
     private noti: NotificationService,
     private util: UtilService
@@ -78,7 +82,8 @@ export class DialogPagarTarjeta {
       objFactura.eventoId = 1;
       objFactura.facturasDet = tempListDetalle
 
-      this.guardarFactura(objFactura)
+      this.actualizarCantColab(objFactura);
+      this.guardarFactura(objFactura);
     }, 4000);
   }
 
@@ -96,15 +101,43 @@ export class DialogPagarTarjeta {
         console.log(data)
         this.dialogTarjeta.closeAll();
         this.carritoService.vaciarCarrito();
-        this.goDetailVenta(data.id);        
+        this.goDetailVenta(data.id);
       })
+  }
+
+  actualizarCantColab(prFactura: FacturaModel) {
+    let objVenta = null;
+    let nuevaCant = 0;
+
+    prFactura.facturasDet?.forEach((x: VentaModel) => {
+      this.ventaService
+        .getByIdVenta(prFactura.eventoId, prFactura.usuarioId, x.productoId)
+        .subscribe((data: VentaModel) => {
+          nuevaCant = Number(data.cantidad - x.cantidad);
+
+          objVenta = {
+            eventoId: prFactura.eventoId,
+            usuarioId: prFactura.usuarioId,
+            productoId: x.productoId,
+            cantidad: nuevaCant > 0 ? nuevaCant : 0,
+          }
+
+          if (objVenta != null) {
+            this.ventaService
+              .updateVenta(objVenta, objVenta.eventoId, objVenta.usuarioId, objVenta.productoId)
+              .pipe(takeUntil(this.destroy$))
+              .subscribe((data: VentaModel) => {
+              })
+          }
+        })
+    })
   }
 
   cancelarVenta() {
     clearTimeout(this.counter);
   }
 
-  goDetailVenta(prId: number){
+  goDetailVenta(prId: number) {
     this.router.navigate(["venta-detail", prId]);
   }
 }

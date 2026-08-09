@@ -1,14 +1,14 @@
 <div class="mat-elevation-z8" style="margin: 1em 0em 2em">
-  <h1 style="margin-bottom: 1em;">Asignar productos a colaboradores</h1>
+  <h1 style="margin-bottom: 1em;">Lista de asignaciones de productos a colaboradores</h1>
   <div class="div-BtnCrear">
-    <button class="style-BtnCrear" matButton (click)="goAsignarCreate()">Asignar producto a un colaborador</button>
+    <button class="style-BtnCrear" matButton (click)="openDialogCreateAsignar()">Asignar producto a un colaborador</button>
   </div>
 
   @if (data && dataLength > 0) {
   <div class="flexSpace">
     @for (item of data; track $index) {
     <mat-card class="card" appearance="outlined">
-      <mat-card-header>
+      <mat-card-header style="margin: auto; text-align: center;">
         <mat-card-title class="style-TitleCard">Producto asignado: {{item.producto.nombre}}</mat-card-title>
         <mat-card-subtitle class="style-SubtitleCard">Cantidad: {{item.cantidad}}</mat-card-subtitle>
       </mat-card-header>
@@ -17,7 +17,7 @@
         <p><b>Evento: </b>{{item.evento.nombre}}</p>
       </mat-card-content>
       <mat-card-actions align="end">
-        <button class="style-BtnActualizar" matButton (click)="goAsignarUpdate(item)">Actualizar</button>        
+        <button class="style-BtnActualizar" matButton (click)="openDialogUpdateAsignar(item)">Actualizar</button>        
       </mat-card-actions>
     </mat-card>
     }

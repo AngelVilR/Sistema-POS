@@ -6,6 +6,7 @@ export interface Usuario {
   email: string;
   telefono: number;
   role: Role;
+  formatoRole?: String;
   password: string;
   ventas?: any[];
   facturasEnc?: any[];
@@ -17,6 +18,7 @@ export class UsuarioModel implements Partial<Usuario> {
   email: string = '';
   telefono: number = 0;
   role: Role = 'USER';
+  formatoRole?: String = "";
   password: string = '';
   ventas?: any[];
   facturasEnc?: any[];

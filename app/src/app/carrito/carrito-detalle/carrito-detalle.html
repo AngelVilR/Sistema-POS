@@ -1,66 +1,85 @@
 <h2 mat-dialog-title style="font-weight: 500;">Resumen de la venta</h2>
 @if (listItems.length != 0) {
-<mat-dialog-content class="mat-typography">
-  <!-- Linea de productos -->
-  <div>
-    <div>
-      @for (item of listItems; track $index) {
-      <div class="flex-space">
-        <div>
-          <h3>{{item.producto.producto?.nombre}}</h3>
-          <p>{{item.cantidad}} x <b style="color: #e4bb27;">&#8353;{{item.producto.producto?.precio}}</b> =
-            {{item.subtotal}}</p>
-        </div>
 
-        <div class="divEliminarBtn">
-          <button matMiniFab class="style-EliminarBtn" aria-label="Eliminar producto" (click)="deleteItem(item.producto.productoId)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div>
+<!-- Linea de detalle -->
+<div>
+  <h3 class="style-subtitle-h3">1. Productos seleccionados</h3>
+  <div>
+    @for (item of listItems; track $index) {
+    <div class="flex-space">
+      <div>
+        <h3>{{item.producto.producto?.nombre}}</h3>
+        <p>{{item.cantidad}} x <b style="color: #e4bb27;">&#8353;{{item.producto.producto?.precio}}</b> =
+          &#8353;{{item.subtotal}}</p>
       </div>
-      <mat-divider></mat-divider>
-      }
-    </div>
-  </div>
 
-  <div>
-    <div class="divTable style-tabla-costos">
-      <div class="divTableBody">
-        <div class="divTableRow">
-          <div class="divTableCell">
-            <h3>Descuento aplicado</h3>
-          </div>
-          <div class="divTableCell">{{labelPromociones()}}</div>
+      <div class="divEliminarBtn">
+        <button matMiniFab class="style-EliminarBtn" aria-label="Eliminar producto"
+          (click)="deleteItem(item.producto.productoId)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    }
+  </div>
+</div>
+
+<!-- Area de descuentos -->
+<div>
+  <h3 class="style-subtitle-h3">2. Aplicar descuento</h3>
+  <div class="divTable style-tabla-costos" style="margin: 0em;">
+    <div class="divTableBody">
+      <div class="divTableRow">
+        <div class="divTableCell">
+          <h3>Descuento aplicado</h3>
         </div>
-        <div class="divTableRow">
-          <div class="divTableCell">
-            <h3>Subtotal</h3>
-          </div>
-          <div class="divTableCell">&#8353;{{subtotalFinal()}}</div>
-        </div>
-        <div class="divTableRow">
-          <div class="divTableCell">
-            <h3>IVA</h3>
-          </div>
-          <div class="divTableCell">&#8353;{{ivaFinal()}}</div>
-        </div>
-        <div class="divTableRow">
-          <div class="divTableCell">
-            <h3>Total</h3>
-          </div>
-          <div class="divTableCell">&#8353;{{totalFinal()}}</div>
-        </div>
+        <div class="divTableCell">{{labelPromociones()}}</div>
       </div>
     </div>
   </div>
+</div>
 
+<!-- Area de costos -->
+<div>
+  <h3 class="style-subtitle-h3">3. Costos finales</h3>
+  <div class="divTable style-tabla-costos" style="margin: 0em;">
+    <div class="divTableBody">
+      <div class="divTableRow">
+        <div class="divTableCell">
+          <h3>Subtotal</h3>
+        </div>
+        <div class="divTableCell">&#8353;{{subtotalFinal()}}</div>
+      </div>
+      <div class="divTableRow">
+        <div class="divTableCell">
+          <h3>IVA</h3>
+        </div>
+        <div class="divTableCell">&#8353;{{ivaFinal()}}</div>
+      </div>
+      <div class="divTableRow">
+        <div class="divTableCell">
+          <h3>Total</h3>
+        </div>
+        <div class="divTableCell">&#8353;{{totalFinal()}}</div>
+      </div>
+    </div>
+  </div>
+</div>
 
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button matButton class="style-Btn" style="background-color: #ffdc5c;" [mat-dialog-close]="true"
-    [routerLink]="['/procesar-pago']">Procesar pago</button>
-</mat-dialog-actions>
+<!-- Metodos de pago -->
+<div style="margin-bottom: 2.5em;">
+  <h3 class="style-subtitle-h3" style="margin-bottom: 2em;">4. Seleccionar método de pago</h3>
+  <div class="flex-space2">
+    <button matButton class="style-Btn"><mat-icon>attach_money</mat-icon> Efectivo</button>
+    <button matButton class="style-Btn"><mat-icon>credit_card</mat-icon>Tarjeta</button>
+  </div>
+</div>
+
+<button matButton class="style-Btn" style="background-color: #ffdc5c; margin-top: 0.5em;" [routerLink]="['/procesar-pago']">Procesar pago
+</button>
+
 } @else {
-  <h1>No hay productos agregados al carrito</h1>
-  <h2>¡Agrega un producto para realizar una venta!</h2>
+<h1>No hay productos agregados al carrito</h1>
+<h2>¡Agrega un producto para realizar una venta!</h2>
 }

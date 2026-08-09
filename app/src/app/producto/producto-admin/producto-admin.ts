@@ -95,7 +95,7 @@ export class ProductoAdmin {
       .update(productoActualizado)
       .pipe(takeUntil(this.destroy$)).subscribe({
         next: () => {
-          this.noti.success('Éxito', 'Producto se activi correctamente');
+          this.noti.success('Éxito', 'Producto se activo correctamente');
           this.listProductos();
         },
         error: () => {

@@ -1,0 +1,23 @@
+<div class="chart-toolbar">
+  <button mat-raised-button color="primary" (click)="exportarExcelTipo()">Exportar a Excel</button>
+  <button mat-raised-button color="accent" (click)="exportarPowerBITipo()">Exportar a PowerBI</button>
+</div>
+<div class="chart-container mat-elevation-z8">
+  <ag-charts #chartTipo style="height: 100%; width: 100%;" [options]="chartOptionsTipo"></ag-charts>
+</div>
+
+<div class="chart-toolbar">
+  <button mat-raised-button color="primary" (click)="exportarExcelProductos()">Exportar a Excel</button>
+  <button mat-raised-button color="accent" (click)="exportarPowerBIProductos()">Exportar a PowerBI</button>
+</div>
+<div class="chart-container mat-elevation-z8">
+  <ag-charts #chartProductos style="height: 100%; width: 100%;" [options]="chartOptionsProductos"></ag-charts>
+</div>
+
+<div class="chart-toolbar">
+  <button mat-raised-button color="primary" (click)="exportarExcelUsuario()">Exportar a Excel</button>
+  <button mat-raised-button color="accent" (click)="exportarPowerBIUsuario()">Exportar a PowerBI</button>
+</div>
+<div class="chart-container mat-elevation-z8">
+  <ag-charts #chartUsuario style="height: 100%; width: 100%;" [options]="chartOptionsUsuario"></ag-charts>
+</div>

@@ -8,6 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
 
 import { UsuarioRoutingModule } from './usuario-routing-module';
 import { UsuarioAdmin } from './usuario-admin/usuario-admin';
@@ -25,6 +27,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatDialogModule,
+    MatCardModule,
     UsuarioRoutingModule,
     ReactiveFormsModule],
 })
