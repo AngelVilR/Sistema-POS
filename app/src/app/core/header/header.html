@@ -1,6 +1,11 @@
 <mat-toolbar class="flex-betweenV1">
     <div>
-        <button mat-icon-button class="header-image" matTooltip="Sistema POS - Matamonchis"
-            [routerLink]="['/inicio']"></button>
+        @if (isLogued()) {
+            <button mat-icon-button class="header-image" matTooltip="Sistema POS - Matamonchis"
+                [routerLink]="['/inicio']"></button>
+        } @else {
+            <button mat-icon-button class="header-image" matTooltip="Sistema POS - Matamonchis"
+                [routerLink]="['/iniciar-sesion']"></button>
+        }
     </div>
 </mat-toolbar>

@@ -1,8 +1,10 @@
+
 <!-- ICONO DE USUARIO -->
 <mat-icon class="style-Icon-User">account_circle</mat-icon>
 
-<h2>NOMBRE DEL USUARIO</h2>
+<h2>{{ user?.nombre }}</h2>
 
+@if (isAdmin()) {
 <mat-accordion multi>
     <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -83,10 +85,11 @@
     </mat-expansion-panel>
 
 </mat-accordion>
+}
 
 <div style="margin: 1em 0em 1.5em;">
     <button matButton="outlined" class="style-Btn-Logout" style="color: black;"
-        [routerLink]="['/iniciar-sesion']"><mat-icon>logout</mat-icon>
+        (click)="logout()"><mat-icon>logout</mat-icon>
         Cerrar sesión</button>
 
         <button matButton="outlined" class="style-Btn-Logout" style="color: black;"

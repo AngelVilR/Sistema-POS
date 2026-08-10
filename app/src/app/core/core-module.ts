@@ -1,4 +1,4 @@
-import { inject, NgModule } from '@angular/core';
+import { computed, inject, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Header } from './header/header';
 import { RouterModule } from '@angular/router';
@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SideBar } from './side-bar/side-bar';
+import { AuthenticationService } from '../share/authentication.service';
 
 @NgModule({
   declarations: [Header, SideBar],

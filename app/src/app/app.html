@@ -3,13 +3,16 @@
     <app-side-bar></app-side-bar>
   </mat-drawer>
 
+  
   <div class="flex-space background-img">
+    @if (isLogued()) {
     <div class="sidenav-content">
       <button type="button" matIconButton (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
     </div>
-
+  }
+  
     <!-- Contenido de la app (Header, body y footer)-->
     <div class="ToolBar-container">
       <app-header></app-header>
@@ -18,4 +21,5 @@
       </div>
     </div>
   </div>
+  
 </mat-drawer-container>

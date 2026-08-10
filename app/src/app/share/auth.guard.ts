@@ -25,9 +25,9 @@ export const authGuard: CanActivateFn = (
 
   if (!isAuthenticated) {
     // Si no está autenticado, redirigir y notificar
-    const message = 'User not authenticated';
-    noti.warning('Autorization', 'Access Denied', 3000);
-    router.navigate(['/*']); // Redirige explícitamente
+    const message = 'Usuario no autenticado';
+    noti.warning('Autorización', 'Acceso denegado', 3000);
+    router.navigate(['/iniciar-sesion']); // Redirige explícitamente
   }
 
   // 2. Si está autenticado, verificar roles si la ruta lo requiere

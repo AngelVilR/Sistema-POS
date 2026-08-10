@@ -64,12 +64,6 @@ export class UsuarioAdmin {
       });
   }
 
-  public isAdmin=computed(()=>{
-    const user=this.authService.currentUserSignal()
-    console.log('User: ',user?.role.toString())
-    return user?.role.toString() =='ADMIN'
-  })
-
   actualizarUsuario(id: Number) {
     this.router.navigate(['usuario/update', id],)
   }

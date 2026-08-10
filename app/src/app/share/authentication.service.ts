@@ -86,6 +86,6 @@ export class AuthenticationService {
     this.tokenUser.set(null);
     this.usuario.set(null);
     //? this.cartService.deleteCart();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/iniciar-sesion']);
   }
 }
