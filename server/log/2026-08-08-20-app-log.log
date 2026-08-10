@@ -1,0 +1,27 @@
+2026-08-08 20:29:04.182 error: 	hunte--Se produjo un error interno del servidor 
+Invalid `prisma.venta.findMany()` invocation in
+C:\Users\hunte\Desktop\Sistema-POS\server\source\controllers\VentaController.ts:8:48
+
+  5 
+  6 get = async (request: Request, response: Response, next: NextFunction) => {
+  7     try {
+→ 8         const listado = await prisma.venta.findMany(
+The table `venta` does not exist in the current database.
+2026-08-08 20:29:07.582 error: 	hunte--Se produjo un error interno del servidor 
+Invalid `prisma.producto.findMany()` invocation in
+C:\Users\hunte\Desktop\Sistema-POS\server\source\controllers\productoController.ts:7:51
+
+  4 export class ProductoController {
+  5     get = async (request: Request, response: Response, next: NextFunction) => {
+  6         try {
+→ 7             const listado = await prisma.producto.findMany(
+The table `producto` does not exist in the current database.
+2026-08-08 20:29:07.596 error: 	hunte--Se produjo un error interno del servidor 
+Invalid `prisma.producto.findMany()` invocation in
+C:\Users\hunte\Desktop\Sistema-POS\server\source\controllers\productoController.ts:7:51
+
+  4 export class ProductoController {
+  5     get = async (request: Request, response: Response, next: NextFunction) => {
+  6         try {
+→ 7             const listado = await prisma.producto.findMany(
+The table `producto` does not exist in the current database.
