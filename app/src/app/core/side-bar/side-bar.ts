@@ -12,18 +12,24 @@ import { AuthenticationService } from '../../share/authentication.service';
 })
 export class SideBar {
   showFiller = false;
-  private dialogForm = inject(MatDialog)
+  private dialogForm = inject(MatDialog);
   user: any;
+  userSignal!: () => any;
 
   constructor(
     private router: Router,
     private authService: AuthenticationService
   ){}
 
+  
+
   ngOnInit(): void {
     this.user = this.authService.currentUserSignal();
-    console.log('Usuario logueado:', this.user);
+    this.userSignal = this.authService.currentUserSignal;
+     console.log('Usuario logueado:', this.user)
   }
+
+
 
   logout() {
   this.authService.logout();
@@ -31,7 +37,7 @@ export class SideBar {
 
   public isAdmin=computed(()=>{
     const user=this.authService.currentUserSignal()
-    console.log('User: ',user?.role.toString())
+    /* console.log('User: ', user); */
     return user?.role.toString() =='ADMIN'
   })
 

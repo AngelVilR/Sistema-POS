@@ -9,12 +9,13 @@ import { AuthenticationService } from './share/authentication.service';
 })
 export class App {
   protected readonly title = signal('app');  
+  userSignal!: () => any;
 
   constructor(private authService: AuthenticationService) {}
   
   public isLogued=computed(()=>{
     const user=this.authService.currentUserSignal()
-    console.log('User: ',user?.role.toString())
+    console.log('User: ', user);
     return (user?.role.toString() =='ADMIN') || (user?.role.toString() =='USER')
   })
 }
