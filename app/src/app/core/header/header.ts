@@ -19,7 +19,7 @@ export class Header {
 
   public isLogued=computed(()=>{
     const user=this.authService.currentUserSignal()
-    console.log('User: ',user?.role.toString())
+    console.log('User: ', user);
     return (user?.role.toString() =='ADMIN') || (user?.role.toString() =='USER')
   })
 }

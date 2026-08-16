@@ -2,7 +2,7 @@
 <!-- ICONO DE USUARIO -->
 <mat-icon class="style-Icon-User">account_circle</mat-icon>
 
-<h2>{{ user?.nombre }}</h2>
+<h2>{{ userSignal()?.nombre }}</h2>
 
 @if (isAdmin()) {
 <mat-accordion multi>
