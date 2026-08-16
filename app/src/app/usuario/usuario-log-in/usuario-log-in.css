@@ -1,0 +1,397 @@
+/* =========================================================
+   LOGIN - MATAMONCHIS
+   ========================================================= */
+
+:host {
+  display: block;
+  min-height: calc(100vh - 88px);
+}
+
+/* =========================================================
+   CONTENEDOR GENERAL
+   ========================================================= */
+
+form {
+  min-height: calc(100vh - 88px);
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 40px 20px;
+  box-sizing: border-box;
+
+  background-size: 420px;
+  background-position: center;
+  background-repeat: repeat;
+}
+
+/* =========================================================
+   TARJETA
+   ========================================================= */
+
+.card.first {
+  width: 100%;
+  max-width: 430px;
+
+  background: rgba(255, 255, 255, 0.97);
+
+  border-radius: 24px;
+
+  /*
+   * Se aumenta el padding superior para dejar espacio
+   * al título "Iniciar sesión".
+   */
+  padding: 90px 40px 38px;
+
+  box-sizing: border-box;
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.12),
+    0 4px 12px rgba(0, 0, 0, 0.06);
+
+  border: 1px solid rgba(0, 0, 0, 0.05);
+
+  position: relative;
+
+  animation: loginCard 0.5s ease-out;
+}
+
+/* =========================================================
+   LÍNEA AMARILLA SUPERIOR
+   ========================================================= */
+
+.card.first::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 40px;
+  right: 40px;
+
+  height: 5px;
+
+  background: #ffc107;
+
+  border-radius: 0 0 10px 10px;
+}
+
+/* =========================================================
+   TÍTULO
+   ========================================================= */
+
+.card.first::after {
+  content: "Iniciar sesión";
+
+  position: absolute;
+
+  top: 28px;
+  left: 0;
+  right: 0;
+
+  text-align: center;
+
+  font-size: 28px;
+  font-weight: 800;
+
+  color: #222;
+}
+
+/* =========================================================
+   CAMPOS
+   ========================================================= */
+
+.entrada-informacion {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
+  margin-bottom: 18px;
+}
+
+/*
+ * Baja únicamente el primer campo:
+ * Email
+ */
+.entrada-informacion:first-of-type {
+  margin-top: 20px;
+}
+
+.entrada-informacion span {
+  font-size: 14px;
+  font-weight: 600;
+
+  color: #333;
+
+  margin-bottom: 7px;
+}
+
+.space {
+  width: 100%;
+}
+
+/* =========================================================
+   ANGULAR MATERIAL
+   ========================================================= */
+
+.full-width {
+  width: 100%;
+}
+
+::ng-deep .mat-mdc-form-field {
+  width: 100%;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper {
+  background-color: #fff !important;
+  border-radius: 12px !important;
+}
+
+::ng-deep .mdc-notched-outline {
+  border-radius: 12px !important;
+}
+
+/* Hover del campo */
+
+::ng-deep .mat-mdc-form-field:hover .mdc-notched-outline__leading,
+::ng-deep .mat-mdc-form-field:hover .mdc-notched-outline__notch,
+::ng-deep .mat-mdc-form-field:hover .mdc-notched-outline__trailing {
+  border-color: #ffc107 !important;
+}
+
+/* Campo seleccionado */
+
+::ng-deep
+.mat-mdc-form-field.mat-focused
+.mdc-notched-outline__leading,
+
+::ng-deep
+.mat-mdc-form-field.mat-focused
+.mdc-notched-outline__notch,
+
+::ng-deep
+.mat-mdc-form-field.mat-focused
+.mdc-notched-outline__trailing {
+  border-color: #f4b400 !important;
+
+  border-width: 2px !important;
+}
+
+/* Color del label cuando está seleccionado */
+
+::ng-deep
+.mat-mdc-form-field.mat-focused
+.mat-mdc-floating-label {
+  color: #d99f00 !important;
+}
+
+/* =========================================================
+   INPUT
+   ========================================================= */
+
+::ng-deep .mat-mdc-input-element {
+  font-size: 15px !important;
+}
+
+/* =========================================================
+   PLACEHOLDER
+   ========================================================= */
+
+::ng-deep .mat-mdc-input-element::placeholder {
+  color: #999 !important;
+
+  opacity: 1;
+}
+
+/* =========================================================
+   MENSAJES DE ERROR
+   ========================================================= */
+
+::ng-deep .mat-mdc-form-field-error {
+  font-size: 12px !important;
+}
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+
+.flex {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 14px;
+
+  margin-top: 25px;
+}
+
+/* =========================================================
+   BOTÓN CANCELAR
+   ========================================================= */
+
+.previews-button {
+  flex: 1;
+
+  height: 48px;
+
+  border: 1px solid #ddd;
+
+  border-radius: 12px;
+
+  background: #fff;
+
+  color: #555;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.previews-button:hover {
+  background: #f7f7f7;
+
+  border-color: #ccc;
+
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   BOTÓN INICIAR SESIÓN
+   ========================================================= */
+
+.next-button {
+  flex: 1.5;
+
+  height: 48px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: #ffc107;
+
+  color: #222;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 8px;
+
+  box-shadow:
+    0 5px 14px rgba(255, 193, 7, 0.28);
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.next-button:hover {
+  background: #ffb300;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 18px rgba(255, 193, 7, 0.35);
+}
+
+.next-button:active {
+  transform: translateY(0);
+}
+
+.next-button mat-icon {
+  font-size: 20px;
+
+  width: 20px;
+  height: 20px;
+}
+
+/* =========================================================
+   ANIMACIÓN
+   ========================================================= */
+
+@keyframes loginCard {
+  from {
+    opacity: 0;
+
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  form {
+    padding: 25px 15px;
+
+    align-items: center;
+  }
+
+  .card.first {
+    max-width: 100%;
+
+    padding: 80px 25px 30px;
+
+    border-radius: 20px;
+  }
+
+  /* Línea amarilla */
+
+  .card.first::before {
+    left: 25px;
+    right: 25px;
+  }
+
+  /* Título */
+
+  .card.first::after {
+    font-size: 24px;
+
+    top: 25px;
+  }
+
+  /* Email */
+
+  .entrada-informacion:first-of-type {
+    margin-top: 20px;
+  }
+
+  /* Botones */
+
+  .flex {
+    flex-direction: column;
+  }
+
+  .previews-button,
+  .next-button {
+    width: 100%;
+
+    flex: none;
+  }
+}

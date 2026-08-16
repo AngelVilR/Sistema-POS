@@ -1,78 +1,226 @@
-@if(datos){
+@if (datos) {
+
 <div class="container">
-    <!-- EncabezadoFactura -->
+
+    <!-- ===================================================== -->
+    <!-- ENCABEZADO FACTURA -->
+    <!-- ===================================================== -->
+
     <div class="container-Encabezado">
+
         <div class="flex-space">
-            <h1>Número de venta #{{datos.id}}</h1>
+
+            <h1>
+                Número de venta #{{ datos.id }}
+            </h1>
+
             <div class="div-image"></div>
+
         </div>
+
 
         <div>
+
             <table class="style-EncFacturaInfo">
+
                 <tbody>
+
                     <tr>
-                        <td>Fecha de creación:</td>
-                        <td>{{datos.fechaString}}</td>
+
+                        <td>
+                            Fecha de creación:
+                        </td>
+
+                        <td>
+                            {{ datos.fechaString }}
+                        </td>
+
                     </tr>
+
+
                     <tr>
-                        <td>Colaborador:</td>
-                        <td>{{datos.usuario.nombre}}</td>
+
+                        <td>
+                            Colaborador:
+                        </td>
+
+                        <td>
+                            {{ datos.usuario?.nombre }}
+                        </td>
+
                     </tr>
+
+
                     <tr>
-                        <td>Descuento aplicado:</td>
-                        <td>{{datos.descuento}}</td>
+
+                        <td>
+                            Descuento aplicado:
+                        </td>
+
+                        <td>
+                            {{ datos.descuento || 'Ninguno' }}
+                        </td>
+
                     </tr>
+
+
                     <tr>
-                        <td>Método de pago:</td>
-                        <td>{{datos.metodo_pago}}</td>
+
+                        <td>
+                            Método de pago:
+                        </td>
+
+                        <td>
+                            {{ datos.metodo_pago }}
+                        </td>
+
                     </tr>
+
                 </tbody>
+
             </table>
+
         </div>
+
     </div>
 
-    <!-- DetalleFactura -->
+
+    <!-- ===================================================== -->
+    <!-- DETALLE FACTURA -->
+    <!-- ===================================================== -->
+
     <div class="container-Detail">
+
         <table class="style-FacturaDetail">
+
             <thead>
+
                 <tr>
-                    <th>Producto</th>
-                    <th>Cantidad</th>
-                    <th>Total</th>
+
+                    <th>
+                        Producto
+                    </th>
+
+                    <th>
+                        Cantidad
+                    </th>
+
+                    <th>
+                        Total
+                    </th>
+
                 </tr>
+
             </thead>
+
+
             <tbody>
-                @for (item of datos.facturasDet; track $index) {
-                <tr>
-                    <td>{{item.producto.nombre}}</td>
-                    <td>{{item.cantidad}}</td>
-                    <td>&#8353;{{item.total}}</td>
-                </tr>
+
+                @if (datos.facturasDet && datos.facturasDet.length > 0) {
+
+                    @for (
+                        item of datos.facturasDet;
+                        track $index
+                    ) {
+
+                        <tr>
+
+                            <td>
+                                {{ item.producto?.nombre }}
+                            </td>
+
+                            <td>
+                                {{ item.cantidad }}
+                            </td>
+
+                            <td>
+                                &#8353;{{ item.total }}
+                            </td>
+
+                        </tr>
+
+                    }
+
+                } @else {
+
+                    <tr>
+
+                        <td colspan="3">
+                            No hay productos registrados en esta venta.
+                        </td>
+
+                    </tr>
+
                 }
+
             </tbody>
+
         </table>
+
     </div>
 
-    <!-- Tabla de costos -->
+
+    <!-- ===================================================== -->
+    <!-- TABLA DE COSTOS -->
+    <!-- ===================================================== -->
+
     <div class="container-Costos">
+
         <table class="style-FacturaCosts">
+
             <tbody>
+
                 <tr>
-                    <td>Subtotal</td>
-                    <td>&#8353;{{datos.subtotal}}</td>
+
+                    <td>
+                        Subtotal
+                    </td>
+
+                    <td>
+                        &#8353;{{ datos.subtotal }}
+                    </td>
+
                 </tr>
+
+
                 <tr>
-                    <td>IVA</td>
-                    <td>&#8353;{{datos.impuesto}}</td>
+
+                    <td>
+                        IVA
+                    </td>
+
+                    <td>
+                        &#8353;{{ datos.impuesto }}
+                    </td>
+
                 </tr>
+
+
                 <tr>
-                    <td>Total</td>
-                    <td>&#8353;{{datos.total}}</td>
+
+                    <td>
+                        Total
+                    </td>
+
+                    <td>
+                        &#8353;{{ datos.total }}
+                    </td>
+
                 </tr>
+
             </tbody>
+
         </table>
+
     </div>
+
 </div>
-}@else{
-<h1>La factura de la venta seleccionada no está disponible ahora mismo</h1>
+
+} @else {
+
+<h1>
+    La factura de la venta seleccionada
+    no está disponible ahora mismo
+</h1>
+
 }

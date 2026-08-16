@@ -1,29 +1,77 @@
 <div class="mat-elevation-z8" style="margin: 1em 0em 2em">
+
   <h1>Mantenimiento de eventos</h1>
+
   <div class="div-BtnCrear">
-    <button class="style-BtnCrear" matButton (click)="openDialogCreateEvento()">Crear un nuevo evento</button>
+    <button
+      class="style-BtnCrear"
+      matButton
+      (click)="openDialogCreateEvento()">
+      Crear un nuevo evento
+    </button>
   </div>
 
   @if (data && dataLength > 0) {
-  <div class="flexSpace">
-    @for (item of data; track $index) {
-    <mat-card class="card" appearance="outlined">
-      <mat-card-header style="margin: auto; text-align: center;">
-        <mat-card-title class="style-TitleCard">Nombre del evento: {{item.nombre}}</mat-card-title>
-        <mat-card-subtitle class="style-SubtitleCard"><b>Identificador: </b>#{{item.id}}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <p><b>Fecha de Inicio: </b>{{item.formatoFechaInicio}}</p>
-        <p><b>Fecha de Fin: </b>{{item.formatoFechaFin}}</p>
-      </mat-card-content>
-      <mat-card-actions align="end">
-        <button class="style-BtnActualizar" matButton (click)="openDialogUpdateEvento(item)">Actualizar</button>
-      </mat-card-actions>
-    </mat-card>
-    }
-  </div>
-  }@else {
-  <h1 style="margin-top: 3em;">Ahora mismo no hay eventos agregados</h1>
-  <h2>¡Agrega un nuevo evento para ver la lista!</h2>
+
+    <div class="flexSpace">
+
+      @for (item of data; track item.id) {
+
+        <mat-card class="card" appearance="outlined">
+
+          <mat-card-header style="margin: auto; text-align: center;">
+
+            <mat-card-title class="style-TitleCard">
+              Nombre del evento: {{ item.nombre }}
+            </mat-card-title>
+
+            <mat-card-subtitle class="style-SubtitleCard">
+              <b>Identificador: </b>#{{ item.id }}
+            </mat-card-subtitle>
+
+          </mat-card-header>
+
+          <mat-card-content>
+
+            <p>
+              <b>Fecha de Inicio: </b>
+              {{ item.formatoFechaInicio }}
+            </p>
+
+            <p>
+              <b>Fecha de Fin: </b>
+              {{ item.formatoFechaFin }}
+            </p>
+
+          </mat-card-content>
+
+          <mat-card-actions align="end">
+
+            <button
+              class="style-BtnActualizar"
+              matButton
+              (click)="openDialogUpdateEvento(item)">
+              Actualizar
+            </button>
+
+          </mat-card-actions>
+
+        </mat-card>
+
+      }
+
+    </div>
+
+  } @else {
+
+    <h1 style="margin-top: 3em;">
+      Ahora mismo no hay eventos agregados
+    </h1>
+
+    <h2>
+      ¡Agrega un nuevo evento para ver la lista!
+    </h2>
+
   }
+
 </div>

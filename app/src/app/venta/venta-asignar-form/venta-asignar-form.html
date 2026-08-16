@@ -1,81 +1,228 @@
 <div>
-    <h2 mat-dialog-title style="font-weight: 500;">{{!isCreate
-        ? "Asignar producto a colaborador"
-        : "Actualizar asignación de colaborador"}}
-    </h2>
 
-    <form [formGroup]="asignarForm" (ngSubmit)="submitAsignar()" novalidate>
-        <mat-dialog-content>
-            <div class="form-container">
-                <div>
-                    <!-- Select usuarios -->
-                    <mat-form-field style="width: 100%;">
-                        <mat-label>Lista de usuarios</mat-label>
-                        <mat-select formControlName="usuarioId" [disabled]="isCreate">
-                            @for (item of listUsuarios; track $index) {
-                            <mat-option [value]="item.id">{{item.nombre}}</mat-option>
-                            }
-                        </mat-select>
-                        @if (errorHandling('usuarioId')) {
-                        <mat-error>{{ errorHandling('usuarioId')}}</mat-error>
-                        }
-                    </mat-form-field>
-                </div>
+  <h2
+    mat-dialog-title
+    style="font-weight: 500;">
 
-                <div>
-                    <!-- Select Eventos -->
-                    <mat-form-field style="width: 100%;">
-                        <mat-label>Lista de eventos</mat-label>
-                        <mat-select formControlName="eventoId" [disabled]="isCreate">
-                            @for (item of listEventos; track $index) {
-                            <mat-option [value]="item.id">{{item.nombre}}</mat-option>
-                            }
-                        </mat-select>
-                        @if (errorHandling('eventoId')) {
-                        <mat-error>{{ errorHandling('eventoId')}}</mat-error>
-                        }
-                    </mat-form-field>
-                </div>
+    {{
+      isCreate
+        ? 'Asignar producto a colaborador'
+        : 'Actualizar asignación de colaborador'
+    }}
 
-                <div class="flexspace">
-                    <!-- Select productos -->
-                    <mat-form-field>
-                        <mat-label>Lista de productos</mat-label>
-                        <mat-select formControlName="productoId" [disabled]="isCreate">
-                            @for (item of listProductos; track $index) {
-                            <mat-option [value]="item.id">{{item.nombre}}</mat-option>
-                            }
-                        </mat-select>
-                        @if (errorHandling('productoId')) {
-                        <mat-error>{{ errorHandling('productoId')}}</mat-error>
-                        }
-                    </mat-form-field>
+  </h2>
 
-                    <!-- Input cantidad -->
-                    <mat-form-field>
-                        <mat-label>Cantidad</mat-label>
-                        <input matInput formControlName="cantidad">
-                        @if (errorHandling('cantidad')) {
-                        <mat-error>{{ errorHandling('cantidad')}}</mat-error>
-                        }
-                    </mat-form-field>
-                </div>
+  <form
+    [formGroup]="asignarForm"
+    (ngSubmit)="submitAsignar()"
+    novalidate>
 
-                <div class="flexspace">
-                    <button type="submit" matButton class="style-BtnSubmit" style="height: 3.5em;">
-                        <mat-icon class="mat-18">{{ !isCreate ? 'add_circle' : 'save' }}</mat-icon>
-                        {{ !isCreate ? 'Asignar' : 'Actualizar' }}
-                    </button>
+    <mat-dialog-content>
 
-                    @if (isCreate) {
-                    <button type="button" matButton class="style-BtnSubmit" style="height: 3.5em;"
-                        (click)="onReset()">
-                        <mat-icon class="mat-18">cancel</mat-icon>
-                        Cancelar
-                    </button>
-                    }
-                </div>
-            </div>
-        </mat-dialog-content>
-    </form>
+      <div class="form-container">
+
+        <!-- USUARIO -->
+
+        <div>
+
+          <mat-form-field style="width: 100%;">
+
+            <mat-label>
+              Lista de usuarios
+            </mat-label>
+
+            <mat-select
+              formControlName="usuarioId"
+              [disabled]="!isCreate">
+
+              @for (
+                item of listUsuarios;
+                track item.id
+              ) {
+
+                <mat-option
+                  [value]="item.id">
+
+                  {{ item.nombre }}
+
+                </mat-option>
+
+              }
+
+            </mat-select>
+
+            @if (errorHandling('usuarioId')) {
+
+              <mat-error>
+                {{ errorHandling('usuarioId') }}
+              </mat-error>
+
+            }
+
+          </mat-form-field>
+
+        </div>
+
+
+        <!-- EVENTO -->
+
+        <div>
+
+          <mat-form-field style="width: 100%;">
+
+            <mat-label>
+              Lista de eventos
+            </mat-label>
+
+            <mat-select
+              formControlName="eventoId"
+              [disabled]="!isCreate">
+
+              @for (
+                item of listEventos;
+                track item.id
+              ) {
+
+                <mat-option
+                  [value]="item.id">
+
+                  {{ item.nombre }}
+
+                </mat-option>
+
+              }
+
+            </mat-select>
+
+            @if (errorHandling('eventoId')) {
+
+              <mat-error>
+                {{ errorHandling('eventoId') }}
+              </mat-error>
+
+            }
+
+          </mat-form-field>
+
+        </div>
+
+
+        <!-- PRODUCTO Y CANTIDAD -->
+
+        <div class="flexspace">
+
+          <mat-form-field>
+
+            <mat-label>
+              Lista de productos
+            </mat-label>
+
+            <mat-select
+              formControlName="productoId"
+              [disabled]="!isCreate">
+
+              @for (
+                item of listProductos;
+                track item.id
+              ) {
+
+                <mat-option
+                  [value]="item.id">
+
+                  {{ item.nombre }}
+
+                </mat-option>
+
+              }
+
+            </mat-select>
+
+            @if (errorHandling('productoId')) {
+
+              <mat-error>
+                {{ errorHandling('productoId') }}
+              </mat-error>
+
+            }
+
+          </mat-form-field>
+
+
+          <mat-form-field>
+
+            <mat-label>
+              Cantidad
+            </mat-label>
+
+            <input
+              matInput
+              type="number"
+              formControlName="cantidad"
+              min="1">
+
+            @if (errorHandling('cantidad')) {
+
+              <mat-error>
+                {{ errorHandling('cantidad') }}
+              </mat-error>
+
+            }
+
+          </mat-form-field>
+
+        </div>
+
+
+        <!-- BOTONES -->
+
+        <div class="flexspace">
+
+          <button
+            type="submit"
+            matButton
+            class="style-BtnSubmit"
+            style="height: 3.5em;">
+
+            <mat-icon class="mat-18">
+
+              {{
+                isCreate
+                  ? 'add_circle'
+                  : 'save'
+              }}
+
+            </mat-icon>
+
+            {{
+              isCreate
+                ? 'Asignar'
+                : 'Actualizar'
+            }}
+
+          </button>
+
+
+          <button
+            type="button"
+            matButton
+            class="style-BtnSubmit"
+            style="height: 3.5em;"
+            (click)="onReset()">
+
+            <mat-icon class="mat-18">
+              cancel
+            </mat-icon>
+
+            Cancelar
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </mat-dialog-content>
+
+  </form>
+
 </div>
