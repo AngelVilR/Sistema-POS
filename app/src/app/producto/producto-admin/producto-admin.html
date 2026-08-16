@@ -1,37 +1,109 @@
 <div class="mat-elevation-z8" style="margin: 2em 0em">
+
   <div class="mat-elevation-z8" style="margin: 1em 0em 2em">
+
     <h1>Mantenimiento de productos</h1>
+
     <div class="div-BtnCrear">
-      <button class="style-BtnCrear" matButton (click)="openDialogCreateProducto()">Crear un nuevo producto</button>
+      <button
+        class="style-BtnCrear"
+        matButton
+        (click)="openDialogCreateProducto()">
+        Crear un nuevo producto
+      </button>
     </div>
 
     @if (data && dataLength > 0) {
-    <div class="flexSpace">
-      @for (item of data; track $index) {
-      <mat-card class="card" appearance="outlined">
-        <mat-card-header style="margin: auto; text-align: center;">
-          <mat-card-title class="style-TitleCard">Nombre del producto: {{item.nombre}}</mat-card-title>
-          <mat-card-subtitle class="style-SubtitleCard"><b>Identificador: </b>#{{item.id}}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <p><b>Precio: </b>&#8353;{{item.precio}}</p>
-          <p><b>Stock disponible: </b>{{item.stock}}</p>
-          <p><b>Estado: </b> {{item.estado ? "Disponible" : "No disponible"}}</p>
-        </mat-card-content>
-        <mat-card-actions align="end">
-          <button class="style-BtnActualizar" matButton (click)="openDialogUpdateProducto(item)">Actualizar</button>
-          @if (item.estado) {
-            <button class="style-BtnEliminar" matButton (click)="eliminarProducto(item)">Eliminar</button>
-          }@else{
-            <button class="style-BtnActivar" matButton (click)="activarProducto(item)">Activar</button>
-          }
-        </mat-card-actions>
-      </mat-card>
-      }
-    </div>
-    }@else {
-    <h1 style="margin-top: 3em;">Ahora mismo no hay productos agregados</h1>
-    <h2>¡Agrega un nuevo producto para ver la lista!</h2>
+
+      <div class="flexSpace">
+
+        @for (item of data; track item.id) {
+
+          <mat-card
+            class="card"
+            appearance="outlined">
+
+            <mat-card-header
+              style="margin: auto; text-align: center;">
+
+              <mat-card-title class="style-TitleCard">
+                Nombre del producto: {{ item.nombre }}
+              </mat-card-title>
+
+              <mat-card-subtitle class="style-SubtitleCard">
+                <b>Identificador: </b>#{{ item.id }}
+              </mat-card-subtitle>
+
+            </mat-card-header>
+
+            <mat-card-content>
+
+              <p>
+                <b>Precio: </b>
+                &#8353;{{ item.precio }}
+              </p>
+
+              <p>
+                <b>Stock disponible: </b>
+                {{ item.stock }}
+              </p>
+
+              <p>
+                <b>Estado: </b>
+                {{ item.estado ? 'Disponible' : 'No disponible' }}
+              </p>
+
+            </mat-card-content>
+
+            <mat-card-actions align="end">
+
+              <button
+                class="style-BtnActualizar"
+                matButton
+                (click)="openDialogUpdateProducto(item)">
+                Actualizar
+              </button>
+
+              @if (item.estado) {
+
+                <button
+                  class="style-BtnEliminar"
+                  matButton
+                  (click)="eliminarProducto(item)">
+                  Eliminar
+                </button>
+
+              } @else {
+
+                <button
+                  class="style-BtnActivar"
+                  matButton
+                  (click)="activarProducto(item)">
+                  Activar
+                </button>
+
+              }
+
+            </mat-card-actions>
+
+          </mat-card>
+
+        }
+
+      </div>
+
+    } @else {
+
+      <h1 style="margin-top: 3em;">
+        Ahora mismo no hay productos agregados
+      </h1>
+
+      <h2>
+        ¡Agrega un nuevo producto para ver la lista!
+      </h2>
+
     }
+
   </div>
+
 </div>
