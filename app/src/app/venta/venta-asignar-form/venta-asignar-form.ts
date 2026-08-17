@@ -371,10 +371,7 @@ export class VentaAsignarForm implements OnInit, OnDestroy {
            * Solo colaboradores.
            * Se excluyen administradores.
            */
-          this.listUsuarios = (data ?? []).filter(
-            (usuario: UsuarioModel) =>
-              usuario.role !== 'ADMIN'
-          );
+          this.listUsuarios = data
 
           console.log(
             'Usuarios:',

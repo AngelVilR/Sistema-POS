@@ -24,15 +24,11 @@ export class SideBar {
     private authService: AuthenticationService
   ){}
 
-  
-
   ngOnInit(): void {
     this.user = this.authService.currentUserSignal();
     this.userSignal = this.authService.currentUserSignal;
      console.log('Usuario logueado:', this.user)
   }
-
-
 
   logout() {
     this.authService.logout();

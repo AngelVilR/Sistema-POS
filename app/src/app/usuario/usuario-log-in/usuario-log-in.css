@@ -4,15 +4,13 @@
 
 :host {
   display: block;
-  min-height: calc(100vh - 88px);
 }
 
 /* =========================================================
    CONTENEDOR GENERAL
    ========================================================= */
 
-form {
-  min-height: calc(100vh - 88px);
+form {  
   width: 100%;
 
   display: flex;

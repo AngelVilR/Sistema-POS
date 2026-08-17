@@ -13,6 +13,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { getFormValidationErrorMessage } from '../../share/form-validation';
 import { DialogPagarTarjeta } from '../dialog-pagar-tarjeta/dialog-pagar-tarjeta';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthenticationService } from '../../share/authentication.service';
 
 @Component({
   selector: 'app-carrito-detalle',
@@ -23,6 +24,8 @@ import { MatDialog } from '@angular/material/dialog';
 export class CarritoDetalle {
   destroy$: Subject<boolean> = new Subject<boolean>();
   counter: number | undefined;
+  user: any;
+  userSignal!: () => any;
 
   private readonly dialogTarjeta = inject(MatDialog);
   private carritoService = inject(CarritoService)
@@ -47,11 +50,14 @@ export class CarritoDetalle {
     private fb: FormBuilder,
     private router: Router,
     private activeRouter: ActivatedRoute,
+    private authService: AuthenticationService,
     private facturaService: FacturaService,
     private ventaService: VentaService,
     private noti: NotificationService,
     private util: UtilService,
   ) {
+    this.user = this.authService.currentUserSignal();
+    this.userSignal = this.authService.currentUserSignal;
     this.carritoItemSignal = this.carritoService.itemsCarrito;
     effect(() => {
       this.getListItems();
@@ -116,7 +122,7 @@ export class CarritoDetalle {
     objFactura.subtotal = Number(this.subtotalFinal());
     objFactura.impuesto = Number(this.ivaFinal());
     objFactura.total = Number(this.totalFinal());
-    objFactura.usuarioId = 2;
+    objFactura.usuarioId = this.userSignal().id;
     objFactura.eventoId = 1;
     objFactura.facturasDet = tempListDetalle
 

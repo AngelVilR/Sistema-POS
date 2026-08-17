@@ -18,19 +18,19 @@ import { ChangeDetectorRef } from '@angular/core';
 })
 export class ProductoIndex {
   datos: VentaModel[] = [];
-datosLength: number = 0;
+  datosLength: number = 0;
 
   private carritoService = inject(CarritoService);
   private authService = inject(AuthenticationService);
   private carritoItemSignal: Signal<ItemCarritoModel[]> = this.carritoService.itemsCarrito;
 
-  private userSignal: any = this.authService.currentUserSignal();
-  private userEmail: any = "carlos@pos.com";
+  user: any;
+  userSignal!: () => any;
+  private userEmail: any;
   private userEvento = 1;
 
   constructor(
-    
-  private cdr: ChangeDetectorRef,
+    private cdr: ChangeDetectorRef,
     private fb: FormBuilder,
     private pServiceVenta: VentaService,
     private noti: NotificationService,
@@ -38,55 +38,40 @@ datosLength: number = 0;
   ) { }
 
   ngOnInit() {
-
+    this.user = this.authService.currentUserSignal();
+    this.userSignal = this.authService.currentUserSignal
+    this.userEmail = this.userSignal().email;
     this.listProductos();
   }
-  
-  
+
   listProductos(): void {
 
-  this.pServiceVenta.get().subscribe({
+    this.pServiceVenta.get().subscribe({
 
-    next: (list: VentaModel[]) => {
+      next: (list: VentaModel[]) => {
+        console.log(list)
+        const listUsuarioProds: VentaModel[] = []
+        list.forEach(item => {
+          if (item.usuario?.email == this.userEmail && item.eventoId == this.userEvento && item.producto?.estado) {
+            listUsuarioProds.push(item);
+          }
+        });
 
+        this.datos = listUsuarioProds;
+        this.datosLength = listUsuarioProds.length;
 
-      const listUsuarioProds: VentaModel[] = list.filter(item => {
+        this.cdr.detectChanges();
+      },
 
-        console.log('----------- PRODUCTO -----------');
-        console.log('Item completo:', item);
-        console.log('Email:', item.usuario?.email);
-        console.log('Email esperado:', this.userEmail);
-        console.log('Evento:', item.eventoId);
-        console.log('Evento esperado:', this.userEvento);
-        console.log('Estado:', item.producto?.estado);
+      error: (error) => {
 
-        const cumple =
-          item.usuario?.email === this.userEmail &&
-          item.eventoId === this.userEvento &&
-          item.producto?.estado === true;
+        this.datos = [];
+        this.datosLength = 0;
+      }
 
-        console.log('¿Pasa filtro?', cumple);
+    });
 
-        return cumple;
-      });
-
-
-      this.datos = listUsuarioProds;
-this.datosLength = listUsuarioProds.length;
-
-this.cdr.detectChanges();
-
-    },
-
-    error: (error) => {
-
-      this.datos = [];
-      this.datosLength = 0;
-    }
-
-  });
-
-}
+  }
   addProducto(prProd: VentaModel) {
     let tempItem = this.carritoItemSignal().find(x => {
       return x.producto.productoId === prProd.productoId ? x : null;

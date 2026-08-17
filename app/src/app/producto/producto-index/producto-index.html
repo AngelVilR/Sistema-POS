@@ -1,67 +1,56 @@
 @if (datosLength != 0) {
 <h1>Productos disponibles a la venta</h1>
 <div class="flexV1">
-    @for (item of datos; track $index) {
-    <div>
-        <mat-card class="card" appearance="outlined">
-            <mat-card-header class="card-header-center">
-                <mat-card-title>{{item.producto.nombre}}</mat-card-title>
-            </mat-card-header>
+  @for (item of datos; track $index) {
+  <div>
+    <mat-card class="card" appearance="outlined">
 
-            <mat-card-content>
-                <img mat-card-image src="\images\prods\img-{{item.producto.nombre}}.png"
-                    alt="Imagen del producto {{item.producto.nombre}}">
-            </mat-card-content>
+      <mat-card-header class="card-header-center">
+        <mat-card-title>
+          {{ item.producto?.nombre }}
+        </mat-card-title>
+      </mat-card-header>
 
-            <mat-card-content class="card-content-center">
-                <h2>{{item.producto.precio | currency:'CRC':'&#8353;':'1.0-0'}}</h2>
-                <p>Disponibles: {{item.cantidad}}</p>
-            </mat-card-content>
+      <mat-card-content>
+        <img mat-card-image src="\images\prods\img-{{ item.producto?.nombre }}.png"
+          alt="Imagen del producto {{ item.producto?.nombre }}">
+      </mat-card-content>
 
-        <mat-card-actions>
+      <mat-card-content class="card-content-center">
+        <h2> 
+          {{ item.producto?.precio | currency:'CRC':'&#8353;':'1.0-0' }}
+        </h2>
 
-          @if (item.cantidad > 0) {
+        <p>
+          Disponibles: {{ item.cantidad }}
+        </p>
+      </mat-card-content>
 
-            <div class="style-BtnCantProd">
+      <mat-card-actions>
+        @if (item.cantidad > 0) {
+        <div class="style-BtnCantProd">
 
-              <button
-                matButton
-                (click)="minusProducto(item)"
-                class="style-BtnMinus"
-                style="color: black;"
-              >
-                <mat-icon>minimize</mat-icon>
-              </button>
+          <button matButton (click)="minusProducto(item)" class="style-BtnMinus" style="color: black;">
+            <mat-icon>minimize</mat-icon>
+          </button>
 
-              <button
-                matButton
-                (click)="addProducto(item)"
-                class="style-BtnAdd"
-                style="color: black;"
-              >
-                <mat-icon>add</mat-icon>
-              </button>
+          <button matButton (click)="addProducto(item)" class="style-BtnAdd" style="color: black;">
+            <mat-icon>add</mat-icon>
+          </button>
 
-            </div>
+        </div>
+        }
+      </mat-card-actions>
 
-          }
-
-        </mat-card-actions>
-
-      </mat-card>
-
-    }
-
+    </mat-card>
   </div>
-
+  }
+</div>
 } @else {
-
-  <h1>
-    ¡Ahorita no tienes productos disponibles para vender!
-  </h1>
-
-  <h2>
-    Consulta con tú jefe para que te asigne más productos
-  </h2>
-
+<h1>
+  ¡Ahorita no tienes productos disponibles para vender!
+</h1>
+<h2>
+  Consulta con tú jefe para que te asigne más productos
+</h2>
 }
