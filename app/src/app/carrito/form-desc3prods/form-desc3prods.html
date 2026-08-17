@@ -1,0 +1,9 @@
+<form [formGroup]="prods3Form" novalidate>
+    <mat-form-field style="width: 100%;">
+        <mat-label>Digite un porcentaje entre 1% a 10%</mat-label>
+        <input matInput formControlName="porcentaje" (blur)="guardarPorcentaje($event)" />
+        @if (errorHandling('porcentaje')) {
+        <mat-error>{{errorHandling( 'porcentaje')}}</mat-error>
+        }
+    </mat-form-field>
+</form>

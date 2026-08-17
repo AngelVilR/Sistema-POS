@@ -15,26 +15,26 @@ body {
 }
 
 
-
 .ToolBar-container {
     width: 100%;
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: column;    
     margin: 0;
     padding: 0;
 }
 
-
 .body-container {
-    width: 100%;
-    flex: 1;
+    width: 100%;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     padding: 3em 0;
     margin: 0;
     box-sizing: border-box;
     min-width: 0;
 }
-
 
 .background-img {
     width: 100%;
@@ -51,28 +51,22 @@ body {
     background-size: auto;
 }
 
-
 .flex-space {
     display: flex;
     width: 100%;
     min-width: 0;
 }
 
-
 .menu-container {
     height: 100vh;
     min-height: 100vh;
 }
-
-
 
 .sideMenu-container {
     text-align: center;
     background-color: #fff7df;
     height: 100%;
 }
-
-
 
 .sidenav-content {
     height: 100vh;
@@ -81,12 +75,9 @@ body {
     background-color: #fbdb6b;
 }
 
-
-
 .sidenav-content button {
     margin: 1.5em 0;
 }
-
 
 
 img {
@@ -96,8 +87,6 @@ img {
 table {
     max-width: 100%;
 }
-
-
 
 @media (max-width: 1200px) {
 

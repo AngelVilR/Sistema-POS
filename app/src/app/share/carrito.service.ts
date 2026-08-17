@@ -16,6 +16,8 @@ export class CarritoService {
 
   public prom2x1: boolean = false;
   public prom10k: boolean = false;
+  /* public prom2x1Signal = signal(false); */
+  public porcentajeDesc = signal(0);
 
   //Signal computada que calculara todos los items que tenga el carrito
   //Reacciona de acuerdo a los cambios del carrito
@@ -23,13 +25,35 @@ export class CarritoService {
     this.carrito().reduce((sum, item) => sum + item.cantidad, 0)
   );
 
+  private tempSubtotal = computed(() => {
+    return this.carrito().reduce((subtotal, item) => subtotal + item.subtotal, 0);
+  })
+
+  public prom2x1Signal: any = computed(() => {
+    return !this.prom10kSignal() && this.carrito().some(item => {
+      const nombre = item.producto.producto?.nombre?.toLocaleLowerCase() ?? '';
+      return nombre.includes('gelatina') && item.cantidad >= 2;
+    }) 
+  });
+
+  public prom10kSignal: any = computed(() => {
+    let tempCantItems = this.carrito().length;
+    let tempSubtotal = this.tempSubtotal();
+    return (
+      tempCantItems > 2 &&
+      tempSubtotal >= 10000
+    );
+  })
+
   public subtotalFinal = computed(() => {
-    let prDescuento = (10 / 100);
-    let subtotal = this.carrito().reduce((subtotal, item) => subtotal + item.subtotal, 0);
-    if (this.validarPromo10k(subtotal)) {
-      return (subtotal - (subtotal * prDescuento));
+    let tempSubtotal = this.tempSubtotal();
+    let prDescuento = (this.porcentajeDesc() / 100);
+    let subtotalFinal = tempSubtotal;
+    console.log(this.prom10kSignal())
+    if (this.prom10kSignal()) {
+      subtotalFinal = tempSubtotal - (tempSubtotal * prDescuento);
     }
-    return subtotal;
+    return subtotalFinal;
   });
 
   public ivaFinal = computed(() => {
@@ -89,12 +113,10 @@ export class CarritoService {
           //Si la cantidad es multiplo de 2 y SI es de Gelatina, aplica la promocion 2x1
           let tempSubtotalItem = 0
           if (!this.prom10k && (nuevaCantidad % 2 == 0) && (existItem.producto.producto?.nombre.toLocaleLowerCase().includes("gelatina"))) {
-            this.prom2x1 = true;
             tempSubtotalItem = this.CalcularSubtotalItem(existItem.producto, (nuevaCantidad / 2));
           } else if ((nuevaCantidad > 2) && (existItem.producto.producto?.nombre.toLocaleLowerCase().includes("gelatina"))) {
             tempSubtotalItem = (this.CalcularSubtotalItem(existItem.producto, nuevaCantidad)) - existItem.producto.producto?.precio;
           } else {
-            this.prom2x1 = false;
             tempSubtotalItem = this.CalcularSubtotalItem(existItem.producto, nuevaCantidad);
           }
 
@@ -118,26 +140,15 @@ export class CarritoService {
     })
   }
 
-  //Validar promocion de mas de 3 items con un monto de 10000
-  validarPromo10k(prSubtotal: number) {
-    let tempLength = this.carrito().length;
-    if (!this.prom2x1 && (tempLength > 2) && (prSubtotal >= 10000)) {
-      this.prom10k = true;
-      return true;
-    }
-    this.prom10k = false;
-    return false;
-  }
-
   eliminarItemCarrito(prProdId: number): void {
     this.carrito.update((currenttCarrito) =>
       currenttCarrito.filter((item) => item.producto.productoId !== prProdId)
+      /* Validaciones de las signals descuentos */
+
     );
   }
 
   vaciarCarrito(): void {
-    this.carrito.set([]);
-    this.prom2x1 = false;
-    this.prom10k = false;
+    this.carrito.set([]);    
   }
 }

@@ -38,6 +38,7 @@
                 <tr>
                     <th>Producto</th>
                     <th>Cantidad</th>
+                    <th>IVA</th>
                     <th>Total</th>
                 </tr>
             </thead>
@@ -46,7 +47,8 @@
                 <tr>
                     <td>{{item.producto.nombre}}</td>
                     <td>{{item.cantidad}}</td>
-                    <td>&#8353;{{item.total}}</td>
+                    <td>{{item.total - ((item.total* 0.13) * item.cantidad)  | currency:'CRC':'&#8353;':'1.0-0'}}</td>
+                    <td>{{item.total | currency:'CRC':'&#8353;':'1.0-0'}}</td>
                 </tr>
                 }
             </tbody>
@@ -58,16 +60,8 @@
         <table class="style-FacturaCosts">
             <tbody>
                 <tr>
-                    <td>Subtotal</td>
-                    <td>&#8353;{{datos.subtotal}}</td>
-                </tr>
-                <tr>
-                    <td>IVA</td>
-                    <td>&#8353;{{datos.impuesto}}</td>
-                </tr>
-                <tr>
                     <td>Total</td>
-                    <td>&#8353;{{datos.total}}</td>
+                    <td>{{datos.subtotal | currency:'CRC':'&#8353;':'1.0-0'}}</td>
                 </tr>
             </tbody>
         </table>

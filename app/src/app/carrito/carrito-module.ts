@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 /* Formulario */
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 /* Ruoutes */
 import { CarritoRoutingModule } from './carrito-routing-module';
@@ -16,9 +17,16 @@ import { CarritoProcesarPago } from './carrito-procesar-pago/carrito-procesar-pa
 import { MatIcon } from '@angular/material/icon';
 import { DialogPagarTarjeta } from './dialog-pagar-tarjeta/dialog-pagar-tarjeta';
 import { DialogPagarEfectivo } from './dialog-pagar-efectivo/dialog-pagar-efectivo';
+import { FormDesc3prods } from './form-desc3prods/form-desc3prods';
 
 @NgModule({
-  declarations: [CarritoDetalle, CarritoProcesarPago, DialogPagarTarjeta, DialogPagarEfectivo],
+  declarations: [
+    CarritoDetalle,
+    CarritoProcesarPago,
+    DialogPagarTarjeta,
+    DialogPagarEfectivo,
+    FormDesc3prods,
+  ],
   imports: [
     CommonModule,
     CarritoRoutingModule,
@@ -28,10 +36,11 @@ import { DialogPagarEfectivo } from './dialog-pagar-efectivo/dialog-pagar-efecti
     MatIcon,
     MatFormFieldModule,
     MatInputModule,
+    MatRadioModule,
     FormsModule,
     ReactiveFormsModule,
-    MatProgressSpinnerModule,    
+    MatProgressSpinnerModule,
   ],
   exports: [CarritoDetalle, DialogPagarTarjeta, DialogPagarEfectivo],
 })
-export class CarritoModule { }
+export class CarritoModule {}

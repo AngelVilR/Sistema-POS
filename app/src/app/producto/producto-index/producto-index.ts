@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CarritoService } from '../../share/carrito.service';
 import { ItemCarritoModel } from '../../share/models/ItemCarritoModel';
 import { ProductoModel } from '../../share/models/ProductoModel';
+import { AuthenticationService } from '../../share/authentication.service';
 
 @Component({
   selector: 'app-producto-index',
@@ -19,8 +20,10 @@ export class ProductoIndex {
   datosLength: any;
 
   private carritoService = inject(CarritoService);
+  private authService = inject(AuthenticationService);
   private carritoItemSignal: Signal<ItemCarritoModel[]> = this.carritoService.itemsCarrito;
 
+  private userSignal: any = this.authService.currentUserSignal();
   private userEmail: any = "carlos@pos.com";
   private userEvento = 1;
 

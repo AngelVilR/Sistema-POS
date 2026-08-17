@@ -18,16 +18,18 @@ img {
 }
 
 .flexV1 {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     justify-content: center;
-    flex-wrap: wrap;
+    align-items: center;
     gap: 2em;
 }
 
 .card {
-    max-width: 300px;
+    max-width: 350px;
+    padding: 0.5em 2em;
     margin-bottom: 25px;
-    border: 2px solid #b4b4b4;
+    border: 2px solid #a1a1a1;
 }
 
 .card-header-center {

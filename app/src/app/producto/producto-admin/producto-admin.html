@@ -14,7 +14,7 @@
           <mat-card-subtitle class="style-SubtitleCard"><b>Identificador: </b>#{{item.id}}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <p><b>Precio: </b>&#8353;{{item.precio}}</p>
+          <p><b>Precio: </b>{{item.precio | currency:'CRC':'&#8353;':'1.0-0'}}</p>
           <p><b>Stock disponible: </b>{{item.stock}}</p>
           <p><b>Estado: </b> {{item.estado ? "Disponible" : "No disponible"}}</p>
         </mat-card-content>

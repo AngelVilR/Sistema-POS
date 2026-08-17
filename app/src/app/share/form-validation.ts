@@ -34,7 +34,7 @@ export const FormErrorMessage: FormValidatorMessage[] = [
     forControl: 'cantidad',
     forValidator: 'min',
     text: 'La cantidad mínima es 1',
-  },
+  },  
   {
     forControl: 'cantidad',
     forValidator: 'pattern',
@@ -49,6 +49,31 @@ export const FormErrorMessage: FormValidatorMessage[] = [
     forControl: 'montoPagar',
     forValidator: 'pattern',
     text: 'El formato del monto a pagar es incorrecto',
+  },
+  {
+    forControl: 'rdbgMetodoPago',
+    forValidator: 'required',
+    text: 'Debe de seleccionar un método de pago para procesar la venta',
+  },
+   {
+    forControl: 'porcentaje',
+    forValidator: 'required',
+    text: 'Es requerido digitar un porcentaje para aplicar el descuento',
+  },
+   {
+    forControl: 'porcentaje',
+    forValidator: 'max',
+    text: 'El porcentaje máximo a digitar es de 10%',
+  },
+   {
+    forControl: 'porcentaje',
+    forValidator: 'min',
+    text: 'El porcentaje minimo a digitar es de 1%',
+  },
+   {
+    forControl: 'porcentaje',
+    forValidator: 'pattern',
+    text: 'El porcentaje debe de ser un número entero',
   },
   {
     forControl: 'nombre',

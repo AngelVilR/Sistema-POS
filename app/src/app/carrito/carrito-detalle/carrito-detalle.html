@@ -1,85 +1,100 @@
-<h2 mat-dialog-title style="font-weight: 500;">Resumen de la venta</h2>
-@if (listItems.length != 0) {
+<h2 mat-dialog-title style="font-weight: 500; font-size: x-large; margin-bottom: 1em;">Resumen de la venta</h2>
 
-<!-- Linea de detalle -->
-<div>
-  <h3 class="style-subtitle-h3">1. Productos seleccionados</h3>
+<form [formGroup]="ventaForm" (ngSubmit)="submitVenta()" novalidate>
+  <!-- Linea de detalle -->
   <div>
-    @for (item of listItems; track $index) {
-    <div class="flex-space">
-      <div>
-        <h3>{{item.producto.producto?.nombre}}</h3>
-        <p>{{item.cantidad}} x <b style="color: #e4bb27;">&#8353;{{item.producto.producto?.precio}}</b> =
-          &#8353;{{item.subtotal}}</p>
-      </div>
+    <h3 class="style-subtitle-h3">1. Productos seleccionados</h3>
 
-      <div class="divEliminarBtn">
-        <button matMiniFab class="style-EliminarBtn" aria-label="Eliminar producto"
-          (click)="deleteItem(item.producto.productoId)">
-          <mat-icon>delete</mat-icon>
-        </button>
+    @if (listItems.length != 0){
+    <div>
+      @for (item of listItems; track $index) {
+      <div class="flex-space">
+        <div>
+          <h3>{{item.producto.producto?.nombre}}</h3>
+          <p>{{item.cantidad}} x <b style="color: #e4bb27;">{{item.producto.producto?.precio |
+              currency:'CRC':'&#8353;':'1.0-0'}}</b> =
+            {{item.subtotal | currency:'CRC':'&#8353;':'1.0-0'}}</p>
+        </div>
+
+        <div class="divEliminarBtn">
+          <button type="button" matMiniFab class="style-EliminarBtn" aria-label="Eliminar producto"
+            (click)="deleteItem(item.producto.productoId)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
       </div>
+      <mat-divider></mat-divider>
+      }
     </div>
-    <mat-divider></mat-divider>
+    } @else{
+    <h3 class="label-Carrito-Vacio">¡Agrega productos para hacer una venta!</h3>
     }
   </div>
-</div>
 
-<!-- Area de descuentos -->
-<div>
-  <h3 class="style-subtitle-h3">2. Aplicar descuento</h3>
-  <div class="divTable style-tabla-costos" style="margin: 0em;">
-    <div class="divTableBody">
-      <div class="divTableRow">
-        <div class="divTableCell">
-          <h3>Descuento aplicado</h3>
+  <!-- Area de descuentos -->
+  <div>
+    <h3 class="style-subtitle-h3">2. Aplicar descuento</h3>
+    <div class="divTable style-tabla-costos" style="margin: 0em;">
+      <div class="divTableBody">
+        <div class="divTableRow">
+          <div class="divTableCell">
+            <h3>Descuento aplicado</h3>
+          </div>
+          <div class="divTableCell">{{labelPromociones()}}</div>
         </div>
-        <div class="divTableCell">{{labelPromociones()}}</div>
+      </div>
+    </div>
+
+    @if (prom10k()) {
+      <app-form-desc3prods></app-form-desc3prods>
+    }
+  </div>
+
+  <!-- Area de costos -->
+  <div>
+    <h3 class="style-subtitle-h3">3. Costo final</h3>
+    <div class="divTable style-tabla-costos" style="margin: 0em;">
+      <div class="divTableBody">
+        <div class="divTableRow">
+          <div class="divTableCell">
+            <h3>Total</h3>
+          </div>
+          <div class="divTableCell">{{subtotalFinal().toString() | currency:'CRC':'&#8353;':'1.0-0'}}</div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Area de costos -->
-<div>
-  <h3 class="style-subtitle-h3">3. Costos finales</h3>
-  <div class="divTable style-tabla-costos" style="margin: 0em;">
-    <div class="divTableBody">
-      <div class="divTableRow">
-        <div class="divTableCell">
-          <h3>Subtotal</h3>
-        </div>
-        <div class="divTableCell">&#8353;{{subtotalFinal()}}</div>
-      </div>
-      <div class="divTableRow">
-        <div class="divTableCell">
-          <h3>IVA</h3>
-        </div>
-        <div class="divTableCell">&#8353;{{ivaFinal()}}</div>
-      </div>
-      <div class="divTableRow">
-        <div class="divTableCell">
-          <h3>Total</h3>
-        </div>
-        <div class="divTableCell">&#8353;{{totalFinal()}}</div>
-      </div>
+  @if (listItems.length != 0){
+  <!-- Metodos de pago -->
+  <div style="margin-bottom: 2.5em;">
+    <h3 class="style-subtitle-h3" style="margin-bottom: 2em;">4. Seleccionar método de pago</h3>
+
+    <mat-radio-group formControlName="rdbgMetodoPago" class="flex-space3" [(ngModel)]="metodoPago">
+      <mat-radio-button id="rdbEfectivo" value="EFECTIVO">
+        <img src="\images\icons\dinero-en-efectivo.png" /> <br>Efectivo
+      </mat-radio-button>
+      <mat-radio-button id="rdbTarjeta" value="TARJETA">
+        <img src="\images\icons\tarjeta-bancaria.png" /> <br>Tarjeta crédito/débito
+      </mat-radio-button>
+    </mat-radio-group>
+
+    @if (errorHandling('rdbgMetodoPago')) {
+    <mat-error class="radio-error">{{errorHandling( 'rdbgMetodoPago')}}</mat-error>
+    }
+
+    <!-- Si selecciona efectivo se habilita esta parte -->
+    @if (metodoPago() == "EFECTIVO") {
+    <div class="container-Efectivo">
+      <app-dialog-pagar-efectivo></app-dialog-pagar-efectivo>
     </div>
+    }
   </div>
-</div>
 
-<!-- Metodos de pago -->
-<div style="margin-bottom: 2.5em;">
-  <h3 class="style-subtitle-h3" style="margin-bottom: 2em;">4. Seleccionar método de pago</h3>
-  <div class="flex-space2">
-    <button matButton class="style-Btn"><mat-icon>attach_money</mat-icon> Efectivo</button>
-    <button matButton class="style-Btn"><mat-icon>credit_card</mat-icon>Tarjeta</button>
-  </div>
-</div>
+  <button type="submit" matButton
+  class="style-Btn" style="background-color: #ffdc5c; margin-top: 0.5em;">
+    Procesar pago
+  </button>
+  }
 
-<button matButton class="style-Btn" style="background-color: #ffdc5c; margin-top: 0.5em;" [routerLink]="['/procesar-pago']">Procesar pago
-</button>
-
-} @else {
-<h1>No hay productos agregados al carrito</h1>
-<h2>¡Agrega un producto para realizar una venta!</h2>
-}
+</form>

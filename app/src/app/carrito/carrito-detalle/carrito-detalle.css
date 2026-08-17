@@ -1,8 +1,10 @@
-h1, h2{
+h1,
+h2 {
   text-align: center;
 }
 
-h1, h2:last-child{
+h1,
+h2:last-child {
   padding: 0.5em 1em;
   font-weight: normal;
 }
@@ -11,12 +13,18 @@ mat-icon {
   padding: 1.5em 0em;
 }
 
-.style-subtitle-h3{
+.label-Carrito-Vacio {
+  font-weight: normal;
+  text-align: center;
+  margin: 2.2em 0em;
+}
+
+.style-subtitle-h3 {
   text-align: center;
   background-color: #f9c307;
   font-size: medium;
   font-weight: 500;
-  padding: 6px; 
+  padding: 6px;
 }
 
 .flex-space {
@@ -30,6 +38,14 @@ mat-icon {
   gap: 1.5em;
 }
 
+.flex-space3 {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5em;
+}
+
 .style-Btn {
   width: 100%;
   color: black;
@@ -38,11 +54,11 @@ mat-icon {
   padding: 2em;
 }
 
-.divEliminarBtn{
+.divEliminarBtn {
   margin: auto 0em;
 }
 
-.style-EliminarBtn{
+.style-EliminarBtn {
   width: 100%;
   padding: 1em;
   background-color: #e90000;
@@ -53,6 +69,10 @@ div.style-tabla-costos {
   width: 100%;
   text-align: right;
   border-collapse: collapse;
+  margin-top: 2em;
+}
+
+.container-Efectivo{
   margin-top: 2em;
 }
 
@@ -100,4 +120,11 @@ div.style-tabla-costos {
 
 .divTableBody {
   display: table-row-group;
+}
+
+.radio-error {
+    color: #f44336;
+    font-size: 12px;
+    margin-top: 8px;
+    display: block;
 }

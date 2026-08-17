@@ -1,17 +1,11 @@
 import { Component, inject, Signal, signal } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
 import { NotificationService } from '../../share/notification-service';
 import { getFormValidationErrorMessage } from '../../share/form-validation';
 import { CarritoService } from '../../share/carrito.service';
-import { UtilService } from '../../share/util-service';
-import { FacturaService } from '../../share/services/factura.service';
-import { FacturaModel } from '../../share/models/FacturaModel';
 import { ItemCarritoModel } from '../../share/models/ItemCarritoModel';
-import { VentaService } from '../../share/services/venta.service';
-import { VentaModel } from '../../share/models/VentaModel';
 
 @Component({
   selector: 'app-dialog-pagar-efectivo',
@@ -25,31 +19,19 @@ export class DialogPagarEfectivo {
   readonly dialogEfectivo = inject(MatDialog);
 
   private carritoService = inject(CarritoService);
-  private carritoItemSignal: Signal<ItemCarritoModel[]>;
-  private listItems: ItemCarritoModel[] = [];
-  private readonly prom2x1 = signal<boolean>(this.carritoService.prom2x1);
-  private readonly prom10k = signal<boolean>(this.carritoService.prom10k);
-  private readonly subtotalFinal: Signal<Number> = this.carritoService.subtotalFinal;
-  private readonly ivaFinal: Signal<Number> = this.carritoService.ivaFinal;
-  private readonly totalFinal: Signal<Number> = this.carritoService.totalFinal;
+  private carritoItemSignal: Signal<ItemCarritoModel[]>;    
 
-  montoPendientePago: Signal<Number> = this.carritoService.totalFinal;
+  montoPendientePago: Signal<Number> = this.carritoService.subtotalFinal;
   cambioSignal = signal<Number>(0);
   validMonto: boolean = true;
 
   pagarEfectivoForm!: FormGroup
 
   constructor(
-    private facturaService: FacturaService,
-    private ventaService: VentaService,
     private fb: FormBuilder,
-    private router: Router,
-    private activeRouter: ActivatedRoute,
     private noti: NotificationService,
-    private util: UtilService
   ) {
-    this.carritoItemSignal = this.carritoService.itemsCarrito;
-    this.listItems = this.carritoItemSignal();
+    this.carritoItemSignal = this.carritoService.itemsCarrito;    
   }
 
   ngOnInit() {
@@ -62,7 +44,10 @@ export class DialogPagarEfectivo {
     })
   }
 
-  submitPagar() {
+  onChangeCambio(event: any): void {
+    const tempMontoPago = Number(event.target.value)
+    const tempMontoPendiente = Number(this.montoPendientePago())
+
     this.pagarEfectivoForm.markAllAsTouched();
     if (this.pagarEfectivoForm.invalid) {
       this.noti.error(
@@ -72,84 +57,6 @@ export class DialogPagarEfectivo {
       this.validMonto = true
       return;
     }
-
-    //const formValue = this.pagarEfectivoForm.value;
-    let fechaAct = new Date()
-
-    let tempListDetalle: any[] = this.listItems.map((x: ItemCarritoModel) => ({
-      pedidoId: 0,
-      productoId: x.producto.productoId,
-      cantidad: x.cantidad,
-      total: x.subtotal
-    }) as any
-    );
-
-    //Crear obj Venta
-    const objFactura = new FacturaModel();
-    objFactura.fecha = fechaAct.toISOString();
-    objFactura.hora = fechaAct.getHours + ":" + fechaAct.getMinutes + ":" + fechaAct.getSeconds;
-    objFactura.metodo_pago = "EFECTIVO";
-    objFactura.descuento = this.util.PromocionToString(this.prom2x1(), this.prom10k());
-    objFactura.subtotal = Number(this.subtotalFinal());
-    objFactura.impuesto = Number(this.ivaFinal());
-    objFactura.total = Number(this.totalFinal());
-    objFactura.usuarioId = 2;
-    objFactura.eventoId = 1;
-    objFactura.facturasDet = tempListDetalle
-
-    this.actualizarCantColab(objFactura);
-    this.guardarFactura(objFactura);
-  }
-
-  guardarFactura(prFactura: FacturaModel) {
-    this.facturaService
-      .create(prFactura)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((data) => {
-        this.noti.success(
-          'Venta finalizada',
-          'Se ha completado el pago exitosamente',
-          5000
-        );
-        console.log('---FACTURA---')
-        console.log(data)
-        this.dialogEfectivo.closeAll()
-        this.carritoService.vaciarCarrito();
-        this.goDetailVenta(data.id);
-      })
-  }
-
-    actualizarCantColab(prFactura: FacturaModel) {
-      let objVenta = null;
-      let nuevaCant = 0;
-  
-      prFactura.facturasDet?.forEach((x: VentaModel) => {
-        this.ventaService
-          .getByIdVenta(prFactura.eventoId, prFactura.usuarioId, x.productoId)
-          .subscribe((data: VentaModel) => {
-            nuevaCant = Number(data.cantidad - x.cantidad);
-  
-            objVenta = {
-              eventoId: prFactura.eventoId,
-              usuarioId: prFactura.usuarioId,
-              productoId: x.productoId,
-              cantidad: nuevaCant > 0 ? nuevaCant : 0,
-            }
-  
-            if (objVenta != null) {
-              this.ventaService
-                .updateVenta(objVenta, objVenta.eventoId, objVenta.usuarioId, objVenta.productoId)
-                .pipe(takeUntil(this.destroy$))
-                .subscribe((data: VentaModel) => {
-                })
-            }
-          })
-      })
-    }
-
-  onChangeCambio(event: any): void {
-    const tempMontoPago = Number(event.target.value)
-    const tempMontoPendiente = Number(this.montoPendientePago())
 
     if (tempMontoPago < tempMontoPendiente) {
       this.noti.error(
@@ -166,12 +73,7 @@ export class DialogPagarEfectivo {
     this.validMonto = false;
   }
 
-  goDetailVenta(prId: number) {
-    this.router.navigate(["venta-detail", prId]);
-  }
-
   public errorHandling(controlPath: string): string | false {
     return getFormValidationErrorMessage(this.pagarEfectivoForm, controlPath);
   }
-
 }
