@@ -9,6 +9,7 @@ import { ItemCarritoModel } from '../../share/models/ItemCarritoModel';
 import { ProductoModel } from '../../share/models/ProductoModel';
 import { AuthenticationService } from '../../share/authentication.service';
 
+import { ChangeDetectorRef } from '@angular/core';
 @Component({
   selector: 'app-producto-index',
   standalone: false,
@@ -16,8 +17,8 @@ import { AuthenticationService } from '../../share/authentication.service';
   styleUrl: './producto-index.css',
 })
 export class ProductoIndex {
-  datos: any;
-  datosLength: any;
+  datos: VentaModel[] = [];
+datosLength: number = 0;
 
   private carritoService = inject(CarritoService);
   private authService = inject(AuthenticationService);
@@ -28,6 +29,8 @@ export class ProductoIndex {
   private userEvento = 1;
 
   constructor(
+    
+  private cdr: ChangeDetectorRef,
     private fb: FormBuilder,
     private pServiceVenta: VentaService,
     private noti: NotificationService,
@@ -35,26 +38,55 @@ export class ProductoIndex {
   ) { }
 
   ngOnInit() {
+
     this.listProductos();
   }
+  
+  
+  listProductos(): void {
 
-  listProductos() {
-    this.pServiceVenta
-      .get()
-      .subscribe((list: VentaModel[]) => {
+  this.pServiceVenta.get().subscribe({
 
-        const listUsuarioProds: VentaModel[] = []
-        list.forEach(item => {
-          if (item.usuario?.email == this.userEmail && item.eventoId == this.userEvento && item.producto?.estado) {
-            listUsuarioProds.push(item);
-          }
-        });
+    next: (list: VentaModel[]) => {
 
-        this.datos = listUsuarioProds
-        this.datosLength = listUsuarioProds.length
-      })
-  }
 
+      const listUsuarioProds: VentaModel[] = list.filter(item => {
+
+        console.log('----------- PRODUCTO -----------');
+        console.log('Item completo:', item);
+        console.log('Email:', item.usuario?.email);
+        console.log('Email esperado:', this.userEmail);
+        console.log('Evento:', item.eventoId);
+        console.log('Evento esperado:', this.userEvento);
+        console.log('Estado:', item.producto?.estado);
+
+        const cumple =
+          item.usuario?.email === this.userEmail &&
+          item.eventoId === this.userEvento &&
+          item.producto?.estado === true;
+
+        console.log('¿Pasa filtro?', cumple);
+
+        return cumple;
+      });
+
+
+      this.datos = listUsuarioProds;
+this.datosLength = listUsuarioProds.length;
+
+this.cdr.detectChanges();
+
+    },
+
+    error: (error) => {
+
+      this.datos = [];
+      this.datosLength = 0;
+    }
+
+  });
+
+}
   addProducto(prProd: VentaModel) {
     let tempItem = this.carritoItemSignal().find(x => {
       return x.producto.productoId === prProd.productoId ? x : null;

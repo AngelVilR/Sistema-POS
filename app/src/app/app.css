@@ -14,35 +14,44 @@ body {
     overflow-x: hidden;
 }
 
+/* =========================================
+   CONTENEDOR PRINCIPAL
+========================================= */
 
 .ToolBar-container {
     width: 100%;
+    min-width: 0;
     min-height: 100vh;
+
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
     margin: 0;
     padding: 0;
 }
 
-.body-container {
-    width: 100%;    
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
+.body-container {
+    width: 100%;
+    flex: 1;
     padding: 3em 0;
     margin: 0;
+
     box-sizing: border-box;
-    min-width: 0;
 }
+
 
 .background-img {
     width: 100%;
-    min-height: 100%;
+    min-width: 0;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: stretch;
+
     background-image:
         linear-gradient(
-            #ffffffb3,
-            #ffffffb3
+            rgba(255, 255, 255, 0.70),
+            rgba(255, 255, 255, 0.70)
         ),
         url("../../public/images/Logo\ transparente\ mini\ v2.png");
 
@@ -51,91 +60,105 @@ body {
     background-size: auto;
 }
 
+
 .flex-space {
     display: flex;
     width: 100%;
     min-width: 0;
 }
 
+
 .menu-container {
-    height: 100vh;
+    width: 100%;
+    min-width: 0;
+
     min-height: 100vh;
 }
+
+
 
 .sideMenu-container {
     text-align: center;
+
     background-color: #fff7df;
+
     height: 100%;
 }
 
+
+
 .sidenav-content {
-    height: 100vh;
+    align-self: stretch;
+
+    height: auto;
     min-height: 100vh;
+
+    flex-shrink: 0;
+
     border-right: 1px solid black;
+
     background-color: #fbdb6b;
 }
 
+
+
 .sidenav-content button {
-    margin: 1.5em 0;
+    margin: 1.5rem 0;
 }
 
+/* =========================================
+   ELEMENTOS GENERALES
+========================================= */
 
 img {
     max-width: 100%;
+    height: auto;
 }
 
 table {
     max-width: 100%;
 }
 
+
+
 @media (max-width: 1200px) {
 
-    .menu-container,
-    .sidenav-content {
-        height: 100vh;
-        min-height: 100vh;
-    }
-
     .body-container {
-        width: 100%;
-        margin: 0;
-        padding: 2em 0;
+        padding: 2rem 0;
     }
 
-    .background-img {
-        background-repeat: repeat;
-    }
 }
+
+
+/* =========================================
+   TABLET PEQUEÑA
+========================================= */
 
 @media (max-width: 768px) {
 
     .body-container {
-        padding: 1.5em 0;
-        margin: 0;
-    }
-
-    .menu-container,
-    .sidenav-content {
-        height: auto;
-        min-height: 100vh;
+        padding: 1.5rem 0;
     }
 
     .background-img {
-        background-repeat: repeat;
         background-position: center;
     }
+
 }
 
 
+/* =========================================
+   CELULAR
+========================================= */
 
 @media (max-width: 480px) {
 
     .body-container {
-        padding: 1em 0;
-        margin: 0;
+        padding: 1rem 0;
     }
 
     .sidenav-content button {
-        margin: 1em 0;
+        margin: 1rem 0;
     }
+
 }

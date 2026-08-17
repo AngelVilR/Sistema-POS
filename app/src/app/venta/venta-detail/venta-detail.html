@@ -1,39 +1,98 @@
-@if(datos){
+@if (datos) {
+
 <div class="container">
-    <!-- EncabezadoFactura -->
+
+    <!-- ===================================================== -->
+    <!-- ENCABEZADO FACTURA -->
+    <!-- ===================================================== -->
+
     <div class="container-Encabezado">
+
         <div class="flex-space">
-            <h1>Número de venta #{{datos.id}}</h1>
+
+            <h1>
+                Número de venta #{{ datos.id }}
+            </h1>
+
             <div class="div-image"></div>
+
         </div>
+
 
         <div>
+
             <table class="style-EncFacturaInfo">
+
                 <tbody>
+
                     <tr>
-                        <td>Fecha de creación:</td>
-                        <td>{{datos.fechaString}}</td>
+
+                        <td>
+                            Fecha de creación:
+                        </td>
+
+                        <td>
+                            {{ datos.fechaString }}
+                        </td>
+
                     </tr>
+
+
                     <tr>
-                        <td>Colaborador:</td>
-                        <td>{{datos.usuario.nombre}}</td>
+
+                        <td>
+                            Colaborador:
+                        </td>
+
+                        <td>
+                            {{ datos.usuario?.nombre }}
+                        </td>
+
                     </tr>
+
+
                     <tr>
-                        <td>Descuento aplicado:</td>
-                        <td>{{datos.descuento}}</td>
+
+                        <td>
+                            Descuento aplicado:
+                        </td>
+
+                        <td>
+                            {{ datos.descuento || 'Ninguno' }}
+                        </td>
+
                     </tr>
+
+
                     <tr>
-                        <td>Método de pago:</td>
-                        <td>{{datos.metodo_pago}}</td>
+
+                        <td>
+                            Método de pago:
+                        </td>
+
+                        <td>
+                            {{ datos.metodo_pago }}
+                        </td>
+
                     </tr>
+
                 </tbody>
+
             </table>
+
         </div>
+
     </div>
 
-    <!-- DetalleFactura -->
+
+    <!-- ===================================================== -->
+    <!-- DETALLE FACTURA -->
+    <!-- ===================================================== -->
+
     <div class="container-Detail">
+
         <table class="style-FacturaDetail">
+
             <thead>
                 <tr>
                     <th>Producto</th>
@@ -41,7 +100,10 @@
                     <th>IVA</th>
                     <th>Total</th>
                 </tr>
+
             </thead>
+
+
             <tbody>
                 @for (item of datos.facturasDet; track $index) {
                 <tr>
@@ -51,22 +113,41 @@
                     <td>{{item.total | currency:'CRC':'&#8353;':'1.0-0'}}</td>
                 </tr>
                 }
+
             </tbody>
+
         </table>
+
     </div>
 
-    <!-- Tabla de costos -->
+
+    <!-- ===================================================== -->
+    <!-- TABLA DE COSTOS -->
+    <!-- ===================================================== -->
+
     <div class="container-Costos">
+
         <table class="style-FacturaCosts">
+
             <tbody>
                 <tr>
                     <td>Total</td>
                     <td>{{datos.subtotal | currency:'CRC':'&#8353;':'1.0-0'}}</td>
                 </tr>
+
             </tbody>
+
         </table>
+
     </div>
+
 </div>
-}@else{
-<h1>La factura de la venta seleccionada no está disponible ahora mismo</h1>
+
+} @else {
+
+<h1>
+    La factura de la venta seleccionada
+    no está disponible ahora mismo
+</h1>
+
 }

@@ -14,30 +14,34 @@ import { Subject } from 'rxjs';
 })
 export class SideBar {
   showFiller = false;
-  private dialogForm = inject(MatDialog)
+  private dialogForm = inject(MatDialog);
   user: any;
-  labelUsuario: String = ""
+  userSignal!: () => any;
 
   constructor(
     private router: Router,
     private utilService: UtilService,
     private authService: AuthenticationService
-  ) { }
+  ){}
+
+  
 
   ngOnInit(): void {
-    this.user = this.authService.currentUserSignal();    
-    this.labelUsuario = this.user?.nombre + " (" + (this.utilService.RoleUsuarioToString(this.user?.role)) + ")"
-    console.log('Usuario logueado:', this.user);
+    this.user = this.authService.currentUserSignal();
+    this.userSignal = this.authService.currentUserSignal;
+     console.log('Usuario logueado:', this.user)
   }
+
+
 
   logout() {
     this.authService.logout();
   }
 
-  public isAdmin = computed(() => {
-    const user = this.authService.currentUserSignal()    
-    console.log('User: ', user?.role.toString())
-    return user?.role.toString() == 'ADMIN'
+  public isAdmin=computed(()=>{
+    const user=this.authService.currentUserSignal()
+    /* console.log('User: ', user); */
+    return user?.role.toString() =='ADMIN'
   })
 
   openDialogChangePassword() {
