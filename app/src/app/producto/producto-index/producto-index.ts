@@ -3,13 +3,13 @@ import { NotificationService } from '../../share/notification-service';
 import { Router } from '@angular/router';
 import { VentaService } from '../../share/services/venta.service';
 import { VentaModel } from '../../share/models/VentaModel';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { CarritoService } from '../../share/carrito.service';
 import { ItemCarritoModel } from '../../share/models/ItemCarritoModel';
-import { ProductoModel } from '../../share/models/ProductoModel';
 import { AuthenticationService } from '../../share/authentication.service';
 
 import { ChangeDetectorRef } from '@angular/core';
+import { UtilService } from '../../share/util-service';
 @Component({
   selector: 'app-producto-index',
   standalone: false,
@@ -34,7 +34,8 @@ export class ProductoIndex {
     private fb: FormBuilder,
     private pServiceVenta: VentaService,
     private noti: NotificationService,
-    private router: Router
+    private router: Router,
+    private util: UtilService
   ) { }
 
   ngOnInit() {
@@ -45,9 +46,7 @@ export class ProductoIndex {
   }
 
   listProductos(): void {
-
     this.pServiceVenta.get().subscribe({
-
       next: (list: VentaModel[]) => {
         console.log(list)
         const listUsuarioProds: VentaModel[] = []
@@ -68,10 +67,13 @@ export class ProductoIndex {
         this.datos = [];
         this.datosLength = 0;
       }
-
     });
-
   }
+
+  getImgProducto(prProdName: String){
+    return this.util.setImgProducto(prProdName);
+  }
+
   addProducto(prProd: VentaModel) {
     let tempItem = this.carritoItemSignal().find(x => {
       return x.producto.productoId === prProd.productoId ? x : null;

@@ -7,7 +7,7 @@ export class FacturaController {
         try {
             const listado = await prisma.facturaEnc.findMany({
                 orderBy: {
-                    id: "asc"
+                    id: "desc"
                 },
                 include: {
                     usuario: true,

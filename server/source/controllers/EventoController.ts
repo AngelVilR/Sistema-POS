@@ -7,7 +7,7 @@ export class EventoController {
         try {
             const listado = await prisma.evento.findMany({
                 orderBy: {
-                    id: "asc"
+                    id: "desc"
                 },
                 include: {
                     ventas: true,

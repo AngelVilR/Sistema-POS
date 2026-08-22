@@ -12,7 +12,7 @@
       </mat-card-header>
 
       <mat-card-content>
-        <img mat-card-image src="\images\prods\img-{{ item.producto?.nombre }}.png"
+        <img mat-card-image src="\images\prods\img-{{ getImgProducto(item.producto?.nombre!) }}"
           alt="Imagen del producto {{ item.producto?.nombre }}">
       </mat-card-content>
 

@@ -63,4 +63,18 @@ export class UtilService {
     }
     return txt;
   }
+
+  setImgProducto(prProdName: String) {
+    let temp = prProdName.toLocaleLowerCase();
+    let result = "not-found.png"
+    if (temp == "papas" ||
+      temp == "bolis" ||
+      temp == "empanadas" ||
+      temp == "gelatinas" ||
+      temp == "coca cola" ||
+      temp == "agua") {
+      result = prProdName + ".png"
+    }
+    return result
+  }
 }

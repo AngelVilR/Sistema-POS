@@ -5,9 +5,10 @@
 }
 
 .charts-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3em;
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
@@ -15,6 +16,7 @@
 
 .chart-card {
   display: flex;
+  width: 35rem;
   flex-direction: column;
   min-width: 0;
 }
@@ -37,9 +39,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  margin-top: 15px;
-  flex-wrap: wrap;
+  gap: 1.5em;
+  margin: 2em 0em 0em
 }
 
 .style-Btn {

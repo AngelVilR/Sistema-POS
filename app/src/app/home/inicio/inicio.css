@@ -47,6 +47,7 @@ main {
 
     box-sizing: border-box;
 
+    margin-right: 2em;
     position: sticky;
     top: 1.5rem;
 }
