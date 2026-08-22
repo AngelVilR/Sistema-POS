@@ -1,4 +1,4 @@
-.flex{
+.flex {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -7,18 +7,20 @@
 .charts-row {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 3em;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  gap: 1.5em;
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
+  overflow-x: auto;
 }
 
 .chart-card {
   display: flex;
-  width: 35rem;
-  flex-direction: column;
+  flex: 1 1 0;
   min-width: 0;
+  flex-direction: column;
 }
 
 .chart-container {
@@ -39,8 +41,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.5em;
-  margin: 2em 0em 0em
+  gap: 1em;
+  margin: 2em 0 0;
 }
 
 .style-Btn {
@@ -51,20 +53,42 @@
   padding: 1.2em;
 }
 
-@media (max-width: 1000px) {
-  .charts-row {
-    grid-template-columns: 1fr;
-  }
-}
 
 @media (max-width: 1200px) {
+
   .charts-row {
-    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+  }
+
+  .chart-container {
+    height: 350px;
+  }
+
+  .chart-toolbar {
+    flex-direction: column;
+  }
+
+  .style-Btn {
+    width: 100%;
   }
 }
 
-@media (max-width: 700px) {
+
+@media (max-width: 800px) {
+
   .charts-row {
-    grid-template-columns: 1fr;
+    flex-wrap: wrap;
+  }
+
+  .chart-card {
+    flex: 1 1 100%;
+  }
+
+  .chart-container {
+    height: 400px;
+  }
+
+  .chart-toolbar {
+    flex-direction: row;
   }
 }

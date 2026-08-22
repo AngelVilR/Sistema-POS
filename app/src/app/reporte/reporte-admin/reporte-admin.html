@@ -1,21 +1,30 @@
 <div class="charts-row">
 
-  <!-- GRÁFICO POR TIPO -->
+  <!-- ========================================================= -->
+  <!-- GRÁFICO POR TIPO DE TRANSACCIÓN -->
+  <!-- ========================================================= -->
+
   <div class="chart-card">
+
     <div class="chart-container mat-elevation-z8">
+
       <ag-charts
         #chartTipo
         [options]="chartOptionsTipo">
       </ag-charts>
+
     </div>
 
     <div class="chart-toolbar">
+
       <button
         mat-raised-button
         color="primary"
         class="style-Btn"
-        (click)="exportarExcelTipo()">        
+        (click)="exportarExcelTipo()">
+
         Exportar a Excel
+
       </button>
 
       <button
@@ -23,28 +32,41 @@
         color="accent"
         class="style-Btn"
         (click)="exportarPowerBITipo()">
+
         Exportar a PowerBI
+
       </button>
+
     </div>
+
   </div>
 
 
+  <!-- ========================================================= -->
   <!-- GRÁFICO DE PRODUCTOS -->
+  <!-- ========================================================= -->
+
   <div class="chart-card">
+
     <div class="chart-container mat-elevation-z8">
+
       <ag-charts
         #chartProductos
         [options]="chartOptionsProductos">
       </ag-charts>
+
     </div>
 
     <div class="chart-toolbar">
+
       <button
         mat-raised-button
         color="primary"
         class="style-Btn"
         (click)="exportarExcelProductos()">
+
         Exportar a Excel
+
       </button>
 
       <button
@@ -52,28 +74,41 @@
         color="accent"
         class="style-Btn"
         (click)="exportarPowerBIProductos()">
+
         Exportar a PowerBI
+
       </button>
+
     </div>
+
   </div>
 
 
-  <!-- GRÁFICO DE USUARIOS -->
+  <!-- ========================================================= -->
+  <!-- GRÁFICO DE VENTAS POR USUARIO - CIRCULAR -->
+  <!-- ========================================================= -->
+
   <div class="chart-card">
+
     <div class="chart-container mat-elevation-z8">
+
       <ag-charts
         #chartUsuario
         [options]="chartOptionsUsuario">
       </ag-charts>
+
     </div>
 
     <div class="chart-toolbar">
+
       <button
         mat-raised-button
         color="primary"
         class="style-Btn"
         (click)="exportarExcelUsuario()">
+
         Exportar a Excel
+
       </button>
 
       <button
@@ -81,9 +116,13 @@
         color="accent"
         class="style-Btn"
         (click)="exportarPowerBIUsuario()">
+
         Exportar a PowerBI
+
       </button>
+
     </div>
+
   </div>
 
 </div>
