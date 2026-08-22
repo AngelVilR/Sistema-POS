@@ -4,8 +4,10 @@ h1, h2{
 }
 
 .flexSpace {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     margin: 2em;
     gap: 2em;
 }
@@ -22,6 +24,8 @@ h1, h2{
 }
 
 .card {
+    width: 350px;
+    height: 300px;
     border: 2px solid #c7c7c7;
 }
 

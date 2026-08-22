@@ -1,6 +1,6 @@
 <mat-drawer-container class="menu-container">
   <mat-drawer #drawer mode="side" class="sideMenu-container">
-    <app-side-bar></app-side-bar>
+    <app-side-bar (cerrarDrawer)="drawer.close()"></app-side-bar>
   </mat-drawer>
 
   

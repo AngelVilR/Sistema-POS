@@ -18,15 +18,16 @@ img {
 }
 
 .flexV1 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     gap: 2em;
 }
 
 .card {
-    max-width: 350px;
+    width: 300px;
+    height: auto;
     padding: 0.5em 2em;
     margin-bottom: 25px;
     border: 2px solid #a1a1a1;
@@ -75,5 +76,10 @@ img {
 
     .card {
         max-width: 250px;
+    }
+
+    .flexV1{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
     }
 }

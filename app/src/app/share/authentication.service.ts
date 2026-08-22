@@ -19,6 +19,22 @@ export class AuthenticationService {
   authenticated = computed(() => !!this.tokenUser());
   usuario = signal<UsuarioModel | null>(null);
 
+  userRoleCurrent = computed(() => {
+    let txt = ""
+    switch (this.usuario()?.role) {
+      case 'ADMIN':
+        txt = "Administrador"
+        break;
+      case 'USER':
+        txt = "Colaborador"
+        break;
+      default:
+        txt = "Debe de iniciar sesión"
+        break;
+    }
+    return txt
+  })
+
   constructor(
     private http: HttpClient,
     private router: Router,

@@ -5,7 +5,7 @@ import { CarritoService } from './carrito.service';
 @Injectable({
   providedIn: 'root',
 })
-export class UtilService {  
+export class UtilService {
   FormatearFechas(prFecha: any): String {
     prFecha = new Date(prFecha);
     const configFormatoFecha = new Intl.DateTimeFormat(
@@ -37,10 +37,10 @@ export class UtilService {
     return txt;
   }
 
-  PromocionToString(pr2x1: boolean, pr10k: boolean, prDescu: string){
-    let txt = "No posee descuento"    
+  PromocionToString(pr2x1: boolean, pr10k: boolean, prDescu: string) {
+    let txt = "No posee descuento"
     if (pr2x1) {
-      txt = "Gelatina 2x1"      
+      txt = "Gelatina 2x1"
     }
     if (pr10k) {
       txt = "Descuento de " + prDescu + "%"

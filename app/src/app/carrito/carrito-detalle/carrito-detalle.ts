@@ -77,11 +77,11 @@ export class CarritoDetalle {
 
   labelPromociones(): string {
     let tempTxt = "No posee descuento";
-    if (this.prom2x1()) {
+    if (this.prom2x1() && !this.prom10k()) {
       tempTxt = "Descuento de Gelatinas 2x1";
     }
 
-    if (this.prom10k()) {
+    if (this.prom10k() && !this.prom2x1()) {
       tempTxt = "Descuento de compra de más de ₡10,000"
     }
     

@@ -1,10 +1,9 @@
-
 <!-- ICONO DE USUARIO -->
 <mat-icon class="style-Icon-User">account_circle</mat-icon>
 
-<h2>{{ userSignal()?.nombre }}</h2>
+<h2>{{ userSignal()?.nombre }} ({{labelRolUser()}})</h2>
 
-@if (isAdmin()) {
+@if (isAdmin() && isAuth()) {
 <mat-accordion multi>
     <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -70,12 +69,15 @@
 }
 
 <div style="margin: 1em 0em 1.5em;">
+    @if (isAuth()) {
     <button matButton="outlined" class="style-Btn-Logout" style="color: black;"
         (click)="logout()"><mat-icon>logout</mat-icon>
         Cerrar sesión</button>
 
-        <button matButton="outlined" class="style-Btn-Logout" style="color: black;"
+    <button matButton="outlined" class="style-Btn-Logout" style="color: black;"
         (click)="openDialogChangePassword()"><mat-icon>password</mat-icon>
         Cambiar contraseña</button>
+    }
+
     <p class="p-copy">&copy; La Matamonchis S.A 2026</p>
 </div>
